@@ -30,6 +30,10 @@ text-shadow: 0 0 4px rgb(16,70,60,1),
 #article.setting-samples #articleTitle .background { background-image: url("../img/header_setting-samples.jpg"); }
 
 @media screen and ( max-width: 640px ){
+  
+  #website.index #articleTitle p {
+    width: 100%;
+  }
 
   #website.index #articleTitle .background,
   #website.en.index #articleTitle .background {
@@ -73,13 +77,6 @@ color: #009093;
 }
 
 
-@media screen and ( max-width: 640px ){
-
-#articleTitle h1 {
-font-size: 8vw;
-}
-
-}
 
 
 #articleBody section:nth-of-type( even ) {
