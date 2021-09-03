@@ -171,3 +171,32 @@ background-color: #F5FCFC;
 #faqContent .a .mark {
 color: #1F8C78;
 }
+
+
+
+/* Webinar */
+.webinarTable th, .webinarTable td {
+border-color: #00878A;
+}
+.webinarTable .comingSoon {
+background-color: #F2F2F2;
+text-align: center;
+vertical-align: middle;
+font-size: 24px;
+font-weight: bold;
+color: #CCC;
+}
+.webinarTable thead th {
+background-color: #1F8C78;
+}
+.webinarNumber {
+color: #FFB733;
+}
+.webinarTable tbody th {
+background-color: #8FC6BC;
+}
+.webinarVersionSelectTitle,
+.webinarCodeText,
+.webinarVersionItem.tabOpen .webinarVersionLink {
+color: #00878A;
+}
