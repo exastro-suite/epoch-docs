@@ -1,116 +1,83 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="theme-color" content="#1F8C78">
+        <meta http-equiv="content-language" content="ja">
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<meta name="theme-color" content="#1F8C78">
-<meta http-equiv="content-language" content="ja">
+        <title>{{ page.title }} | Exastro EPOCH</title>
 
-<title>{{ page.title }} | Exastro EPOCH</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://exastro-suite.github.io/docs/asset/js/document.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://exastro-suite.github.io/docs/asset/js/document.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+        <link href="https://exastro-suite.github.io/docs/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
+        <link href="https://exastro-suite.github.io/docs/asset/css/document.css" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
-<link href="https://exastro-suite.github.io/docs/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
-<link href="https://exastro-suite.github.io/docs/asset/css/document.css" rel="stylesheet">
-
-<link rel="icon" type="image/x-icon" href="https://exastro-suite.github.io/epoch-docs/favicon.ico">
-<link rel="shortcut icon" href="https://exastro-suite.github.io/epoch-docs/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="https://exastro-suite.github.io/epoch-docs/apple-touch-icon.png">
-
-</head>
-
-<body>
-
-<div id="container">
-
-<header id="header">
-  <div class="header-title">
-    <div class="header-logo">
-      <img src="https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-logo2-white-rgb.svg" alt="Exastro"><img src="https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-EPOCH-logotype2-white-rgb.svg" alt="EPOCH">
-    </div>
-    <div class="header-name"><i class="fas fa-school"></i><span class="header-title-category">Learn</span><span class="header-title-name"></span></div>
-  </div>
-  <nav id="navi">
-  </nav>
-  <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/learn_ja.html"><i class="fas fa-arrow-alt-circle-left"></i> Exastro EPOCH Learn一覧に戻る</a></div>
-</header>
-
-<main id="main">
-<article id="article">
-    <header class="article-header">
-        <h1>
-          <span class="article-header-logo"><img src="https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-EPOCH-logo1-rgb.svg" alt="Exastro EPOCH"></span>
-          {{ page.title }}
-        </h1>
-        <div class="article-header-info">
-          <ul class="article-header-info-list">
-            <li class="article-header-info-item">
-              <dl class="article-header-info-card">
-                <dt class="article-header-info-title">Version</dt>
-                <dd class="article-header-info-body">{{ page.version }}</dd>
-              </dl>
-            </li>
-            <li class="article-header-info-item">
-              <dl class="article-header-info-card">
-                <dt class="article-header-info-title">Author</dt>
-                <dd class="article-header-info-body">{{ page.author }}</dd>
-              </dl>
-            </li>
-            <li class="article-header-info-item">
-              <dl class="article-header-info-card">
-                <dt class="article-header-info-title">Release date</dt>
-                <dd class="article-header-info-body">{{ page.date }}</dd>
-              </dl>
-            </li>
-            <li class="article-header-info-item">
-              <dl class="article-header-info-card">
-                <dt class="article-header-info-title">Last modified</dt>
-                <dd class="article-header-info-body">{{ page.lastmod }}</dd>
-              </dl>
-            </li>
-          </ul>
+        <link rel="icon" type="image/x-icon" href="https://exastro-suite.github.io/epoch-docs/favicon.ico">
+        <link rel="shortcut icon" href="https://exastro-suite.github.io/epoch-docs/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://exastro-suite.github.io/epoch-docs/apple-touch-icon.png">
+    </head>
+    <body id="epoch">
+        <div id="container">
+            <header id="header">
+                <div class="header-title">
+                    <div class="header-logo">
+                        <img src="https://exastro-suite.github.io/docs/asset/logo/exastro/Exastro-logo2-white-rgb.svg" alt="Exastro">
+                        <img src="https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-EPOCH-logotype2-white-rgb.svg" alt="EPOCH">
+                    </div>
+                    <div class="header-name"><i class="fas fa-school"></i><span class="header-title-category">Learn</span></div>
+                </div>
+                <nav id="navi"></nav>
+                <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/learn_ja.html"><i class="fas fa-arrow-alt-circle-left"></i> Exastro EPOCH Learn一覧に戻る</a></div>
+            </header>
+            <main id="main">
+                <article id="article">
+                    <header class="article-header">
+                        <h1>
+                          <span class="article-header-logo"><img src="https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-EPOCH-logo1-rgb.svg" alt="Exastro EPOCH"></span>
+                          {{ page.title }}
+                        </h1>
+                        <div class="article-header-info">
+                            <ul class="article-header-info-list">
+                                <li class="article-header-info-item">
+                                    <dl class="article-header-info-card">
+                                        <dt class="article-header-info-title">Version</dt>
+                                        <dd class="article-header-info-body">{{ page.version }}</dd>
+                                    </dl>
+                                </li>
+                                <li class="article-header-info-item">
+                                    <dl class="article-header-info-card">
+                                        <dt class="article-header-info-title">Author</dt>
+                                        <dd class="article-header-info-body">{{ page.author }}</dd>
+                                    </dl>
+                                </li>
+                                <li class="article-header-info-item">
+                                    <dl class="article-header-info-card">
+                                        <dt class="article-header-info-title">Release date</dt>
+                                        <dd class="article-header-info-body">{{ page.date }}</dd>
+                                    </dl>
+                                </li>
+                                <li class="article-header-info-item">
+                                    <dl class="article-header-info-card">
+                                        <dt class="article-header-info-title">Last modified</dt>
+                                        <dd class="article-header-info-body">{{ page.lastmod }}</dd>
+                                    </dl>
+                                </li>
+                            </ul>
+                        </div>
+                    </header>
+                    <section class="article-section">{{ content }}</section>
+                </article>
+            </main>
+            <footer id="footer">
+                <div class="copyright">
+                    <p><small><script src="https://exastro-suite.github.io/docs/asset/js/copyright.js"></script></small></p>
+                </div>
+            </footer>
         </div>
-    </header>
-    <section class="article-section">
-{{ content }}
-    </section>
-  </article>
-</main>
-
-
-<ul>
-<li>{{ site.time }}</li>
-<li>{{ page.url }}</li>
-<li>{{ page.date }}</li>
-<li>{{ page.id }}</li>
-<li>{{ page.categories }}</li>
-<li>{{ page.collection }}</li>
-<li>{{ page.tags }}</li>
-<li>{{ page.dir }}</li>
-<li>{{ page.name }}</li>
-<li>{{ page.path }}</li>
-<li>{{ page.next }}</li>
-<li>{{ page.previous }}</li>
-</ul>
-
-<p class="info">**ポイント** ちょっとした情報です。</p>
-<p class="warn">**注意** 気をつけてください</p>
-<p class="alert">**警告** 細心の注意を払ってください</p>
-
-
-<footer id="footer">
-  <div class="copyright">
-    <p><small><script src="https://exastro-suite.github.io/docs/asset/js/copyright.js"></script></small></p>
-  </div>
-</footer>
-
-</div>
-
-</body>
+    </body>
 </html>
