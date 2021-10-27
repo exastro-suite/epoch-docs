@@ -1,11 +1,10 @@
 ---
 layout: default
 lang: ja
-type: epoch
 title: Quick Start
 version: 0.1.0
 author: Exastro developer
-rdate: 2021/10/15
+date: 2021/10/15
 lastmod: 2021/10/31
 ---
 
