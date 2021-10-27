@@ -2,10 +2,26 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Docs test</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#1F8C78">
+<meta http-equiv="content-language" content="ja">
+
+<title>{{ page.title }} | Exastro EPOCH</title>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://exastro-suite.github.io/docs/asset/js/document.js"></script>
+
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+<link href="https://exastro-suite.github.io/docs/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
+<link href="https://exastro-suite.github.io/docs/asset/css/document.css" rel="stylesheet">
+
+<link rel="icon" type="image/x-icon" href="https://exastro-suite.github.io/epoch-docs/favicon.ico">
+<link rel="shortcut icon" href="https://exastro-suite.github.io/epoch-docs/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="https://exastro-suite.github.io/epoch-docs/apple-touch-icon.png">
 
 </head>
 
@@ -15,20 +31,21 @@
 
 <header id="header">
   <div class="header-title">
-    <div class="header-logo"></div>
-    <div class="header-name"><i class="fas fa-school"></i><span class="header-title-category">Docs test</span><span class="header-title-name"></span></div>
+    <div class="header-logo">
+      <img src="https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-logo2-white-rgb.svg" alt="Exastro"><img src="https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-EPOCH-logotype2-white-rgb.svg" alt="EPOCH">
+    </div>
+    <div class="header-name"><i class="fas fa-school"></i><span class="header-title-category">{{ page.title }}</span><span class="header-title-name"></span></div>
   </div>
   <nav id="navi">
   </nav>
-  <div class="header-return"><a class="header-return-link" href="#"><i class="fas fa-arrow-alt-circle-left"></i> 一覧に戻る</a></div>
+  <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/learn_ja.html"><i class="fas fa-arrow-alt-circle-left"></i> Exastro EPOCH Learn一覧に戻る</a></div>
 </header>
-
 
 <main id="main">
 <article id="article">
     <header class="article-header">
         <h1>
-          <span class="article-header-logo"><img src="./asset/img/Exastro-EPOCH-logo1-rgb.svg" alt="Exastro EPOCH"></span>
+          <span class="article-header-logo"><img src="https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-EPOCH-logo1-rgb.svg" alt="Exastro EPOCH"></span>
           {{ page.title }}
         </h1>
         <div class="article-header-info">
@@ -88,7 +105,9 @@
 
 
 <footer id="footer">
-  <div class="copyright"><small>Copyright © XXXXX</small></div>
+  <div class="copyright">
+    <p><small><script src="https://exastro-suite.github.io/docs/asset/js/copyright.js"></script></small></p>
+  </div>
 </footer>
 
 </div>
