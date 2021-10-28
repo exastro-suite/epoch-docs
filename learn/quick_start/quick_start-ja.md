@@ -16,7 +16,7 @@ lastmod: 2021/10/31
 
 #### QuickStartの全体図
 
-image
+![QuickStart全体図](img/1-1-2_01.jpg)
 
 （※1）本クイックスタートでは手順を簡素化するため1つのKubernetesクラスタ上で構成します。
 
@@ -24,4 +24,4 @@ image
 
 QuickStartの手順を実施するにあたってのPCのソフトウェアは以下の通りです。
 
-image
+![QuickStart手順](img/1-2_01.jpg)
