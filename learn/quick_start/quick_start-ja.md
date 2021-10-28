@@ -40,19 +40,19 @@ EPOCHをインストールおよびワークスペースを作成した後の構
 ##### 前提条件
 ###### 環境
 
--Kubernetes環境が構築されていること
--使用するServiceAccountにcluster-adminロールが付与されていること
--Kubernetes環境から外部インターネットに接続できること
--PC環境から外部インターネットに接続できること
--PC環境にGit for Windowsがインストールされていること
--ポート番号(30080, 30081, 30443, 30801 , 30804, 30805, 30901～30907)が使用できること
+- Kubernetes環境が構築されていること
+- 使用するServiceAccountにcluster-adminロールが付与されていること
+- Kubernetes環境から外部インターネットに接続できること
+- PC環境から外部インターネットに接続できること
+- PC環境にGit for Windowsがインストールされていること
+- ポート番号(30080, 30081, 30443, 30801 , 30804, 30805, 30901～30907)が使用できること
 (ポート番号はepoch-install.yamlに記述されており、変更する際は編集後インストールを実行する必要があります）
 
 ###### アカウント
 
--アプリケーションコードを登録するGitHubのアカウントが準備されていること
--Kubernetes Manifestを登録するGitHubのアカウントが準備されていること
--コンテナイメージを登録するDockerHubのアカウントが準備されていること
+- アプリケーションコードを登録するGitHubのアカウントが準備されていること
+- Kubernetes Manifestを登録するGitHubのアカウントが準備されていること
+- コンテナイメージを登録するDockerHubのアカウントが準備されていること
 
 #### EPOCHインストール
 ##### ターミナルでkubectlが実行できる環境にSSHログインし、以下のコマンドを実行してEPOCHをインストールします。
@@ -76,3 +76,8 @@ NAME                      STATUS   ROLES                  AGE   VERSION
 epoch-kubernetes-master1  Ready    control-plane,master   **d   v1.**.*
 epoch-kubernetes-worker1  Ready    worker                 **d   v1.**.*
 ```
+
+:::note info
+インフォメーション
+infoは省略可能です。
+:::
