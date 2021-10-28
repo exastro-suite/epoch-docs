@@ -76,8 +76,3 @@ NAME                      STATUS   ROLES                  AGE   VERSION
 epoch-kubernetes-master1  Ready    control-plane,master   **d   v1.**.*
 epoch-kubernetes-worker1  Ready    worker                 **d   v1.**.*
 ```
-
-:::note info
-インフォメーション
-infoは省略可能です。
-:::
