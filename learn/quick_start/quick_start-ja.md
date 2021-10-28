@@ -93,12 +93,12 @@ curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-p
 kubectl get node
 ```
 
-```console
-console
+```
+cd c:\
 ```
 
 ```sh
-sh
+curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
 ```
 
 ```HTML
@@ -109,5 +109,12 @@ sh
       </pre>
   </div>
 </div>
+```
+
+```JavaScript
+function test( b ){
+  const a = 0;
+  return a;
+}
 ```
 
