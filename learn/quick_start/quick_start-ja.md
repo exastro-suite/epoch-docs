@@ -101,3 +101,13 @@ console
 sh
 ```
 
+```HTML
+<div class="language-plaintext highlighter-rouge">
+  <div class="highlight">
+      <pre class="highlight">
+          <code>curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml</code>
+      </pre>
+  </div>
+</div>
+```
+
