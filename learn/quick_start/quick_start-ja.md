@@ -76,3 +76,28 @@ NAME                      STATUS   ROLES                  AGE   VERSION
 epoch-kubernetes-master1  Ready    control-plane,master   **d   v1.**.*
 epoch-kubernetes-worker1  Ready    worker                 **d   v1.**.*
 ```
+
+#### 永続ボリューム設定
+
+パイプライン設定用の永続ボリュームを設定します。
+
+##### 以下のコマンドを実行し、マニフェストをGitHubから取得します。
+
+```
+curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
+```
+
+##### 以下のコマンドを実行し、Workerノードのホスト名を確認します。
+
+```
+kubectl get node
+```
+
+```console
+console
+```
+
+```sh
+sh
+```
+
