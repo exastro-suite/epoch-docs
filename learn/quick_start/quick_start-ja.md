@@ -118,9 +118,14 @@ function test( b ){
 }
 ```
 
-```ruby
+```ruby:test.rb {.line-number .copy}
 # Ruby code with syntax highlighting
 GitHubPages::Dependencies.gems.each do |gem, version|
   s.add_dependency(gem, "= #{version}")
 end
 ```
+
+ブドウ
+:   ブドウ科のつる性落葉低木である。また、その果実のこと。
+    葉は両側に切れ込みのある15-20cmほどの大きさで、
+    穂状の花をつける。
