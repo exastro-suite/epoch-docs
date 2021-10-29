@@ -71,7 +71,7 @@ $ kubectl get pod -n epoch-system
 
 ###### コマンド結果 イメージ
 
-``` command
+```
 NAME                      STATUS   ROLES                  AGE   VERSION
 epoch-kubernetes-master1  Ready    control-plane,master   **d   v1.**.*
 epoch-kubernetes-worker1  Ready    worker                 **d   v1.**.*
@@ -92,6 +92,10 @@ curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-p
 ```
 kubectl get node
 ```
+
+
+
+### Code
 
 ```
 cd c:\
@@ -124,7 +128,3 @@ GitHubPages::Dependencies.gems.each do |gem, version|
   s.add_dependency(gem, "= #{version}")
 end
 ```
-
-dt
-: dd1
-: dd2
