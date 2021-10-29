@@ -83,7 +83,7 @@ epoch-kubernetes-worker1  Ready    worker                 **d   v1.**.*
 
 ##### 以下のコマンドを実行し、マニフェストをGitHubから取得します。
 
-```
+``` sh
 curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
 ```
 
@@ -101,7 +101,7 @@ cd c:\
 curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
 ```
 
-```HTML
+```html
 <div class="language-plaintext highlighter-rouge">
   <div class="highlight">
       <pre class="highlight">
@@ -111,10 +111,16 @@ curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-p
 </div>
 ```
 
-```JavaScript
+```js
 function test( b ){
   const a = 0;
   return a;
 }
 ```
 
+```ruby
+# Ruby code with syntax highlighting
+GitHubPages::Dependencies.gems.each do |gem, version|
+  s.add_dependency(gem, "= #{version}")
+end
+```
