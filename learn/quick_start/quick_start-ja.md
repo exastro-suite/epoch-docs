@@ -125,20 +125,6 @@ GitHubPages::Dependencies.gems.each do |gem, version|
 end
 ```
 
-```ruby:test.rb
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
-```ruby:test.rb {.line-number .copy}
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
-```
-
 dt
 : dd1
 : dd2
