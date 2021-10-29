@@ -1,0 +1,761 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Learn test page</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="./asset/js/common.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+<link href="../../docs/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
+<link href="./asset/css/common.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+
+<div id="container">
+
+<header id="header">
+  <div class="header-title">
+    <div class="header-logo">
+      <img src="./asset/img/Exastro-logo2-white-rgb.svg" alt="Exastro"><img src="./asset/img/Exastro-EPOCH-logotype2-white-rgb.svg" alt="EPOCH">
+    </div>
+    <div class="header-name"><i class="fas fa-school"></i><span class="header-title-category">Learn</span><span class="header-title-name"></span></div>
+  </div>
+  <nav id="navi">
+  </nav>
+  <div class="header-return"><a class="header-return-link" href="../learn_ja.html"><i class="fas fa-arrow-alt-circle-left"></i> Exastro EPOCH Learn 一覧に戻る</a></div>
+</header>
+
+
+<main id="main">
+
+<article id="article">
+    <header class="article-header">
+        <h1>
+          <span class="article-header-logo"><img src="./asset/img/Exastro-EPOCH-logo1-rgb.svg" alt="Exastro EPOCH"></span>
+          Quick Start
+        </h1>
+        <div class="article-header-info">
+          <ul class="article-header-info-list">
+            <li class="article-header-info-item">
+              <dl class="article-header-info-card">
+                <dt class="article-header-info-title">Version</dt>
+                <dd class="article-header-info-body">0.1.0</dd>
+              </dl>
+            </li>
+            <li class="article-header-info-item">
+              <dl class="article-header-info-card">
+                <dt class="article-header-info-title">Author</dt>
+                <dd class="article-header-info-body">Exastro developer</dd>
+              </dl>
+            </li>
+            <li class="article-header-info-item">
+              <dl class="article-header-info-card">
+                <dt class="article-header-info-title">Release date</dt>
+                <dd class="article-header-info-body">2021/10/31 12:00:00</dd>
+              </dl>
+            </li>
+            <li class="article-header-info-item">
+              <dl class="article-header-info-card">
+                <dt class="article-header-info-title">Last update</dt>
+                <dd class="article-header-info-body">2021/10/31 12:00:00</dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+    </header>
+
+    <section class="article-section">
+        <h2>はじめに</h2>
+
+        <h3>QuickStartについて</h3>
+
+        <h4>はじめに</h4>
+        <p>本書は、Exastro EPOCH(以降、EPOCHと表記する)の導入方法ならびに簡単な使い方をチュートリアルを用いて説明します。</p>
+
+        <h4>QuickStartの全体図</h4>
+        <p><img src="./quick-start/img/1-1-2_01.jpg" alt="QuickStartの全体図"></p>
+        <p>（※1）本クイックスタートでは手順を簡素化するため1つのKubernetesクラスタ上で構成します。</p>
+
+        <h3>QuickStartを実施するPC環境ついて</h3>
+        <p>QuickStartの手順を実施するにあたってのPCのソフトウェアは以下の通りです。</p>
+        <p><img src="./quick-start/img/1-2_01.jpg" alt="QuickStartを実施するPC環境"></p>
+    </section>
+
+    <section class="article-section">
+        <h2>インストール</h2>
+        <p>EPOCHをインストールして、CI/CDの環境を準備をしましょう。</p>
+
+        <h3>EPOCHのインストール</h3>
+        <h4>EPOCH全体図</h4>
+        <p>EPOCHをインストールおよびワークスペースを作成した後の構成は、以下の図のようになります。</p>
+        <p><img src="./quick-start/img/2-1-1_01.jpg" alt="EPOCH全体図"></p>
+
+        <h4>前提条件</h4>
+        <h5>環境</h5>
+        <ul>
+          <li>Kubernetes環境が構築されていること</li>
+          <li>使用するServiceAccountにcluster-adminロールが付与されていること</li>
+          <li>Kubernetes環境から外部インターネットに接続できること</li>
+          <li>PC環境から外部インターネットに接続できること</li>
+          <li>PC環境にGit for Windowsがインストールされていること</li>
+          <li>ポート番号(30080, 30081, 30443, 30801 , 30804, 30805, 30901～30907)が使用できること<br>
+         (ポート番号はepoch-install.yamlに記述されており、変更する際は編集後インストールを実行する必要があります）</li>
+        </ul>
+
+        <h5>アカウント</h5>
+        <ul>
+          <li>アプリケーションコードを登録するGitHubのアカウントが準備されていること</li>
+          <li>Kubernetes Manifestを登録するGitHubのアカウントが準備されていること</li>
+          <li>コンテナイメージを登録するDockerHubのアカウントが準備されていること</li>
+        </ul>
+
+        <h4>EPOCHインストール</h4>
+        <h5>ターミナルでkubectlが実行できる環境にSSHログインし、以下のコマンドを実行してEPOCHをインストールします。</h5>
+
+<pre>
+$ kubectl apply -f https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-install.yaml
+</pre>
+
+        <p>以下のコマンドでインストールの進行状況を確認できます。</p>
+
+<pre>
+$ kubectl get pod -n epoch-system
+</pre>
+
+        <p>コマンド結果に表示されているすべてのコンポーネントのSTATUSが “Running” であることを確認します。</p>
+
+        <h6>コマンド結果 イメージ</h6>
+<pre>
+NAME                                        READY   STATUS    RESTARTS   AGE
+epoch-cicd-api-*********-*****              1/1     Running   0          **s
+epoch-rs-organization-api-*********-*****   1/1     Running   0          **s
+epoch-rs-workspace-api- *********-*****     1/1     Running   0          **s
+～
+</pre>
+
+        <h4>永続ボリューム設定</h4>
+        <p>パイプライン設定用の永続ボリュームを設定します。</p>
+
+        <h5>以下のコマンドを実行し、マニフェストをGitHubから取得します。</h5>
+<pre>$ curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml</pre>
+
+        <h5>以下のコマンドを実行し、Workerノードのホスト名を確認します。</h5>
+<pre>$ kubectl get node</pre>
+
+        <h6>コマンド結果 イメージ</h6>
+<pre>
+NAME                      STATUS   ROLES                  AGE   VERSION
+epoch-kubernetes-master1  Ready    control-plane,master   **d   v1.**.*
+epoch-kubernetes-worker1  Ready    worker                 **d   v1.**.*
+</pre>
+
+        <h5>epoch-pv.yamlを修正します。（修正箇所はepoch-pv.yamlの最終行）</h5>
+        <p>「# Please specify the host name of the worker node #」の部分を、先ほど確認したWorkerノードのホスト名に置き換え保存します。</p>
+
+        <h6>変更前</h6>
+<pre>
+values:
+  - # Please specify the host name of the worker node #
+</pre>
+
+        <h6>変更後</h6>
+<pre>
+values:
+  - epoch-kubernetes-worker1
+</pre>
+
+        <h5>以下のコマンドでkubernetes環境へ反映します。</h5>
+        <pre>$ kubectl apply -f epoch-pv.yaml</pre>
+
+        <h4>ArgoRolloutインストール</h4>
+        <h5>以下のコマンドを実行し、ArgoRolloutのインストールします。</h5>
+<pre>
+$ kubectl create namespace argo-rollouts
+$ kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+</pre>
+
+<h3>リポジトリ準備</h3>
+<h4>使用するリポジトリについて</h4>
+<h5>本クイックスタートで使用するリポジトリは以下の通りです。</h5>
+<ul>
+<li>アプリケーションコード用リポジトリ</li>
+<li> IaC用リポジトリ(Staging環境用)</li>
+<li>IaC用リポジトリ(Production環境用)</li>
+</ul>
+<h6>イメージ図</h6>
+<p>image</p>
+<h4>リポジトリの準備</h4>
+<h5>Gitリポジトリを３つ用意します。</h5>
+<ul>
+<li>ブラウザにて自身のGitHubのアカウントでGitHubにサインインします。</li>
+<li>アカウントメニューからYour Repositriesを選択します。</li>
+<li>Newを選択し、図で示した値を入力し、Create repositryを選択します。</li>
+</ul>
+
+<h4>アプリケーションコード用リポジトリをPC環境へ準備</h4>
+<h5>アプリケーションコード用リポジトリのclone</h5>
+<ul>
+<li>アプリケーションコード用リポジトリをPC環境にcloneします。</li>
+<li>例としてコマンドプロンプトでは、以下の通りとなります。</li>
+</ul>
+<pre>
+cd "[clone先のフォルダ]"
+git clone https://github.com/[Githubのアカウント名]/epoch-sample-app.git
+cd epoch-sample-app
+git config user.name "[GitHubのユーザ名]"
+git config user.email "[GitHubのemailアドレス]"
+</pre>
+<p>ここでcloneしたローカルリポジトリを使って、チュートリアルを行います。</p>
+
+<h4>Gitトークンの払い出し</h4>
+<h5>ブラウザにて自身のGitHubのアカウントでGitHubにサインインします。</h5>
+<ol>
+<li>アカウントメニューからSettingsを選択します。</li>
+<li>Account settings画面からDeveloper settingsメニューを選択します。</li>
+<li>Developer settings画面からPersonal access tokensメニューを選択し、Generate new tokenボタンを選択します。</li>
+<li>New personal access token画面でNote（任意の名称）、Select scopesを全て選択し、Generate tokenボタンを選択します。</li>
+<li>表示されたトークン (ghp_***) を後に使用しますので控えてください。</li>
+</ol>
+<p>image</p>
+
+<h3>Manifestテンプレートファイルの準備</h3>
+<h4>Manifestテンプレートファイルのダウンロード</h4>
+<p>EPOCHにアップロードするManifestテンプレートファイル（２ファイル）をダウンロードします。</p>
+
+<h5>ブラウザで以下のURLを表示します。</h5>
+<table>
+  <tbody>
+  <tr>
+    <th>ファイル１</th>
+    <td><a href="https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml">https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml</a></td>
+  </tr>
+  <tr>
+    <th>ファイル２</th>
+    <td><a href="https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml">https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml</a></td>
+  </tr>
+  </tbody>
+</table>
+
+<h5>ブラウザにManifestテンプレートが表示されますので、操作しているPCに保存します。</h5>
+<p>image</p>
+
+</section>
+
+<section class="article-section">
+
+
+<h2>ワークスペース作成</h2>
+<p>ワークスペースを作成し、CI/CDの準備をしましょう。</p>
+
+<h3>ワークスペース</h3>
+<h4>ワークスペース</h4>
+<p>EPOCHでは、１つの開発環境をワークスペースという単位で管理します。<br>
+ワークスペース作成は、画面から入力された情報をもとに、各アプリケーションへ必要な情報を登録し、CI/CDの準備を行ないます。</p>
+
+<h3>CI/CDについて</h3>
+<h4>CI/CDとは</h4>
+<p>アプリケーションの開発～リリースまでの一連の作業を自動化し、アプリケーション提供の頻度を高める手法です。</p>
+<h5>CI（継続的インテグレーション）</h5>
+<p>アプリケーションコードの変更を起点に、ビルドやテストの実行といった開発者の作業を自動化する手法を指します。</p>
+<h5>CD（継続的デリバリー）</h5>
+<p>実行環境へのリリースまでを自動化する手法を指します。</p>
+<h5>CI/CDのイメージ</h5>
+<p>image</p>
+
+<h3>EPOCHのCI/CD</h3>
+<h4>EPOCHのCI/CD</h4>
+<p>EPOCHのCI/CDの流れを、下図に示します。</p>
+<p>image</p>
+
+<h3>EPOCH起動</h3>
+<h4>ブラウザより以下のURLで接続します。</h4>
+<p>https://[インストール先のIPアドレスまたはホスト名]:30443/workspace.html</p>
+<p>image</p>
+
+<h3>ワークスペース作成</h3>
+<h4>ワークスペース基本情報</h4>
+<p>ワークスペース名を入力します。</p>
+<p>image</p>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>入力・選択内容</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ワークスペース名</th>
+      <td>EPOCHクイックスタート</td>
+      <td>作成するワークスペース名</td>
+    </tr>
+    <tr>
+      <th>備考</th>
+      <td>なし</td>
+      <td>作成するワークスペースの説明や備考</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>アプリケーションコードリポジトリ</h4>
+<p>アプリケーションコードリポジトリの情報を入力します。</p>
+<p>image</p>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>入力・選択内容</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ユーザ名</th>
+      <td><em>[自身のGitHubのアカウント名]</em></td>
+      <td>GitHubのアカウント名</td>
+    </tr>
+    <tr>
+      <th>トークン</th>
+      <td><em>[自身のGitHubのトークン]</em></td>
+      <td>GitHubのトークン<br>
+      （事前準備 Gitトークンの払い出しを参照）</td>
+    </tr>
+    <tr>
+      <th>GitリポジトリURL</th>
+      <td>https://github.com/<em>[GitHubのアカウント名]</em>/epoch-sample-app.git</td>
+      <td>準備で作成したアプリケーションコード用リポジトリのURL</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>パイプラインTEKTON</h4>
+<p>TEKTONに設定するパイプライン情報を入力します。</p>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>入力・選択内容</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ビルドブランチ</th>
+      <td>main,master</td>
+      <td>ビルド対象のアプリケーションのGitHubのブランチ</td>
+    </tr>
+    <tr>
+      <th>ビルドDockerファイルパス</th>
+      <td>./api-app/Dockerfile</td>
+      <td>アプリケーションのDockerfileのパス</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>レジストリサービス</h4>
+<p>ビルド後のイメージ登録先（レジストリ）情報を入力します。</p>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>入力・選択内容</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ユーザ名</th>
+      <td><em>[自身のDockerHubのアカウント名]</em></td>
+      <td>DockerHubのアカウント名</td>
+    </tr>
+    <tr>
+      <th>パスワード</th>
+      <td><em>[自身のDockerHubのパスワード]</em></td>
+      <td>DockerHubのパスワード</td>
+    </tr>
+    <tr>
+      <th>イメージ出力先</th>
+      <td><em>[DockerHubのアカウント名]</em>/epoch-sample-<strong>api</strong><br>
+      <em>※ユーザ名入力後に表示される内容を修正してください。</em></td>
+      <td>DockerHubのイメージ出力先のパス</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>パイプラインArgo CD</h4>
+<p>ArgoCDに設定するDeploy先の情報を入力します。</p>
+
+<h5>環境1：Staging環境</h5>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>入力・選択内容</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>環境名</th>
+      <td>staging</td>
+      <td>デプロイ環境の名前</td>
+    </tr>
+    <tr>
+      <th>Namespace</th>
+      <td>epoch-sample-app-staging</td>
+      <td>デプロイ先のNamespace</td>
+    </tr>
+  </tbody>
+</table>
+
+<h5>環境2：Production環境</h5>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>入力・選択内容</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>環境名</th>
+      <td>production</td>
+      <td>デプロイ環境の名前</td>
+    </tr>
+    <tr>
+      <th>Namespace</th>
+      <td>epoch-sample-app-production</td>
+      <td>デプロイ先のNamespace</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>IaCリポジトリ</h4>
+<table>
+  <thead>
+    <tr>
+      <th>項目</th>
+      <th>入力・選択内容</th>
+      <th>説明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>GitリポジトリURL</th>
+      <td>https://github.com/<em>[GitHubのアカウント名]</em>/<em>[各環境のリポジトリ]</em>.git</td>
+      <td>各環境のmanifestリポジトリのURL<br>
+      （事前準備 IaC用リポジトリの準備を参照）</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>ワークスペース作成</h4>
+<p>すべての入力が完了しましたら【ワークスペース作成】ボタンを押下します。</p>
+
+</section>
+
+<section class="article-section">
+<h2>チュートリアル</h2>
+<p>CI/CDワークフローを体験してみましょう。</p>
+
+<h3>チュートリアルの概要</h3>
+<h4>CI/CD開発シナリオ</h4>
+<p>チュートリアルでは以下のシナリオに沿って、CI/CDワークフローの手順を実施していきます。<br>
+本QuickStartで作成するECサイトは、サンプルアプリケーションを用いて実施していきます。</p>
+
+<h3>サンプルアプリの構成</h3>
+<h4>サンプルアプリの構成</h4>
+<p>サンプルアプリケーションは、UIとAPIの2つで構成されております。</p>
+
+<h3>チュートリアルの流れ(CI/CDワークフロー)</h3>
+<h4>CI/CDワークフロー</h4>
+<p>本説明では、サンプルアプリケーションをStaging環境、Production環境へDeploy、その後アプリケーションコードの修正を行い、Staging環境、Production環境へのDeployする手順を説明していきます。</p>
+
+<h3>Manifestテンプレートファイルについて</h3>
+<h4>Manifestテンプレートファイル</h4>
+<p>サンプルアプリケーションのManifestテンプレートファイルは、UIとAPI用の2つが用意されています。<br>
+環境一致を考慮した上での可変部分を変数化したテンプレート形式となっています。</p>
+
+<h3>1回目のCI/CDワークフロー手順</h3>
+<h4>Staging環境へのDeploy</h4>
+<p>1回目のCI/CDワークフローとして、アプリケーションコードのCommit＆PushからStaging環境へのDeploy、CD結果確認までの手順は以下の通りとなります。</p>
+
+<h4>アプリケーションコード Commit &amp; Push</h4>
+<p>初回デプロイするコンテナイメージを作るためCIパイプラインを実行します。</p>
+<h5>ブラウザにてサンプルアプリケーションのURLを表示します。</h5>
+<p><a href="https://github.com/exastro-suite/epoch-sample-app">https://github.com/exastro-suite/epoch-sample-app</a></p>
+<h5>サンプルアプリケーションの画面から「Code」を押下して、「Download ZIP」からコードを取得します。</h5>
+<p>image</p>
+<h5>ダウンロードしたZIPファイルを展開し、cloneしたアプリケーションコード用リポジトリにコピーします。</h5>
+<p>image</p>
+
+<h5>PC環境にcloneしたアプリケーションコード用リポジトリでCommit &amp; Pushします。</h5>
+<p>例としてコマンドプロンプトでは、以下の通りとなります。</p>
+<pre>
+git add .
+git commit -m "first build"
+git push origin main
+</pre>
+<p class="message m-info">git push時に認証情報を求められた場合は、自身のGitHubアカウント情報を入力してください。</p>
+<p>Pushが完了すると、パイプラインTEKTONで設定されたCIパイプラインが自動的に動き出します。<br>
+CIパイプラインの結果を確認していきましょう。</p>
+
+<h4>CI/CD実行画面の表示</h4>
+<h5>ワークスペース画面のCI/CD実行タブを選択し、CI/CD実行画面を表示します。</h5>
+<p>image</p>
+
+<h4>CI結果確認</h4>
+<h5>アプリケーションコードのビルド結果を確認します。</h5>
+<p>image</p>
+
+<h4>パイプラインTEKTONの結果確認</h4>
+<h5>TEKTONのパイプラインを実際に確認し、ビルドが正常に終了したか確認します。</h5>
+<p>image</p>
+
+<h4>コンテナイメージのタグ名の確認</h4>
+<h5>レジストリサービスの画面を開き、ビルドしたコンテナイメージのTagを確認します。</h5>
+<p>image</p>
+
+<h4>Manifestテンプレートアップロード</h4>
+<h5>ダウンロードしたManifestテンプレートをアップロードします。</h5>
+<p>image</p>
+<h5>Manifestテンプレートファイルの準備でダウンロードしたManifestテンプレートファイルをアップロードします。</h5>
+<p>image</p>
+
+<h4>Manifestパラメータ</h4>
+<h5>Deployに必要なManifestパラメータを入力します。</h5>
+<p>image</p>
+<h5>入力内容に従って、Manifestパラメータを入力します。</h5>
+<p>image</p>
+<h5>タブを切り替えてapi-app.yamlにも入力します。</h5>
+<p>image</p>
+
+<h4>Staging環境へのDeploy実行</h4>
+<h5>CD実行で、Staging環境へDeployを実行します。</h5>
+<p>image</p>
+
+<h4>Staging環境のCD実行</h4>
+<h5>Deploy先の環境を選択して実行します。</h5>
+<p>image</p>
+
+<h4>Staging環境のCD結果確認</h4>
+<h5>CDの実行結果は、Exastro IT-Automation、ArgoCDより確認できます。</h5>
+<p>image</p>
+
+<h4>Manifestファイルの生成確認(Staging環境)</h4>
+<h5>Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認します。</h5>
+<p>image</p>
+
+<h4>パイプラインArgoCDの結果確認(Staging環境)</h4>
+<h5>Manifestがkubernetesに反映されるまでの状況を確認します。</h5>
+<p>image</p>
+
+<h4>Staging環境のサンプルアプリケーション確認</h4>
+<h5>次のURLでデプロイしたサンプルアプリケーションを表示します。</h5>
+<p>http://<em>[Kubernetes masterノードのIPアドレスまたはホスト名]</em>:31001/front-end.html</p>
+
+<h4>Production環境へのDeploy</h4>
+<p>Staging環境へDeploy後、以下の内容でProduction環境へDeployします。</p>
+<p>image</p>
+
+<h4>Production環境へのDeploy実行</h4>
+<h5>CD実行で、Production環境へDeployを実行します。</h5>
+<p>image</p>
+
+<h4>Production環境のCD実行</h4>
+<h5>Deploy先の環境を選択して実行します。</h5>
+<p>image</p>
+
+<h4>Production環境のCD結果確認</h4>
+<h5>CDの実行結果は、Exastro IT-Automation、ArgoCDより確認できます。</h5>
+<p>image</p>
+
+<h4>Manifestファイルの生成確認(Production環境)</h4>
+<h5>Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認します。</h5>
+<p>image</p>
+
+<h4>パイプラインArgoCDの結果確認(Production環境)</h4>
+<h5>Manifestがkubernetesに反映されるまでの状況を確認します。</h5>
+<p>image</p>
+
+<h4>Production環境のサンプルアプリケーション確認</h4>
+<h5>次のURLでデプロイしたサンプルアプリケーションを表示します。</h5>
+<p>http://<em>[Kubernetes masterノードのIPアドレスまたはホスト名]</em>:<strong>31003</strong>/front-end.html</p>
+
+<p class="message m-check">1回目のCI/CDワークフローはここで完了です。<br>
+続いて実際にアプリケーションコードを修正しDeployされるまでの2回目のCI/CDワークフロー手順を実行してみましょう！</p>
+
+<h3>2回目のCI/CDワークフロー手順</h3>
+
+<h4>Staging環境へのDeploy</h4>
+<h5>2回目のCI/CDワークフローとして、アプリケーションコードを修正してCommit &amp; PushからStaging環境へのDeploy、CD結果確認までの手順を説明します。</h5>
+
+<h4>アプリケーションコードの修正</h4>
+<h5>アプリケーションコードを修正して、2回目のCI/CDを実行していきます。</h5>
+<p>チュートリアルでは、画面に通貨（ユーロ）の表示追加を行います。<br>
+PC環境にcloneしたアプリケーションコード用リポジトリの、以下のファイルをコードエディタで修正します。</p>
+<h6>修正対象①：api-app/data/currency.json</h6>
+<p>9~12行目を追加</p>
+<pre>
+    "USD": {
+        "symbol"    :   "$",
+        "formatter" :   "{symbol} {price:,.2f} (Tax Included)"
+    <em>},
+    "EUR": {
+        "symbol"    :   "€",
+        "formatter" :   "{symbol} {price:,.2f}"</em>
+    }
+}
+</pre>
+<h6>修正対象②：api-app/data/rate.json</h6>
+<ol>
+  <li>2行目の末尾にカンマを追加</li>
+  <li>3行目を追加（"EUR": 134.15）</li>
+</ol>
+<pre>
+{
+    "USD": 110.56<em>,
+    "EUR": 134.15</em>
+}
+</pre>
+<h4>アプリケーションコード Commit &amp; Push</h4>
+<h5>修正した内容をCommit &amp; Pushします。</h5>
+<p>コマンドプロンプトで、以下の様に実行します。</p>
+<pre>
+cd "[clone先のフォルダ]"
+cd epoch-sample-app
+git add .
+git commit -m "通貨追加(EUR)"
+git push origin main
+</pre>
+<p class="message m-info">git push時に認証情報を求められた場合は、自身のGitHubアカウント情報を入力してください。</p>
+
+<h4>CI結果確認</h4>
+<h5>アプリケーションコードのビルド結果を確認します。</h5>
+<p>image</p>
+
+<h4>パイプラインTEKTONの結果確認</h4>
+<h5>TEKTONのパイプラインを実際に確認し、ビルドが正常に終了したか確認します。</h5>
+<p>image</p>
+
+<h4>コンテナイメージのタグ名の確認</h4>
+<h5>レジストリサービスの画面を開き、ビルドしたコンテナイメージのTagを確認します。</h5>
+<p>image</p>
+
+<h4>Manifestパラメータ設定</h4>
+<h5>Manifestパラメータの設定のイメージタグを更新します。</h5>
+<p>image</p>
+
+<h4>Manifestパラメータ(image_tag)の修正</h4>
+<h5>Manifestパラメータで、staging, production環境のイメージのタグ名を修正します。</h5>
+<p>image</p>
+
+<h4>Staging環境へのCD実行</h4>
+<h5>CD実行で、実際にStaging環境へDeployします。</h5>
+<p>image</p>
+
+<h4>CD実行指定</h4>
+<h5>Deploy先の環境を選択してDeployを実行します。</h5>
+<p>image</p>
+
+<h4>Staging環境のCD結果確認</h4>
+<h5>CDの実行結果は、Exastro IT-Automation、ArgoCDより確認できます。</h5>
+<p>image</p>
+
+<h4>Manifestファイルの生成確認(Staging環境)</h4>
+<h5>Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認します。</h5>
+<p>image</p>
+
+<h4>パイプラインArgoCDの結果確認(Staging環境)</h4>
+<h5>Manifestがkubernetesに反映されるまでの状況を確認します。</h5>
+<p>image</p>
+
+<h4>Staging環境のアプリケーションの確認</h4>
+<h5>ブラウザで以下のURLに接続し、デプロイしたサンプルアプリケーションを表示します。</h5>
+<p>http://<em>[Kubernetes masterノードのIPアドレスまたはホスト名]</em>:31001/front-end.html</p>
+<p>image</p>
+
+<h4>Production環境へのDeploy</h4>
+<h5>Staging環境へDeploy後、Production環境へDeployする流れを説明します。</h5>
+<p>image</p>
+
+<h4>Production環境へのCD実行</h4>
+<h5>CD実行で、実際にProduction環境へDeployを実行します。</h5>
+<p>image</p>
+
+<h4>CD実行指定</h4>
+<h5>Deploy先の環境を選択してDeployを実行します。</h5>
+<p>image</p>
+
+<h4>Production環境のCD結果確認</h4>
+<h5>CDの実行結果は、Exastro IT-Automation、ArgoCDより確認できます。</h5>
+<p>image</p>
+
+<h4>Manifestファイルの生成確認(Production環境)</h4>
+<h5>Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認します。</h5>
+<p>image</p>
+
+<h4>パイプラインArgoCDの結果確認(Production環境)</h4>
+<h5>Manifestがkubernetesに反映されるまでの状況を確認します。</h5>
+<p>image</p>
+
+<p class="message m-check">Deployされたサンプルアプリケーションを確認してみましょう。</p>
+
+
+<h4>Production環境のアプリケーションの確認</h4>
+<h5>ブラウザで以下のURLに接続し、デプロイしたサンプルアプリケーションを表示します。</h5>
+<p>http://<em>[Kubernetes masterノードのIPアドレスまたはホスト名]</em>:<strong>31003</strong>/front-end.html</p>
+
+<p class="message m-check">以上でチュートリアルは終了になります。<br>
+お疲れ様でした。</p>
+
+
+
+</section>
+
+<section class="article-section">
+<h2>付録</h2>
+<p>本資料中で行った内容の補足をします。</p>
+
+<h3>注意事項・制限事項</h3>
+<p>以下、現在のExastro EPOCHのバージョンでの制限事項となります。今後のバージョンで変更される可能性があります。</p>
+
+<h4>制限事項（今後対応する予定）</h4>
+<ul>
+<li>アプリケーションコードのリポジトリは、現在１つのみ対応となっております。</li>
+<li>現在は、アプリケーションコード毎のGitアカウントには対応しておりません。</li>
+<li>Gitサービス選択は次バージョン以降で対応予定です。現在は指定されたURLのGitリポジトリの動作となります。</li>
+<li>ビルドブランチは次バージョン以降で対応予定です。現在はPushされた内容でビルドされます。</li>
+<li>静的解析は次バージョン以降で対応予定です。現在はSonarQubeを選択した場合に動作しません。</li>
+<li>レジストリサービスは現在内部のレジストリサービスのみとなっております。</li>
+<li>イメージ出力先以外の項目については次バージョン以降で対応予定です。</li>
+<li>Authentication token, Base64 encoded certificateは次バージョン以降で対応予定です。</li>
+<li>テンプレートで指定できる変数は、現在固定です。詳細は「コラム」を参照してください。</li>
+</ul>
+
+<h4>注意事項</h4>
+<ul>
+<li>EPOCHをインストールすると、TEKTONもインストールされます。</li>
+<li>変数は”{{ 変数名 }}”で指定した内容となります。</li>
+</ul>
+
+</section>
+    
+</article>
+
+</main>
+
+<footer id="footer">
+  <div class="copyright"><small>Copyright © NEC Corporation 2019-2021</small></div>
+</footer>
+
+</div>
+
+</body>
+</html>
