@@ -113,7 +113,7 @@ curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-p
 
 ```js
 function test( b ){
-  const a = 0;
+  const a = b;
   return a;
 }
 ```
