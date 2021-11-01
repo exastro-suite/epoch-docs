@@ -95,20 +95,22 @@ kubectl get node
 ```
 
 ## TEST 
+### メッセージ欄
 
 info
 {: .info}
 
-warn
-{: .warn}
+check
+{: .check}
+
+warning
+{: .warning}
 
 alert
 {: .alert}
 
-check
-{: .check}
-
 ## Code
+### ハイライト
 
 ```
 cd c:\
