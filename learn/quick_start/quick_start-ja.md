@@ -113,7 +113,7 @@ curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-p
 ```sh
 curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
 ```
-{: .line .ｓ}
+{: .line .s}
 
 ```sh
 curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
