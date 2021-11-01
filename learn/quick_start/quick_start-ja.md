@@ -108,6 +108,17 @@ cd c:\
 ```sh
 curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
 ```
+{: .line .d}
+
+```sh
+curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
+```
+{: .line .ｓ}
+
+```sh
+curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-pv.yaml
+```
+{: .line .g}
 
 ```html
 <div class="language-plaintext highlighter-rouge">
@@ -118,6 +129,7 @@ curl -OL https://github.com/exastro-suite/epoch/releases/download/v0.1.0/epoch-p
   </div>
 </div>
 ```
+{: .line .n126}
 
 ```js
 function test( b ){
@@ -125,6 +137,7 @@ function test( b ){
   return a;
 }
 ```
+{: .line}
 
 ```ruby
 # Ruby code with syntax highlighting
