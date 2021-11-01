@@ -1,6 +1,7 @@
 ---
 layout: default
 lang: ja
+type: learn
 title: Quick Start
 version: 0.1.0
 author: Exastro developer
@@ -95,9 +96,17 @@ kubectl get node
 
 ## TEST 
 
-{test: テスト}テスト
+info
+{: .info}
 
---test
+warn
+{: .warn}
+
+alert
+{: .alert}
+
+check
+{: .check}
 
 ## Code
 
