@@ -1,5 +1,9 @@
 {
 	"en": {
+		"Quick_start": {
+      "type": "pdf",
+      "url": "Learn_ja/EPOCH-quickstart_en.pdf"
+    }
 	},
 	"ja": {
 		"Quick_start": {
