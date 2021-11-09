@@ -35,11 +35,11 @@
         <meta property="og:type" content="article">
         <meta property="og:title" content="{{ page.title }} | Exastro EPOCH {{ category }}">
         {% if page.description %}<meta property="og:description" content="{{ page.description }}">{% endif %}
-        <meta property="og:site_name" content="Exastro EPOCH">
+        <meta property="og:site_name" content="Exastro EPOCH {{ category }}">
         <meta property="og:image" content="https://exastro-suite.github.io/epoch-docs/asset/img/epoch_image_{{ page.type }}.jpg">
         
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Exastro EPOCH">
+        <meta name="twitter:title" content="{{ page.title }} | Exastro EPOCH {{ category }}">
         <meta name="twitter:image" content="https://exastro-suite.github.io/epoch-docs/asset/img/epoch_thumbnail.jpg">
     </head>
     <body id="epoch">
