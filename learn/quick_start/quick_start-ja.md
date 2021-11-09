@@ -18,7 +18,7 @@ lastmod: 2021/11/09
 
 #### QuickStartの全体図
 
-![QuickStart全体図](img/overview_quickstart.png){:width="1959px" height="633px"}
+![QuickStart全体図](img/overview_quickstart.png){:width="1959" height="633"}
 
 （※1）本クイックスタートでは手順を簡素化するため1つのKubernetesクラスタ上で構成します。
 
@@ -26,7 +26,7 @@ lastmod: 2021/11/09
 
 QuickStartの手順を実施するにあたってのPCのソフトウェアは以下の通りです。
 
-![QuickStart手順](img/process_quickstart.png){:width="1864px" height="855px"}
+![QuickStart手順](img/process_quickstart.png){:width="1864" height="855"}
 
 ## インストール
 
@@ -37,7 +37,7 @@ EPOCHをインストールして、CI/CDの環境を準備をしましょう。
 
 EPOCHをインストールおよびワークスペースを作成した後の構成は、以下の図のようになります。
 
-![EPOCH全体図](img/overall_view_epoch.png){:width="1671px" height="694px"}
+![EPOCH全体図](img/overall_view_epoch.png){:width="1671" height="694"}
 
 ##### 前提条件
 ###### 環境
@@ -159,7 +159,7 @@ kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/rele
 
 ###### イメージ図
 
-![リポジトリイメージ](img/repository_image.png){:width="1853px" height="412px"}
+![リポジトリイメージ](img/repository_image.png){:width="1853" height="412"}
 
 #### リポジトリの準備
 ##### Gitリポジトリを３つ用意します。
@@ -168,7 +168,7 @@ kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/rele
 - アカウントメニューからYour Repositriesを選択します。
 - Newを選択し、図で示した値を入力し、Create repositryを選択します。
 
-![リポジトリ準備手順](img/repository_preparation.png){:width="1689px" height="654px"}
+![リポジトリ準備手順](img/repository_preparation.png){:width="1689" height="654"}
 
 #### アプリケーションコード用リポジトリをPC環境へ準備
 ##### アプリケーションコード用リポジトリのclone
@@ -196,7 +196,7 @@ git config user.email "[GitHubのemailアドレス]"
 - New personal access token画面でNote（任意の名称）、Select scopesを全て選択し、Generate tokenボタンを選択します。
 - 表示されたトークン (ghp_***) を後に使用しますので控えてください。
 
-![Gitトークンの払い出し手順](img/token_payout.png){:width="1912px" height="513px"}
+![Gitトークンの払い出し手順](img/token_payout.png){:width="1912" height="513"}
 
 ### Manifestテンプレートファイルの準備
 #### Manifestテンプレートファイルのダウンロード
@@ -206,12 +206,12 @@ EPOCHにアップロードするManifestテンプレートファイル（２フ�
 ##### ブラウザで以下のURLを表示します。
 
 | :--- | :--- |
-| ファイル１ | https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml |
-| ファイル２ | https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml |
+| ファイル１ | [https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml](https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml) |
+| ファイル２ | [https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml](https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml) |
 
 ##### ブラウザにManifestテンプレートが表示されますので、操作しているPCに保存します。
 
-![テンプレート保存方法](img/save_template.png){:width="1433px" height="456px"}
+![テンプレート保存方法](img/save_template.png){:width="1433" height="456"}
 
 以上で事前準備は完了しました。
 ワークスペース作成へ進みましょう！
