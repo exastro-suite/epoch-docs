@@ -76,9 +76,11 @@ kubectl get pod -n epoch-system
 ###### コマンド結果 イメージ
 
 ```
-NAME                      STATUS   ROLES                  AGE   VERSION
-epoch-kubernetes-master1  Ready    control-plane,master   **d   v1.**.*
-epoch-kubernetes-worker1  Ready    worker                 **d   v1.**.*
+NAME                                        READY   STATUS    RESTARTS   AGE
+epoch-cicd-api-*********-*****              1/1     Running   0          **s
+epoch-rs-organization-api-*********-*****   1/1     Running   0          **s
+epoch-rs-workspace-api- *********-*****     1/1     Running   0          **s
+～
 ```
 
 #### 永続ボリューム設定
@@ -205,9 +207,8 @@ EPOCHにアップロードするManifestテンプレートファイル（２フ�
 
 ##### ブラウザで以下のURLを表示します。
 
-| :--- | :--- |
-| ファイル１ | [https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml](https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml) |
-| ファイル２ | [https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml](https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml) |
+1. [https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml](https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/api-app.yaml)
+2. [https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml](https://raw.githubusercontent.com/exastro-suite/epoch-sample-app/master/manifest-template/ui-app.yaml)
 
 ##### ブラウザにManifestテンプレートが表示されますので、操作しているPCに保存します。
 
@@ -216,3 +217,77 @@ EPOCHにアップロードするManifestテンプレートファイル（２フ�
 以上で事前準備は完了しました。
 ワークスペース作成へ進みましょう！
 {: .check}
+
+## ワークスペース作成
+
+ワークスペースを作成し、CI/CDの準備をしましょう。
+
+### ワークスペース
+#### ワークスペース
+
+EPOCHでは、１つの開発環境をワークスペースという単位で管理します。
+ワークスペース作成は、画面から入力された情報をもとに、各アプリケーションへ必要な情報を登録し、CI/CDの準備を行ないます。
+
+![ワークスペースイメージ](img/workspace_image.png){:width="1702" height="717"}
+
+### CI/CDについて
+#### CI/CDとは
+
+アプリケーションの開発～リリースまでの一連の作業を自動化し、アプリケーション提供の頻度を高める手法です。
+
+##### CI（継続的インテグレーション）
+
+アプリケーションコードの変更を起点に、ビルドやテストの実行といった開発者の作業を自動化する手法を指します。
+
+##### CD（継続的デリバリー）
+
+実行環境へのリリースまでを自動化する手法を指します。
+
+##### CI/CDのイメージ
+
+![CI/CDイメージ](img/ci_cd_image.png){:width="1480" height="404"}
+
+### EPOCHのCI/CD
+#### EPOCHのCI/CD
+
+EPOCHのCI/CDの流れを、下図に示します。
+
+![EPOCH CI/CDイメージ](img/epoch_ci_cd_image.png){:width="1940" height="735"}
+
+### EPOCH起動
+#### ブラウザより以下のURLで接続します。
+
+```
+https://[インストール先のIPアドレスまたはホスト名]:30443/workspace.html
+```
+
+![EPOCH画面](img/epoch_start_up.png){:width="1446" height="720"}
+
+続いて必要な情報を入力してワークスペースを作成してみましょう！
+{: .check}
+
+### ワークスペース作成
+#### ワークスペース基本情報
+
+ワークスペース名を入力します。
+
+![ワークスペース名入力画面](img/input_workspace_name.png){:width="1710" height="488"}
+
+| 項目 | 入力・選択内容 | 説明 |
+| --- | --- | --- |
+| ワークスペース名 | EPOCHクイックスタート | 作成するワークスペース名 |
+| 備考 | なし | 作成するワークスペースの説明や備考 |
+
+#### アプリケーションコードリポジトリ
+
+アプリケーションコードリポジトリの情報を入力します。
+
+![アプリケーションコードリポジトリ情報入力画面](img/input_app_code_repository.png){:width="1075" height="517"}
+
+| 項目 | 入力・選択内容 | 説明 |
+| --- | --- | --- |
+| ユーザ名 | (自身のGitHubのアカウント名) | GitHubのアカウント名 |
+| トークン | (自身のGitHubのトークン) | GitHubのトークン
+（事前準備 Gitトークンの払い出しを参照）
+ |
+| GitリポジトリURL | https://github.com/\[GitHubのアカウント名]/epoch-sample-app.git | 準備で作成したアプリケーションコード用リポジトリのURL |
