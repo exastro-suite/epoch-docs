@@ -4,6 +4,7 @@ lang: ja
 type: learn
 title: Quick Start
 version: 0.1.0
+description: EPOCHのインタフェースをスムーズに体感頂くために、クイックスタートをご用意しました。EPOCHでは、Kubernetesを主としたいくつかのソフトウェアと連携し、コンテナベースのCI/CD環境を提供しています。クイックスタートでは、EPOCHのインストールならびにサンプルアプリケーションを使ってCI/CDの流れを体験頂けます。
 author: Exastro developer
 date: 2021/10/15
 lastmod: 2021/10/31
