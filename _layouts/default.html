@@ -1,20 +1,11 @@
 <!doctype html>
 <html>
-    <head>  
+    <head>
+{% assign parent %}
 {% if page.type == 'learn' %}
     {% assign category = "Learn" %}
-    {% if page.lang == 'ja' %}
-        {% assign parent = "learn_ja.html" %}
-    {% elsif %}
-        {% assign parent = "learn.html" %}
-    {% endif %}
 {% elsif page.type == 'document' %}
     {% assign category = "Document" %}
-    {% if page.lang == 'ja' %}
-        {% assign parent = "document_ja.html" %}
-    {% elsif %}
-        {% assign parent = "document.html" %}
-    {% endif %}
 {% endif %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
