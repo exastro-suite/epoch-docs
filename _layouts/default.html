@@ -29,18 +29,18 @@
         
         <meta name="keywords" content="Exastro,Exastro Suite,OSS,Exastro EPOCH,EPOCH,{{ category }}">
         {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
-        <meta name="thumbnail" content="" />
+        <meta name="thumbnail" content="https://exastro-suite.github.io/epoch-docs/asset/img/epoch_thumbnail.jpg" />
 
-        <meta property="og:url" content="">
+        <meta property="og:url" content="https://exastro-suite.github.io{{ page.url }}">
         <meta property="og:type" content="article">
         <meta property="og:title" content="{{ page.title }} | Exastro EPOCH {{ category }}">
         {% if page.description %}<meta property="og:description" content="{{ page.description }}">{% endif %}
         <meta property="og:site_name" content="Exastro EPOCH">
-        <meta property="og:image" content="">
+        <meta property="og:image" content="https://exastro-suite.github.io/epoch-docs/asset/img/epoch_image_{{ page.type }}.jpg">
         
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="Exastro EPOCH">
-        <meta name="twitter:image" content="">
+        <meta name="twitter:image" content="https://exastro-suite.github.io/epoch-docs/asset/img/epoch_thumbnail.jpg">
     </head>
     <body id="epoch">
         <div id="container">
@@ -54,8 +54,13 @@
                     <div class="header-name"><i class="fas fa-school"></i><span class="header-title-category">{{ category }}</span></div>
                 </div>
                 <div class="header-menu-button"><span class="header-menu-button-mark"></span></div>
+                
                 <nav id="navi"></nav>
-                <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/{{ parent }}"><i class="fas fa-arrow-alt-circle-left"></i> Exastro EPOCH {{ category }}一覧に戻る</a></div>
+                {% if page.lang == 'ja' %}
+                <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/{{ page.type }}_ja.html"><i class="fas fa-arrow-alt-circle-left"></i> Exastro EPOCH {{ category }}一覧に戻る</a></div>
+                {% elsif %}
+                <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/{{ page.type }}.html"><i class="fas fa-arrow-alt-circle-left"></i> Return to Exastro EPOCH {{ category }} list</a></div>
+                {% endif %}
             </header>
             <main id="main">
                 <article id="article">
@@ -67,30 +72,30 @@
                         </h1>
                         <div class="article-header-info">
                             <ul class="article-header-info-list">
-                                <li class="article-header-info-item">
+                                {% if page.version %}<li class="article-header-info-item">
                                     <dl class="article-header-info-card">
                                         <dt class="article-header-info-title">Version</dt>
                                         <dd class="article-header-info-body">{{ page.version }}</dd>
                                     </dl>
-                                </li>
-                                <li class="article-header-info-item">
+                                </li>{% endif %}
+                                {% if page.author %}<li class="article-header-info-item">
                                     <dl class="article-header-info-card">
                                         <dt class="article-header-info-title">Author</dt>
                                         <dd class="article-header-info-body">{{ page.author }}</dd>
                                     </dl>
-                                </li>
-                                <li class="article-header-info-item">
+                                </li>{% endif %}
+                                {% if page.date %}<li class="article-header-info-item">
                                     <dl class="article-header-info-card">
                                         <dt class="article-header-info-title">Release date</dt>
                                         <dd class="article-header-info-body">{{ page.date }}</dd>
                                     </dl>
-                                </li>
-                                <li class="article-header-info-item">
+                                </li>{% endif %}
+                                {% if page.lastmod %}<li class="article-header-info-item">
                                     <dl class="article-header-info-card">
                                         <dt class="article-header-info-title">Last modified</dt>
                                         <dd class="article-header-info-body">{{ page.lastmod }}</dd>
                                     </dl>
-                                </li>
+                                </li>{% endif %}
                             </ul>
                         </div>
                     </header>
