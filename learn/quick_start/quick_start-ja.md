@@ -166,9 +166,9 @@ kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/rele
 #### リポジトリの準備
 ##### Gitリポジトリを３つ用意します。
 
-- ブラウザにて自身のGitHubのアカウントでGitHubにサインインします。
-- アカウントメニューからYour Repositriesを選択します。
-- Newを選択し、図で示した値を入力し、Create repositryを選択します。
+1. ブラウザにて自身のGitHubのアカウントでGitHubにサインインします。
+2. アカウントメニューからYour Repositriesを選択します。
+3. Newを選択し、図で示した値を入力し、Create repositryを選択します。
 
 ![リポジトリ準備手順](img/repository_preparation.png){:width="1689" height="654"}
 
@@ -191,12 +191,12 @@ git config user.email "[GitHubのemailアドレス]"
 
 #### Gitトークンの払い出し
 
-- ブラウザにて自身のGitHubのアカウントでGitHubにサインインします。
-- アカウントメニューからSettingsを選択します。
-- Account settings画面からDeveloper settingsメニューを選択します。
-- Developer settings画面からPersonal access tokensメニューを選択し、Generate new tokenボタンを選択します。
-- New personal access token画面でNote（任意の名称）、Select scopesを全て選択し、Generate tokenボタンを選択します。
-- 表示されたトークン (ghp_***) を後に使用しますので控えてください。
+1. ブラウザにて自身のGitHubのアカウントでGitHubにサインインします。
+2. アカウントメニューからSettingsを選択します。
+3. Account settings画面からDeveloper settingsメニューを選択します。
+4. Developer settings画面からPersonal access tokensメニューを選択し、Generate new tokenボタンを選択します。
+5. New personal access token画面でNote（任意の名称）、Select scopesを全て選択し、Generate tokenボタンを選択します。
+6. 表示されたトークン (ghp_***) を後に使用しますので控えてください。
 
 ![Gitトークンの払い出し手順](img/token_payout.png){:width="1912" height="513"}
 
@@ -287,7 +287,58 @@ https://[インストール先のIPアドレスまたはホスト名]:30443/work
 | 項目 | 入力・選択内容 | 説明 |
 | --- | --- | --- |
 | ユーザ名 | (自身のGitHubのアカウント名) | GitHubのアカウント名 |
-| トークン | (自身のGitHubのトークン) | GitHubのトークン
-（事前準備 Gitトークンの払い出しを参照）
- |
-| GitリポジトリURL | https://github.com/\[GitHubのアカウント名]/epoch-sample-app.git | 準備で作成したアプリケーションコード用リポジトリのURL |
+| トークン | (自身のGitHubのトークン) | GitHubのトークン<br>（事前準備 Gitトークンの払い出しを参照） |
+| GitリポジトリURL | https://github.com/_\[GitHubのアカウント名]_/epoch-sample-app.git | 準備で作成したアプリケーションコード用リポジトリのURL |
+
+#### パイプラインTEKTON
+
+TEKTONに設定するパイプライン情報を入力します。
+
+| 項目 | 入力・選択内容 | 説明 |
+| --- | --- | --- |
+| ビルドブランチ | main,master | ビルド対象のアプリケーションのGitHubのブランチ |
+| ビルドDockerファイルパス | ./api-app/Dockerfile | アプリケーションのDockerfileのパス |
+
+#### レジストリサービス
+
+ビルド後のイメージ登録先（レジストリ）情報を入力します。
+
+| 項目 | 入力・選択内容 | 説明 |
+| --- | --- | --- |
+| ユーザ名 | （自身のDockerHubのアカウント名） | DockerHubのアカウント名 |
+| パスワード | （自身のDockerHubのパスワード） | DockerHubのパスワード |
+| イメージ出力先 | _\[DockerHubのアカウント名]_/epoch-sample-__api__<br>※ユーザ名入力後に表示される内容を修正してください。 | DockerHubのイメージ出力先のパス |
+
+#### パイプラインArgo CD
+
+ArgoCDに設定するDeploy先の情報を入力します。
+
+#####  環境1：Staging環境
+
+| 項目 | 入力・選択内容 | 説明 |
+| --- | --- | --- |
+| 環境名 | staging | デプロイ環境の名前 |
+| Namespace | epoch-sample-app-staging | デプロイ先のNamespace |
+
+ ##### 環境2：Production環境
+
+| 項目 | 入力・選択内容 | 説明 |
+| --- | --- | --- |
+| 環境名 | production | デプロイ環境の名前 |
+| Namespace | epoch-sample-app-production | デプロイ先のNamespace |
+
+#### IaCリポジトリ
+
+マニフェストの登録先となるリポジトリ情報を入力します。
+
+| 項目 | 入力・選択内容 | 説明 |
+| --- | --- | --- |
+| GitリポジトリURL | https://github.com/_\[GitHubのアカウント名]_/_\[各環境のリポジトリ]_.git | 各環境のmanifestリポジトリのURL<br>（事前準備 IaC用リポジトリの準備を参照） |
+
+#### ワークスペース作成
+
+すべての入力が完了しましたら【ワークスペース作成】ボタンを押下します。
+
+これでCI/CDパイプラインが構築されました。
+チュートリアルを実践してCI/CDパイプラインを体験してみましょう！
+{: .check}
