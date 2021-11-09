@@ -1,9 +1,9 @@
 <!doctype html>
 <html>
     <head>
-{% if page.type == 'learn' %}
+{% if page.type == "learn" %}
     {% assign category = "Learn" %}
-{% elsif page.type == 'document' %}
+{% elsif page.type == "document" %}
     {% assign category = "Document" %}
 {% endif %}
         <meta charset="utf-8">
@@ -56,9 +56,9 @@
                 <div class="header-menu-button"><span class="header-menu-button-mark"></span></div>
                 
                 <nav id="navi"></nav>
-                {% if page.lang == 'ja' %}
+                {% if page.lang == "ja" %}
                 <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/{{ page.type }}_ja.html"><i class="fas fa-arrow-alt-circle-left"></i> Exastro EPOCH {{ category }}一覧に戻る</a></div>
-                {% elsif %}
+                {% else %}
                 <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/{{ page.type }}.html"><i class="fas fa-arrow-alt-circle-left"></i> Return to Exastro EPOCH {{ category }} list</a></div>
                 {% endif %}
             </header>
