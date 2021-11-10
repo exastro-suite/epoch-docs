@@ -289,10 +289,13 @@ https://[インストール先のIPアドレスまたはホスト名]:30443/work
 | ユーザ名 | (自身のGitHubのアカウント名) | GitHubのアカウント名 |
 | トークン | (自身のGitHubのトークン) | GitHubのトークン<br>（事前準備 Gitトークンの払い出しを参照） |
 | GitリポジトリURL | https://github.com/_\[GitHubのアカウント名]_/epoch-sample-app.git | 準備で作成したアプリケーションコード用リポジトリのURL |
+{: .row-h1}
 
 #### パイプラインTEKTON
 
 TEKTONに設定するパイプライン情報を入力します。
+
+![パイプラインTEKTON情報入力画面](img/input_tekton.png){:width="1183" height="516"}
 
 | 項目 | 入力・選択内容 | 説明 |
 | --- | --- | --- |
@@ -303,15 +306,19 @@ TEKTONに設定するパイプライン情報を入力します。
 
 ビルド後のイメージ登録先（レジストリ）情報を入力します。
 
+![レジストリサービス情報入力画面](img/input_registry_service.png){:width="1265" height="562"}
+
 | 項目 | 入力・選択内容 | 説明 |
 | --- | --- | --- |
 | ユーザ名 | （自身のDockerHubのアカウント名） | DockerHubのアカウント名 |
 | パスワード | （自身のDockerHubのパスワード） | DockerHubのパスワード |
-| イメージ出力先 | _\[DockerHubのアカウント名]_/epoch-sample-__api__<br>※ユーザ名入力後に表示される内容を修正してください。 | DockerHubのイメージ出力先のパス |
+| イメージ出力先 | _\[DockerHubのアカウント名]_/epoch-sample-**api**<br>_※ユーザ名入力後に表示される内容を修正してください。_ | DockerHubのイメージ出力先のパス |
 
 #### パイプラインArgo CD
 
 ArgoCDに設定するDeploy先の情報を入力します。
+
+![ArgoCD情報入力画面](img/input_argo_cd.png){:width="1637" height="512"}
 
 #####  環境1：Staging環境
 
@@ -320,7 +327,7 @@ ArgoCDに設定するDeploy先の情報を入力します。
 | 環境名 | staging | デプロイ環境の名前 |
 | Namespace | epoch-sample-app-staging | デプロイ先のNamespace |
 
- ##### 環境2：Production環境
+##### 環境2：Production環境
 
 | 項目 | 入力・選択内容 | 説明 |
 | --- | --- | --- |
@@ -331,6 +338,8 @@ ArgoCDに設定するDeploy先の情報を入力します。
 
 マニフェストの登録先となるリポジトリ情報を入力します。
 
+![IaCリポジトリ情報入力画面](img/input_iac_repository.png){:width="1450" height="553"}
+
 | 項目 | 入力・選択内容 | 説明 |
 | --- | --- | --- |
 | GitリポジトリURL | https://github.com/_\[GitHubのアカウント名]_/_\[各環境のリポジトリ]_.git | 各環境のmanifestリポジトリのURL<br>（事前準備 IaC用リポジトリの準備を参照） |
@@ -338,6 +347,8 @@ ArgoCDに設定するDeploy先の情報を入力します。
 #### ワークスペース作成
 
 すべての入力が完了しましたら【ワークスペース作成】ボタンを押下します。
+
+![ワークスペース作成画面](img/create_workspace.png){:width="993" height="525"}
 
 これでCI/CDパイプラインが構築されました。
 チュートリアルを実践してCI/CDパイプラインを体験してみましょう！
