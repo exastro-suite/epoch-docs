@@ -27,19 +27,25 @@ lastmod: 2021/11/09
 - \# h1は使用しない。
 - 見出しの順番に気を付ける。※h2 のあとに h4 のような順番が飛ぶような使い方はしない。
 
-## インライン要素
-
-### リンク
+### インライン要素
+#### リンク、画像
+##### リンク
+###### 表示サンプル
 
 [Exastro](https://exastro-suite.github.io/docs/index.html)
+
+###### 入力例
 
 ```
 [Exastro](https://exastro-suite.github.io/docs/index.html)
 ```
 
-### 画像
+##### 画像
+###### 表示サンプル
 
 ![Exastro](https://exastro-suite.github.io/docs/asset/logo/exastro/Exastro-logo1-rgb.png){:width="1280" height="300"}
+
+###### 入力例
 
 ```
 ![Exastro](https://exastro-suite.github.io/docs/asset/logo/exastro/Exastro-logo1-rgb.png){:width="1280" height="300"}
@@ -49,11 +55,15 @@ lastmod: 2021/11/09
 画像遅延読み込み（lazyload）とアンカーリンクのずれをなくすため、画像読み込み前に画像の高さを取得するために使用します。
 _入れ忘れると画像が表示されません。_
 
-### 強調
+#### 強調、打消し
+##### 強調
+###### 表示サンプル
 
 | em | _AAAAA_ | *AAAAA* |
 | strong | __AAAAA__ | **AAAAA** |
 | em + strong | ___AAAAA___ | ***AAAAA*** |
+
+###### 入力例
 
 ```
 | em | _AAAAA_ | *AAAAA* |
@@ -61,9 +71,11 @@ _入れ忘れると画像が表示されません。_
 | em + strong | ___AAAAA___ | ***AAAAA*** |
 ```
 
-## リスト
+### ブロック要素
 
-### 順序無しリスト
+#### リスト
+##### 順序無しリスト
+###### 表示サンプル
 
 - AAAAA1
 - AAAAA2
@@ -72,6 +84,8 @@ _入れ忘れると画像が表示されません。_
     - CCCCC1
   - DDDDD1
 
+###### 入力例
+
 ```
 - AAAAA1
 - AAAAA2
@@ -81,31 +95,31 @@ _入れ忘れると画像が表示されません。_
   - DDDDD1
 ```
 
-### 順序付きリスト
+###### 順序付きリスト
+###### 表示サンプル
 
-1. AAAAA1
-2. AAAAA2
-  1. BBBBB1
-  2. BBBBB2
-    1. CCCCC1
-  3. DDDDD1
+1. AAAAA
+2. BBBBB
+3. CCCCC
+
+###### 入力例
 
 ```
-1. AAAAA1
-2. AAAAA2
-  1. BBBBB1
-  2. BBBBB2
-    1. CCCCC1
-  3. DDDDD1
+1. AAAAA
+2. BBBBB
+3. CCCCC
 ```
 
-### 定義リスト
+##### 定義リスト
+###### 表示サンプル
 
 AAA
 : BBB
 : CCC
 : DDD
 
+###### 入力例
+
 ```
 AAA
 : BBB
@@ -113,73 +127,95 @@ AAA
 : DDD
 ```
 
-## 段落（補足説明）
+#### 段落
+##### 補足説明など
+###### 表示サンプル
 
 あああああ
 {: .info}
 
+あああああ
+{: .check}
+
+あああああ
+{: .warning}
+
+あああああ
+{: .alert}
+
+###### 入力例
+
 ```
 あああああ
 {: .info}
 ```
 
-あああああ
-{: .check}
-
 ```
 あああああ
 {: .check}
 ```
-
-あああああ
-{: .warning}
 
 ```
 あああああ
 {: .warning}
 ```
 
-あああああ
-{: .alert}
-
 ```
 あああああ
 {: .alert}
 ```
 
-## コード
 
-コードの書き方。
+#### コード
+##### インライン
+###### 表示サンプル
+
+文章の中に`code`を入れる。
+
+###### 入力例
+
+```
+文章の中に`code`を入れる。
+```
+
+##### ブロック
+###### 表示サンプル
 
 ```
 cd c:\
 ```
 
+###### 入力例
+
 ````
 ```
 cd c:\
 ```
 ````
 
-### ハイライト
+##### ハイライト（ハイライター：Rouge）
 
-``` sh
-sh xxxxx.sh
+ハイライターはrouge。[対応言語はこちらを参照](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)。
+
+###### 表示サンプル
+
+```sh
+echo "TEST"
 ```
 
+###### 入力例
+
 ````
-``` sh
-sh xxxxx.sh
+```sh
+echo "TEST"
 ```
 ````
 
-ハイライターはrouge。[対応言語](https://github.com/rouge-ruby/rouge/wiki/List-of-supported-languages-and-lexers)。
+#### 行数やマーカーをつける
 
-### 行数やマーカー
+行数やマーカーは*javascriptで追加*しています。
 
-行数やマーカーは_javascriptで追加_しています。
-
-#### 行数
+##### 行数
 
 コードの後に`{: .line}`を追加する。
 
@@ -203,7 +239,9 @@ sh xxxxx.sh
 {: .line}
 ````
 
-指定の番号から開始する場合は、`{: .line .line100}`のように`.line100`（数字は開始番号）を追加する。
+指定の番号から開始する場合は、`{: .line .line100}`のように`.n100`（数字は開始番号）を追加する。
+
+###### 表示サンプル
 
 ```html
 <div>
@@ -212,7 +250,9 @@ sh xxxxx.sh
     </p>
 </div>
 ```
-{: .line .line100}
+{: .line .n100}
+
+###### 入力例
 
 ````
 ```html
@@ -222,17 +262,21 @@ sh xxxxx.sh
     </p>
 </div>
 ```
-{: .line .line100}
+{: .line .n100}
 ````
 
-#### マーカー
+##### マーカー
 
 $マーク。コードの後に`{: .line .d}`を追加する。
+
+###### 表示サンプル
 
 ```sh
 sh xxxxx.sh
 ```
 {: .line .d}
+
+###### 入力例
 
 ````
 ```sh
@@ -243,10 +287,14 @@ sh xxxxx.sh
 
 \#マーク。コードの後に`{: .line .s}`を追加する。
 
+###### 表示サンプル
+
 ```sh
 sh xxxxx.sh
 ```
 {: .line .s}
+
+###### 入力例
 
 ````
 ```sh
@@ -257,10 +305,14 @@ sh xxxxx.sh
 
 \>マーク。コードの後に`{: .line .g}`を追加する。
 
+###### 表示サンプル
+
 ```sh
 sh xxxxx.sh
 ```
 {: .line .g}
+
+###### 入力例
 
 ````
 ```sh
