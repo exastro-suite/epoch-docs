@@ -64,7 +64,7 @@
                         <script src="{{ homeURL }}asset/js/menu_suite.js"></script>
                     </div>
                     <div id="mainTitle">
-                    {% page.lang == 'ja' %}
+                    {% if page.lang == 'ja' %}
                         <a href="{{ url }}index.html"><span><img src="{{ url }}asset/img/epoch.svg" alt="EPOCH"></span></a>
                     {% else %}
                         <a href="{{ url }}index_ja.html"><span><img src="{{ url }}asset/img/epoch.svg" alt="EPOCH"></span></a>
@@ -72,7 +72,7 @@
                     </div>
                     <nav>
                         <ul id="mainMenu">
-                        {% page.lang == 'ja' %}
+                        {% if page.lang == 'ja' %}
                             <li class="sp"><a href="../epoch-docs/index_ja.html" class="home"><i class="fas fa-home"></i><span>Home</span></a></li>
                             <li><a href="../epoch-docs/overview_ja.html" class="overview"><i class="fas fa-server"></i><span>Overview</span></a></li>
                             <li><a href="../epoch-docs/learn_ja.html" class="learn"><i class="fas fa-school"></i><span>Learn</span></a></li>
