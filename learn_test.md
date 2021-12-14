@@ -8,7 +8,7 @@ name: learn
 
 <style>
 
-article {
+#articleBody {
 display: flex;
 flex-wrap: wrap;
 }
@@ -33,12 +33,6 @@ top: 40px;
 }
 .article-navi-item {
 margin-bottom: 16px;
-}
-.article-navi-contents-list {
-
-}
-.article-navi-contents-item {
-
 }
 .article-navi-contents-item:last-child {
 border-bottom: none;
