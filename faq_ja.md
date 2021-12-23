@@ -7,7 +7,7 @@ pageName: faq
 ---
 <section>
     <div class="sectionInner">
-        <h2><em>Exastro OASE</em> よくあるご質問（FAQ）</h2>
+        <h2><em>Exastro EPOCH</em> よくあるご質問（FAQ）</h2>
         <div id="faqContent">
             <nav id="faqNavi">
                 <div class="faqNaviTitle">Search</div>
