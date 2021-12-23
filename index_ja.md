@@ -25,6 +25,7 @@ pageName: index
 <style>
 </style>
 <script>
+featuresSvgLineDraw();
 $(function(){
   $('.featureText').each(function(){
   const $text = $( this ),
