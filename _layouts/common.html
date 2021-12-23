@@ -1,112 +1,123 @@
+---
+root: https://exastro-suite.github.io
+suiteTitle: EPOCH
+suiteName: epoch
+suiteURL: /epoch-docs
+homeURL: /docs
+---
 <!doctype html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#002B62">
+    <meta http-equiv="content-language" content="{{ page.lang }}">
+    
+    {% capture url %}{{ layout.root }}{{ layout.suiteURL }}{{ page.url }}{% endcapture %}
+    {% capture en %}{{ page.pageName }}.md{% endcapture %}{% assign enPage = site.html_pages | where: "name", en | first %}
+    {% capture ja %}{{ page.pageName }}_ja.md{% endcapture %}{% assign jaPage = site.html_pages | where: "name", ja | first %}
 
-{% assign title = "EPOCH" %}
-{% assign name = "epoch" %}
-{% assign homeURL = "https://exastro-suite.github.io/docs/" %}
-{% assign url = "https://exastro-suite.github.io/epoch-docs/" %}
+    <title>{{ page.title }} | Exastro {{ title }}</title>
 
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="format-detection" content="telephone=no">
-<meta name="theme-color" content="#002B62">
-<meta http-equiv="content-language" content="{{ page.lang }}">
+    <link rel="stylesheet" type="text/css" href="{{ layout.homeURL }}/asset/css/common.css">
+    <noscript><link rel="stylesheet" type="text/css" href="{{ layout.homeURL }}/asset/css/noscript.css"></noscript>
 
-<title>{{ page.title }} | Exastro {{ title }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+    <link href="{{ layout.homeURL }}/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
+    {% if page.pageName == "learn" %}<link href="{{ layout.suiteURL }}/asset/css/document.css" rel="stylesheet">{% endif %}
 
-<link rel="stylesheet" type="text/css" href="../docs/asset/css/common.css">
-<noscript><link rel="stylesheet" type="text/css" href="../docs/asset/css/noscript.css"></noscript>
+    <script src="{{ layout.homeURL }}/asset/js/jquery-1.11.3.js"></script>
+    <script src="{{ layout.homeURL }}/asset/js/common.js"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
-<link href="../docs/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ layout.suiteURL }}/asset/css/epoch.css">
+    <script src="{{ layout.homeURL }}/asset/js/article.js"></script>
 
-<script src="../docs/asset/js/jquery-1.11.3.js"></script>
-<script src="../docs/asset/js/common.js"></script>
+    {% if enPage.name %}<link rel="alternate" hreflang="en" href="{{ layout.suiteURL }}/{{ page.pageName }}.html">{% endif %}
+    {% if jaPage.name %}<link rel="alternate" hreflang="ja" href="{{ layout.suiteURL }}/{{ page.pageName }}_ja.html">{% endif %}
 
+    <link rel="icon" type="image/x-icon" href="{{ layout.root }}{{ layout.suiteURL }}/favicon.ico">
+    <link rel="shortcut icon" href="{{ layout.root }}{{ layout.suiteURL }}/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ layout.root }}{{ layout.suiteURL }}/apple-touch-icon.png">
 
-<link rel="stylesheet" type="text/css" href="asset/css/epoch.css">
-<script src="../docs/asset/js/article.js"></script>
-
-<link rel="alternate" hreflang="en" href="https://exastro-suite.github.io/epoch-docs/learn.html">
-<link rel="alternate" hreflang="ja" href="https://exastro-suite.github.io/epoch-docs/learn_ja.html">
-
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="shortcut icon" href="favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-
-<meta name="keywords" content="Exastro, Exastro Suite, OSS">
-<meta name="description" content="Exastro EPOCHは、高速なアプリケーション開発・デプロイ環境を提供するためのフレームワークです。 コンテナベースのアプリケーション開発を支援するためのプロセス及び環境をセットで提供します。">
-<meta name="thumbnail" content="https://exastro-suite.github.io/docs/asset/img/ogp_twitter_image.jpg" />
-<meta property="og:description" content="Exastro EPOCHは、高速なアプリケーション開発・デプロイ環境を提供するためのフレームワークです。 コンテナベースのアプリケーション開発を支援するためのプロセス及び環境をセットで提供します。">
-
-<link rel="image_src" href="https://exastro-suite.github.io/docs/asset/img/series_epoch.jpg">
-<meta property="og:type" content="article">
-<meta property="og:url" content="{{ url }}/index_ja.html">
-<meta property="og:title" content="Exastro Suite">
-<meta property="og:image" content="https://exastro-suite.github.io/docs/asset/img/series_epoch.jpg">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Exastro Suite">
-<meta name="twitter:image" content="https://exastro-suite.github.io/docs/asset/img/ogp_twitter_image.jpg">
+    <meta name="keywords" content="Exastro,Exastro Suite,OSS,Exastro {{ layout.suteTitle }},{{ layout.suteTitle }},{{ page.title }}">
+    <meta name="thumbnail" content="{{ layout.root }}{{ layout.suiteURL }}/asset/img/asset/img/epoch_thumbnail.jpg">
+    {% if page.lang == "ja" %}
+    <meta name="description" content="Exastro EPOCHは、高速なアプリケーション開発・デプロイ環境を提供するためのフレームワークです。 コンテナベースのアプリケーション開発を支援するためのプロセス及び環境をセットで提供します。">
+    <meta property="og:description" content="Exastro EPOCHは、高速なアプリケーション開発・デプロイ環境を提供するためのフレームワークです。 コンテナベースのアプリケーション開発を支援するためのプロセス及び環境をセットで提供します。">
+    {% else %}
+    <meta name="description" content="Exastro EPOCH is a framework made to accelerate cloud native system development. It provides environments and processes able to support development for container based applications.">
+    <meta property="og:description" content="Exastro EPOCH is a framework made to accelerate cloud native system development. It provides environments and processes able to support development for container based applications.">
+    {% endif %}
+    <link rel="image_src" href="{{ layout.root }}{{ layout.homeURL }}/asset/img/series_epoch.jpg">
+    <meta property="og:type" content="{{ page.type }}">
+    <meta property="og:url" content="{{ url }}">
+    <meta property="og:title" content="Exastro Suite">
+    <meta property="og:image" content="{{ layout.root }}{{ layout.homeURL }}/asset/img/series_epoch.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Exastro Suite">
+    <meta name="twitter:image" content="{{ layout.root }}{{ layout.suiteURL }}/asset/img/asset/img/epoch_thumbnail.jpg">
 
 </head>
-
-<body id="{{ page.type }}" class="{{ name }} {{ page.name }} {{ page.lang }}">
+<body id="{{ page.type }}" class="{{ layout.suiteName }} {{ page.pageName }} {{ page.lang }}">
     <div id="container">
         <header>
             <div id="header">
                 <div id="titleArea">
                     <div id="logo">
-                        <a href="#"><img src="{{ homeURL }}asset/img/exastro.svg" alt="Exastro"></a>
+                        <a href="#"><img src="{{ layout.homeURL }}/asset/img/exastro.svg" alt="Exastro"></a>
                     </div>
                     <div id="suiteList">
-                        <script src="{{ homeURL }}asset/js/menu_suite.js"></script>
+                        <script src="{{ layout.homeURL }}/asset/js/menu_suite.js"></script>
                     </div>
                     <div id="mainTitle">
                     {% if page.lang == 'ja' %}
-                        <a href="{{ url }}index.html"><span><img src="{{ url }}asset/img/epoch.svg" alt="EPOCH"></span></a>
+                        <a href="{{ layout.suiteURL }}/index.html"><span><img src="{{ layout.suiteURL }}/asset/img/epoch.svg" alt="EPOCH"></span></a>
                     {% else %}
-                        <a href="{{ url }}index_ja.html"><span><img src="{{ url }}asset/img/epoch.svg" alt="EPOCH"></span></a>
+                        <a href="{{ layout.suiteURL }}/index_ja.html"><span><img src="{{ layout.suiteURL }}/asset/img/epoch.svg" alt="EPOCH"></span></a>
                     {% endif %}
                     </div>
-                    <nav>
-                        <ul id="mainMenu">
-                        {% if page.lang == 'ja' %}
-                            <li class="sp"><a href="../epoch-docs/index_ja.html" class="home"><i class="fas fa-home"></i><span>Home</span></a></li>
-                            <li><a href="../epoch-docs/overview_ja.html" class="overview"><i class="fas fa-server"></i><span>Overview</span></a></li>
-                            <li><a href="../epoch-docs/learn_ja.html" class="learn"><i class="fas fa-school"></i><span>Learn</span></a></li>
-                            <li><a href="../epoch-docs/webinar_ja.html" class="webinar"><i class="fas fa-school"></i><span>Webinar</span></a></li>
-                            <li><a href="../epoch-docs/documents_ja.html" class="documents"><i class="fas fa-file-alt"></i><span>Documents</span></a></li>
-                            <li><a href="../epoch-docs/downloads_ja.html" class="downloads"><i class="fas fa-download"></i><span>Downloads</span></a></li>
-                        {% else %}
-                            <li class="sp"><a href="../epoch-docs/index.html" class="home"><i class="fas fa-home"></i><span>Home</span></a></li>
-                            <li><a href="../epoch-docs/overview.html" class="overview"><i class="fas fa-server"></i><span>Overview</span></a></li>
-                            <li><a href="../epoch-docs/learn.html" class="learn"><i class="fas fa-school"></i><span>Learn</span></a></li>
-                            <li><a href="../epoch-docs/documents.html" class="documents"><i class="fas fa-file-alt"></i><span>Documents</span></a></li>
-                            <li><a href="../epoch-docs/downloads.html" class="downloads"><i class="fas fa-download"></i><span>Downloads</span></a></li>
-                        {% endif %}
-                        </ul>
-                        
-                        <ul id="subMenu">
-                            <li><a href="https://twitter.com/ExastroSuite" class="twitter" target="_blank" rel="noopener"><i class="fab fa-twitter-square"></i></a><span>Twitter</span></li>
-                            <li><a href="https://www.facebook.com/ExastroSuite/" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a><span>Facebook</span></li>
-                            <li><a href="https://www.youtube.com/channel/UC-kwQiXQfmYXTPbrGR-8qxw" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube-square"></i></a><span>YouTube</span></li>
-                            <li><a href="https://github.com/exastro-suite" class="github" target="_blank" rel="noopener"><i class="fab fa-github-square"></i></a><span>GitHub</span></li>
-                            <li><span class="share subMenuPlus touch"><i class="fas fa-share-alt"></i></span><span>Share</span></li>
-                            <li><span class="language subMenuPlus touch"><i class="fas fa-globe"></i></span><span>Language</span></li>
-                        </ul>
-                        
-                        <ul id="shareMenu">
-                            <li><a href="https://twitter.com/intent/tweet?text=Exastro%20EPOCH&amp;url=https%3a%2f%2fexastro%2dsuite%2egithub%2eio%2fepoch%2ddocs&amp;hashtags=Exastro,EPOCH,OSS" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span>Tweet</span></a></li>
-                            <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexastro%2dsuite%2egithub%2eio%2fepoch%2ddocs&amp;src=sdkpreparse" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
-                            <li><a href="https://social-plugins.line.me/lineit/share?url=https%3a%2f%2fexastro%2dsuite%2egithub%2eio%2fepoch%2ddocs" target="_blank" rel="noopener"><i class="fab fa-line"></i><span>LINE</span></a></li>
-                        </ul>
-                        
-                        <ul id="languageMenu">
-                        </ul>
-                    </nav>
                 </div>
+                <nav>
+                    <ul id="mainMenu">
+                    {% if page.lang == 'ja' %}
+                        <li><a href="{{ layout.suiteURL }}/index_ja.html" class="home"><i class="fas fa-home"></i><span>Home</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/overview_ja.html" class="overview"><i class="fas fa-server"></i><span>Overview</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/learn_ja.html" class="learn"><i class="fas fa-school"></i><span>Learn</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/webinar_ja.html" class="webinar"><i class="fas fa-video"></i><span>Webinar</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/documents_ja.html" class="documents"><i class="fas fa-file-alt"></i><span>Documents</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/downloads_ja.html" class="downloads"><i class="fas fa-download"></i><span>Downloads</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/faq_ja.html" class="downloads"><i class="fas fa-download"></i><span>FAQ</span></a></li>
+                    {% else %}
+                        <li><a href="{{ layout.suiteURL }}/index.html" class="home"><i class="fas fa-home"></i><span>Home</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/overview.html" class="overview"><i class="fas fa-server"></i><span>Overview</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/learn.html" class="learn"><i class="fas fa-school"></i><span>Learn</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/documents.html" class="documents"><i class="fas fa-file-alt"></i><span>Documents</span></a></li>
+                        <li><a href="{{ layout.suiteURL }}/downloads.html" class="downloads"><i class="fas fa-download"></i><span>Downloads</span></a></li>
+                    {% endif %}
+                    </ul>
+
+                    <ul id="subMenu">
+                        <li><a href="https://twitter.com/ExastroSuite" class="twitter" target="_blank" rel="noopener"><i class="fab fa-twitter-square"></i></a><span>Twitter</span></li>
+                        <li><a href="https://www.facebook.com/ExastroSuite/" class="facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-square"></i></a><span>Facebook</span></li>
+                        <li><a href="https://www.youtube.com/channel/UC-kwQiXQfmYXTPbrGR-8qxw" class="youtube" target="_blank" rel="noopener"><i class="fab fa-youtube-square"></i></a><span>YouTube</span></li>
+                        <li><a href="https://github.com/exastro-suite" class="github" target="_blank" rel="noopener"><i class="fab fa-github-square"></i></a><span>GitHub</span></li>
+                        <li><span class="share subMenuPlus touch"><i class="fas fa-share-alt"></i></span><span>Share</span></li>
+                        <li><span class="language subMenuPlus touch"><i class="fas fa-globe"></i></span><span>Language</span></li>
+                    </ul>
+
+                    <ul id="shareMenu">
+                        <li><a href="https://twitter.com/intent/tweet?text=Exastro%20{{ layout.suiteTitle }}%20{{ page.title }}&url={{ url | url_encode }}&hashtags=Exastro,{{ layout.suiteTitle }},OSS" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span>Tweet</span></a></li>
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url | url_encode }}src=sdkpreparse" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
+                        <li><a href="https://social-plugins.line.me/lineit/share?url={{ url | url_encode }}" target="_blank" rel="noopener"><i class="fab fa-line"></i><span>LINE</span></a></li>
+                    </ul>
+
+                    <ul id="languageMenu">
+                      {% if enPage.name %}<li><a href="{{ layout.suiteURL }}/{{ page.pageName }}.html" class="en">English</a></li>{% endif %}
+                      {% if jaPage.name %}<li><a href="{{ layout.suiteURL }}/{{ page.pageName }}_ja.html" class="en">Japanese</a></li>{% endif %}
+                    </ul>
+                </nav>
             </div>
         </header>
         
@@ -115,10 +126,26 @@
                 <div id="articleTitle">
                     <section>
                         <div class="sectionInner">
-                            <h1>
-                                <small>Exastro {{ title }}</small><br>
-                                {{ page.title }}
+                            {% if page.pageName == "index" %}<h1><small>Exastro</small><br>
+                                {{ layout.suiteTitle }}</h1>
                             </h1>
+                            {% if page.lang == 'ja' %}
+                            <p>Exastro EPOCHは、高速なアプリケーション開発・デプロイ環境を提供するためのフレームワークです。 コンテナベースのアプリケーション開発を支援するためのプロセス及び環境をセットで提供します。</p>
+                            <ul>
+                              <li><a href="{{ layout.suiteURL }}downloads_ja.html" class="touch">Download</a></li>
+                              <!--<li><a href="#why" class="touch anker">Description</a></li>-->
+                            </ul>
+                            {% else %}
+                            <p>Exastro EPOCH is a framework made to accelerate cloud native system development. It provides environments and processes able to support development for container based applications.</p>
+                            <ul>
+                              <li><a href="{{ layout.suiteURL }}downloads.html" class="touch">Download</a></li>
+                              <!--<li><a href="#why" class="touch anker">Description</a></li>-->
+                            </ul>
+                            {% endif %}
+                            {% else %}<h1>
+                                <small>Exastro {{ layout.suiteTitle }}</small><br>
+                                {{ page.title }}
+                            </h1>{% endif %}
                         </div>
                     </section>
                 </div>
@@ -133,20 +160,20 @@
         <footer>
             <div id="footerInner">
                 <div id="footerAbout">
-                    <div id="footerLogo"><img src="../docs/asset/img/exastro.svg" alt="Exastro"></div>
+                    <div id="footerLogo"><img src="{{ layout.homeURL }}/asset/img/exastro.svg" alt="Exastro"></div>
                     <p>Exastro is an open source software suite for digitizing, automating and labor saving the system life cycle.</p>
                 </div>
                 <div id="footerMenu">
-                    <script src="../docs/asset/js/menu_footer.js"></script>
+                    <script src="{{ layout.homeURL }}/asset/js/menu_footer.js"></script>
 
                     <div id="footerShareMenu">
                         <dl>
                             <dt><i class="fas fa-share-alt"></i><span>Share</span></dt>
                             <dd>
                                 <ul>
-                                    <li><a href="https://twitter.com/intent/tweet?text=Exastro%20EPOCH&amp;url=https%3a%2f%2fexastro%2dsuite%2egithub%2eio%2fepoch%2ddocs&amp;hashtags=Exastro,EPOCH,OSS" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span>Tweet</span></a></li>
-                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexastro%2dsuite%2egithub%2eio%2fepoch%2ddocs&amp;src=sdkpreparse" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
-                                    <li><a href="https://social-plugins.line.me/lineit/share?url=https%3a%2f%2fexastro%2dsuite%2egithub%2eio%2fepoch%2ddocs" target="_blank" rel="noopener"><i class="fab fa-line"></i><span>LINE</span></a></li>
+                                    <li><a href="https://twitter.com/intent/tweet?text=Exastro%20{{ layout.suiteTitle }}%20{{ page.title }}&url={{ url | url_encode }}&hashtags=Exastro,{{ layout.suiteTitle }},OSS" target="_blank" rel="noopener"><i class="fab fa-twitter"></i><span>Tweet</span></a></li>
+                                    <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ url | url_encode }}src=sdkpreparse" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i><span>Facebook</span></a></li>
+                                    <li><a href="https://social-plugins.line.me/lineit/share?url={{ url | url_encode }}" target="_blank" rel="noopener"><i class="fab fa-line"></i><span>LINE</span></a></li>
                                 </ul>
                             </dd>
                         </dl>
@@ -154,7 +181,7 @@
                 </div>
             </div>
             <div id="copyright">
-                <p><small><script src="../docs/asset/js/copyright.js"></script></small></p>
+                <p><small><script src="{{ layout.homeURL }}/asset/js/copyright.js"></script></small></p>
             </div>
         </footer>
     </div>

@@ -9,37 +9,45 @@
         <ul class="article-navi-list">
         {% for learn in list.learn %}
             {% if learn.id == "home" %}
-                {% if page.type != "index" %}
+                {% if page.type != "article" %}
             <li class="article-navi-item">
-                <a class="article-navi-contents-link touch anker" href="{{ learn.url }}"><i class="{{ learn.icon }}"></i>{{ learn.title }}</a>
+                <a class="article-navi-contents-link touch anker" href="{{ layout.suiteURL }}{{ learn.url }}"><i class="{{ learn.icon }}"></i>{{ learn.title }}</a>
             </li>
                 {% endif %}
             {% else %}
             <li class="article-navi-item">
-                <button class="article-navi-button"><i class="fas fa-arrow-bottom"></i><i class="{{ learn.icon }}"></i>{{ learn.title }}</button>
+                <button class="article-navi-button touch anker" data-id="{{ learn.id }}"><i class="fas fa-angle-down"></i><i class="{{ learn.icon }}"></i>{{ learn.title }}</button>
                 <!-- Documents -->
                 <ul class="article-navi-contents-list">
                 {% for document in learn.documents %}
                     <li class="article-navi-contents-item">
-                    {% if page.type == "index" %}
+                    {% if page.type == "article" %}
                         <a class="article-navi-contents-link touch anker" href="#{{ document.id }}">
                             <i class="fas fa-book"></i>{{ document.title }}
                         </a>
                     {% elsif document.links.size != 1 %}
-                        <button class="article-navi-button"><i class="fas fa-arrow-bottom"></i> {{ document.title }}</button>
+                        <button class="article-navi-button touch"><i class="fas fa-angle-down"></i>{{ document.title }}</button>
                         <ul class="article-navi-contents-link-list">
                         {% for link in document.links %}
                             <li class="article-navi-contents-link-item">
-                                <a id="{{ link.id }}" class="article-navi-contents-link" href="{{ link.url }}">
-                                    <i class="fas fa-book"></i> {{ link.title }}
-                                </a>
+                                {% if link.url == page.url %}<button class="article-navi-button touch" data-href="{{ link.url }}">
+                                    <i class="fas fa-angle-down"></i>{{ link.title }}
+                                </button>
+                                <div id="documentNavi"></div>
+                                {% else %}<a id="{{ link.id }}" class="article-navi-contents-link touch" href="{{ layout.suiteURL }}{{ link.url }}">
+                                    <i class="fas fa-book"></i>{{ link.title }}
+                                </a>{% endif %}
                             </li>
                         {% endfor %}
                         </ul>
                     {% else %}
-                        <a id="{{ document.id }}" class="article-navi-contents-link" href="{{ document.links[0].url }}">
-                            <i class="fas fa-book"></i> {{ document.title }}
-                        </a>
+                        {% if document.links[0].url == page.url %}<button class="article-navi-button touch" data-href="{{ document.links[0].url }}">
+                            <i class="fas fa-angle-down"></i>{{ document.title }}
+                        </button>
+                        <div id="documentNavi"></div>
+                        {% else %}<a id="{{ document.id }}" class="article-navi-contents-link touch" href="{{ layout.suiteURL }}{{ document.links[0].url }}">
+                            <i class="fas fa-book"></i>{{ document.title }}
+                        </a>{% endif %}
                     {% endif %}
                     </li>
                 {% endfor %}

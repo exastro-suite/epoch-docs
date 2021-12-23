@@ -143,7 +143,7 @@ transform-origin: left;
 
 
 #faqNavi {
-border-bottom-color: #7AD2D4;
+border-bottom-color: #8FC6BC;
 }
 .faqNaviTitle {
 border-bottom-color: #1F8C78;
@@ -166,7 +166,7 @@ border-color: #1F8C78;
 border-color: #1F8C78;
 }
 #faqContent .q:hover .text {
-background-color: #F5FCFC;
+background-color: #F4F9F8;
 }
 #faqContent .a .mark {
 color: #1F8C78;
@@ -199,145 +199,4 @@ background-color: #8FC6BC;
 .webinarCodeText,
 .webinarVersionItem.tabOpen .webinarVersionLink {
 color: #00878A;
-}
-
-
-
-
-
-
-
-
-#articleBody h2 {
-max-width: 980px;
-margin: 64px auto 24px;
-}
-#articleBody .content-list {
-display: flex;
-flex-wrap: wrap;
-width: 100%; max-width: 1200px;
-margin: 0 auto; padding: 16px;
-list-style: none;
-}
-#articleBody .content-item {
-display: inline-block;
-width: 50%;
-margin: 0; padding: 8px;
-vertical-align: top;
-letter-spacing: normal;
-}
-.content-card {
-overflow: hidden;
-position: relative;
-z-index: 0;
-height: 100%;
-padding-bottom: 56px;
-background-color: #FFF;
-border-radius: 8px;
-box-shadow: 2px 2px 8px rgba( 0,0,0,.3 );
-}
-.content-image-wrap {
-border-bottom: 1px solid #CCC;
-}
-.content-image {
-display: block;
-width: 100%; height: auto;
-}
-.content-type {
-padding: 24px 24px 4px;
-line-height: 1;
-font-size: 12px;
-font-family: 'Roboto', sans-serif;
-font-weight: 900;
-color: #1F8C78;
-}
-.content-title {
-padding: 0 24px;
-line-height: 1.3;
-font-size: 28px;
-color: #444;
-}
-.content-body {
-padding: 12px 24px 24px;
-line-height: 1.6;
-font-size: 14px;
-color: #333;
-}
-.content-footer {
-position: absolute;
-z-index: 1;
-left: 0; bottom: 0;
-width: 100%; height: 64px;
-padding: 8px 16px;
-background-color: #F2F2F2;
-}
-#articleBody .content-link-list {
-display: table;
-table-layout: fixed;
-width: 100%;
-margin: 0; padding: 0;
-}
-#articleBody .content-link-item {
-display: table-cell;
-padding: 8px;
-}
-.content-link {
-display: block;
-height: 32px;
-background-color: #FF640A;
-border-radius: 4px;
-text-align: center;
-text-decoration: none;
-line-height: 32px;
-color: #FFF;
-transition-duration: 0.3s;
-}
-.content-link:hover {
-background-color: #E65A09;
-}
-.content-item-padding {
-transform: scale(.8);
-background-image: url(https://exastro-suite.github.io/docs/asset/logo/epoch/Exastro-EPOCH-logo2-rgb.png);
-background-repeat: no-repeat;
-background-size: contain;
-background-position: center center;
-opacity: .5;
-}
-
-@media screen and ( max-width: 980px ){
-
-#articleBody .content-list,
-#articleBody .content-item {
-padding: 0;
-}
-
-}
-
-@media screen and ( max-width: 880px ){
-
-#articleBody .content-item {
-width: 100%; max-width: 640px;
-margin: 0 auto;
-}
-#articleBody .content-item.content-item-padding {
-display: none;
-}
-
-}
-
-@media screen and ( max-width: 480px ){
-
-.content-type {
-padding: 12px 12px 4px;
-font-size: 3vw;
-}
-.content-title {
-padding: 0 12px;
-font-size: 5vw;
-}
-.content-body {
-padding: 12px 12px 16px;
-font-size: 3vw;
-}
-
 }

@@ -1,0 +1,13 @@
+{
+    "ja": {
+"インストール":{
+"data":{"frequently":"","abbreviation":"","icon":"fa-download","id":"install"},
+"1":{"id":"install1","Q":"Proxy環境でEPOCHを利用する方法を教えてください。","A":"Proxy環境で動かすには２つ設定が必要です。\n１：Kubernetes masterノードへのNO_PROXY設定\n　・kubernetes masterノードにある、次のファイルを変更します。\n　  /etc/kubernetes/manifests/kube-apiserver.yaml\n　 このファイルのNO_PROXY、no_proxyのvalue値に次の値を追加します。\n　  \",tekton-pipelines-webhook.tekton-pipelines.svc,tekton-triggers-webhook.tekton-pipelines.svc\"\n　 ※注意事項※\n　　 ファイルの変更前のバックアップは、/etc/kubernetes/manifests/配下に置かないでください。\n\n２：EPOCHへのProxy設定\n　・EPOCHをインストール後に次のコマンドを実行してください\n　 ${HTTP_PROXY},${HTTPS_PROXY}はご自身の環境の設定値を指定してください\n{cmd{DATA=\"{ \\\"data\\\" : {\\\n    \\\"HTTP_PROXY\\\" : \\\"${HTTP_PROXY}\\\",\\\n    \\\"HTTPS_PROXY\\\" : \\\"${HTTPS_PROXY}\\\"\\\n} }\"\nkubectl get configmap epoch-control-api-config -n epoch-system &> /dev/null\nif [ $? -eq 0 ]; then\n    kubectl patch configmap epoch-control-api-config -n epoch-system -p \"${DATA}\"\nfi\nkubectl get configmap proxy-setting-config -n epoch-system &> /dev/null\nif [ $? -eq 0 ]; then\n    kubectl patch configmap proxy-setting-config -n epoch-system -p \"${DATA}\"\nfi\nkubectl get configmap epoch-cicd-api-config -n epoch-system &> /dev/null\nif [ $? -eq 0 ]; then\n    kubectl patch configmap epoch-cicd-api-config -n epoch-system -p \"${DATA}\"\nfi\nkubectl rollout restart deploy -n epoch-system}command}"},
+"2":{"id":"install2","Q":"EPOCHを再インストールまたはアンインストールしたいです。","A":"アンインストールはアンインストーラをepochのリポジトリからダウンロードして、アンインストールのシェルを実行します。\n再インストールは、アンインストールしてから再度インストールを行ってください。\n\ngithubのreleaseにあるバージョンごとのzipまたはtar.gz をターミナルでダウンロード curl -OL して、展開後、epoch\\installフォルダのepoch-uninstall.shを実行してください。"},
+"3":{"id":"install3","Q":"EPOCHをインストール(epoch-install.yamlをapply)したときに、エラーが発生しました。","A":"v0.1系、v0.2系のインストーラでは、epoch-install.yamlをapplyしたときに以下のようなエラーが発生する場合があります。\nエラーが発生した場合はしばらく待ったのちに再度epoch-install.yamlをapplyしてください。\n\nエラー内容\n{cmd{Error from server (InternalError): error when creating \"epoch-install.yaml\": Internal error occurred: failed calling webhook \"webhook.triggers.tekton.dev\": Post \"https://tekton-triggers-webhook.tekton-pipelines.svc:443/defaulting?timeout=10s\": dial tcp ***.***.***.***:443: connect: connection refused}command}"},
+"4":{"id":"install4","Q":"EPOCHをインストールしたときに、発生したエラーの詳細を確認する方法を教えてください。","A":"kubectl get po -n epoch-systemでpod名を取得し、\"Running\",\"Completed\"以外となっているpodについて、以下のコマンドで確認します。\n1.kubectl logs [pod名] -n epoch-system\n2.kubectl describe po [pod名] -n epoch-system\n\nまた、exastro-platform-authentication-infraについても同様のコマンドで確認します。\n（epoch-systemをexastro-platform-authentication-infraに変更して実行）"}
+}
+    },
+    "en": {
+    }
+}
