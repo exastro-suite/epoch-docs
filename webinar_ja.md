@@ -32,7 +32,7 @@ pageName: webinar
             <td><a href="#Ex-C09-Lv1" class="touch anker">Ex-C09-Lv1 <i class="fas fa-check-circle"></i></a>
             Exastroで実現するDevOpsの開発効率化（EPOCH×k8s）</td>
             <td><span class="webinarComingSoon">Ex-C10-Lv1</span>
-            EストアモデルのDevOps</td>
+            特設イベントシステムモデルのDevOps</td>
             <td class="comingSoon" rowspan="3" colspan="2">Coming Soon</td>
           </tr>
           <tr class="webinarTableLevel2">
@@ -40,7 +40,7 @@ pageName: webinar
             <td><span class="webinarComingSoon">Ex-C09-Lv2</span>
             CI/CD(GitOps)を活用した高速DevOpsの回し方</td>
             <td><span class="webinarComingSoon">Ex-C10-Lv2</span>
-            特設イベントシステムモデルのDevOps</td>
+            EストアモデルのDevOps</td>
           </tr>
           <tr class="webinarTableLevel3">
             <th><strong>Lv3</strong><br><span class="webinarLevel3">上級編</span></th>
