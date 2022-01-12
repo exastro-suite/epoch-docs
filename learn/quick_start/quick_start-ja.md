@@ -56,6 +56,11 @@ EPOCHをインストールおよびワークスペースを作成した後の構
 - Kubernetes Manifestを登録するGitHubのアカウントが準備されていること
 - コンテナイメージを登録するDockerHubのアカウントが準備されていること
 
+ワークスペースについては後述の
+[ワークスペース作成](#ワークスペース作成)
+にて記述しています。
+{: .check}
+
 #### EPOCHインストール
 ##### ターミナルでkubectlが実行できる環境にSSHログインし、以下のコマンドを実行してEPOCHをインストールします。
 
@@ -147,7 +152,7 @@ kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/rele
 ```
 {: .line .d}
 
-以上でEPOCHのインストールは完了しました。
+以上でEPOCHのインストールは完了しました  
 次にチュートリアルを実施するための事前準備を実施しましょう！
 {: .check}
 
@@ -214,7 +219,7 @@ EPOCHにアップロードするManifestテンプレートファイル（２フ�
 
 ![テンプレート保存方法](img/save_template.png){:width="1433" height="456"}
 
-以上で事前準備は完了しました。
+以上で事前準備は完了しました  
 ワークスペース作成へ進みましょう！
 {: .check}
 
@@ -246,6 +251,11 @@ EPOCHでは、１つの開発環境をワークスペースという単位で管
 ##### CI/CDのイメージ
 
 ![CI/CDイメージ](img/ci_cd_image.png){:width="1480" height="404"}
+
+DevOpsとは、ソフトウェアの開発担当と導入・運用担当が密接に協力する体制を構築し、ソフトウェアの導入や更新を迅速に進めること。  
+“Development”（開発）と“Operations”（運用）の略語を組み合わせた造語。  
+出典：[IT用語辞典](https://e-words.jp/w/DevOps.html)
+{: .check}
 
 ### EPOCHのCI/CD
 #### EPOCHのCI/CD
@@ -350,6 +360,606 @@ ArgoCDに設定するDeploy先の情報を入力します。
 
 ![ワークスペース作成画面](img/create_workspace.png){:width="993" height="525"}
 
-これでCI/CDパイプラインが構築されました。
+これでCI/CDパイプラインが構築されました  
 チュートリアルを実践してCI/CDパイプラインを体験してみましょう！
 {: .check}
+
+## チュートリアル
+
+CI/CDの流れを体験してみましょう。
+
+### チュートリアルの概要
+
+#### CI/CD開発シナリオ
+
+チュートリアルでは以下のシナリオに沿って、CI/CDの手順を実施していきます。
+本QuickStartで作成するECサイトは、サンプルアプリケーションを用いて実施していきます。
+
+![チュートリアルの概要(1/2)](img/tutorial_overview_1.png
+){:width="1940" height="800"}
+
+
+![チュートリアルの概要(2/2)](img/tutorial_overview_2.png
+){:width="1940" height="800"}
+
+
+### サンプルアプリの構成
+#### サンプルアプリの構成
+
+サンプルアプリケーションは、UIとAPIの2つで構成されております。
+
+![サンプルアプリの構成](img/sample_application_structure.png
+){:width="1940" height="860"}
+
+
+### チュートリアルの流れ
+#### CI/CDの流れ
+
+本説明では、サンプルアプリケーションをStaging環境、Production環境へDeploy、その後アプリケーションコードの修正
+を行い、Staging環境、Production環境へのDeployする手順を説明していきます。
+
+![CI/CDの流れ](img/ci_cd_flow.png){:width="1940" height="830"}
+
+
+### Manifestテンプレートファイルについて
+#### Manifestテンプレートファイル
+
+サンプルアプリケーションのManifestテンプレートファイルは、UIとAPI用の2つが用意されています。
+環境一致を考慮した上での可変部分を変数化したテンプレート形式となっています。
+
+![Manifestテンプレートファイル](img/manifest_template_file.png){:width="1940" height="635"}
+
+※変数名は、image、image_tag、param01~param20で設定できます。
+
+それでは1回目のCI/CDの手順を実行してみましょう！
+{: .check}
+
+### 1回目のCI/CDの流れ
+#### Staging環境へのDeploy
+
+1回目のCI/CDの流れとして、アプリケーションコードのCommit＆PushからStaging環境へのDeploy、CD結果確認までの手順は以下の通りとなります。
+
+![Staging環境へのDeploy_1](img/deploy_to_staging_environment_1.png){:width="1940" height="835"}
+
+
+#### アプリケーションコード Commit & Push
+初回デプロイするコンテナイメージを作るためCIパイプラインを実行します。
+
+![Commit&Push](img/commit_push.png){:width="1940" height="835"}
+
+
+##### ブラウザにてサンプルアプリケーションのURLを表示します。
+[https://github.com/exastro-suite/epoch-sample-app](https://github.com/exastro-suite/epoch-sample-app)
+
+##### サンプルアプリケーションの画面から「Code」を押下して、「Download ZIP」からコードを取得します。
+
+![Download ZIP](img/download_zip.png){:width="1940" height="835"}
+
+
+##### ダウンロードしたZIPファイルを展開し、cloneしたアプリケーションコード用リポジトリにコピーします。
+
+![Copy to repository](img/copy_to_repository.png){:width="1940" height="335"}
+
+##### PC環境にcloneしたアプリケーションコード用リポジトリでCommit & Pushします。
+例としてコマンドプロンプトでは、以下の通りとなります。
+```
+git add .
+git commit -m "first build"
+git push origin main
+```
+{: .line .g}
+
+※ git push時に認証情報を求められた場合は、自身のGitHubアカウント情報を入力してください。
+
+Pushが完了すると、パイプラインTEKTONで設定されたCIパイプラインが自動的に動き出します。
+　CIパイプラインの結果を確認していきましょう。
+
+
+#### CI/CD実行画面の表示
+ワークスペース画面のCI/CD実行タブを選択し、CI/CD実行画面を表示します。
+
+![CI/CD実行画面の表示](img/displaying_the_ci_cd_execution_screen.png){:width="1940" height="980"}
+
+
+#### CI結果確認
+
+![CI結果確認_1_1](img/ci_result_confirmation_1_1.png){:width="1940" height="880"}
+
+##### アプリケーションコードのビルド結果を確認します。
+
+![CI結果確認_1_2](img/ci_result_confirmation_1_2.png){:width="1940" height="980"}
+
+それでは実際にCI結果を確認してみましょう
+{: .check}
+
+#### パイプラインTEKTONの結果確認
+##### TEKTONのパイプラインを実際に確認し、ビルドが正常に終了したか確認します。
+
+![TEKTONの結果確認](img/check_tekton_results_1.png){:width="1940" height="580"}
+
+
+#### コンテナイメージのタグ名の確認
+##### レジストリサービスの画面を開き、ビルドしたコンテナイメージのTagを確認します。
+
+![コンテナイメージのタグ名の確認](img/check_the_tag_name_of_the_container_image_1.png){:width="1940" height="780"}
+
+※今後、パイプラインで生成されたimage_tagは選択できるように変更する予定です
+
+
+#### Manifestテンプレートアップロード
+
+![Manifestテンプレートアップロード_1](img/manifest_template_upload_1.png){:width="1940" height="880"}
+
+##### ダウンロードしたManifestテンプレートをアップロードします。
+
+![Manifestテンプレートアップロード_2](img/manifest_template_upload_2.png){:width="1940" height="1000"}
+
+
+##### Manifestテンプレートファイルの準備でダウンロードしたManifestテンプレートファイルをアップロードします。
+
+![Manifestテンプレートアップロード_3](img/manifest_template_upload_3.png){:width="1940" height="900"}
+
+
+#### Manifestパラメータ
+
+![Manifestパラメータ_1](img/manifest_parameters_1.png){:width="1940" height="800"}
+
+
+##### Deployに必要なManifestパラメータを入力します。
+
+![Manifestパラメータ_2](img/manifest_parameters_2.png){:width="1940" height="1000"}
+
+
+#### Manifestパラメータ入力
+##### 入力内容に従って、Manifestパラメータを入力します。
+
+![Manifestパラメータ入力_1](img/manifest_parameter_input_1.png){:width="1940" height="1000"}
+
+![Manifestパラメータ入力_2](img/manifest_parameter_input_2.png){:width="1240" height="800"}
+
+###### ui-app.yaml
+
+| 項目 | 入力内容(staging) |入力内容(production)| 説明 |
+| --- | --- | --- | --- |
+| \{\{ param01 \}\} | 1 | 3 | レプリカ数 |
+| \{\{ image \}\}  | exastro/epochsampleappui | exastro/epochsampleappui | コンテナイメージ |
+| \{\{ image_tag \}\} | master.20210708183910 | master.20210708183910 | コンテナイメージのタグ |
+| \{\{ param02 \}\} | 31001 | 31003 | ブルーグリーンデプロイ用のブルー面のポート番号 |
+| \{\{ param03 \}\} | 32001 | 32003 | ブルーグリーンデプロイ用のグリーン面のポート番号 |
+
+※ui-app.yamlのimage_tagは事前にビルドしたコンテナイメージのものを使用しています。  
+※今後、image、image_tagの入力については選択項目に変更する予定です。
+
+##### タブを切り替えてapi-app.yamlにも入力します。
+
+![Manifestパラメータ入力_3](img/manifest_parameter_input_3.png){:width="1040" height="700"}
+
+###### api-app.yaml
+
+| 項目 | 入力内容(staging) |入力内容(production)| 説明 |
+| --- | --- | --- | --- |
+| \{\{ param01 \}\} | 1 | 1 | レプリカ数 |
+| \{\{ image \}\} | [Dockerhubのアカウント名]/epochsample-api | [Dockerhubのアカウント名]/epochsample-api | コンテナイメージ |
+| \{\{ image_tag \}\} | [レジストリサービスで確認したimageのタグ名] | [レジストリサービスで確認したimageのタグ名] | コンテナイメージのタグ |
+| \{\{ param02 \}\}  | 31002 | 31004 | ブルーグリーンデプロイ用のブルー面のポート番号 |
+| \{\{ param03 \}\}  | 32002 | 32004 | ブルーグリーンデプロイ用のグリーン面のポート番号|
+
+#### Staging環境へのDeploy実行
+
+![Staging環境へのDeploy実行_1](img/execution_of_deploy_to_staging_environment_1.png){:width="1940" height="800"}
+##### CD実行で、Staging環境へDeployを実行します。
+
+![Staging環境へのDeploy実行_2](img/execution_of_deploy_to_staging_environment_2.png){:width="1940" height="1000"}
+
+
+#### Staging環境のCD実行
+##### Deploy先の環境を選択して実行します。
+
+![Staging環境のCD実行](img/cd_execution_of_the_staging_environment.png){:width="1940" height="700"}
+
+
+Staging環境へのCD実行が完了しました  
+CD実行結果を確認してみましょう
+{: .check}
+
+
+#### Staging環境のCD結果確認
+
+![Staging環境のCD結果確認_1](img/confirmation_of_cd_results_in_staging_environment_1.png){:width="1940" height="800"}
+
+##### CDの実行結果は、Exastro IT-Automation、ArgoCDより確認できます。
+
+![Staging環境のCD結果確認_2](img/confirmation_of_cd_results_in_staging_environment_2.png){:width="1940" height="1000"}
+
+#### Manifestファイルの生成確認(Staging環境)
+##### Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認します。
+
+![Manifestファイルの生成確認](img/confirmation_of_manifest_file_generation.png){:width="1940" height="900"}
+
+
+
+#### パイプラインArgoCDの結果確認(Staging環境)
+##### Manifestがkubernetesに反映されるまでの状況を確認します。
+
+![パイプラインArgoCDの結果確認](img/checking_the_results_of_pipeline_argocd.png){:width="1940" height="750"}
+
+
+
+設定値に誤りがある場合、以下のようなアイコンが表示されます。
+{: .warning}
+
+![ArgoCD失敗パターン](img/argocd_failure_pattern.png){:width="1940" height="1100"}
+
+
+Deployされたサンプルアプリケーションを確認してみましょう
+{: .check}
+
+
+#### Staging環境のサンプルアプリケーション確認
+##### 次のURLでデプロイしたサンプルアプリケーションを表示します。
+
+```
+http://[Kubernetes masterノードのIPアドレスまたはホスト名]:31001/front-end.html
+```
+
+![Staging環境のサンプルアプリケーション確認](img/check_the_sample_application_in_the_staging_environment.png){:width="1940" height="800"}
+
+
+続いてProduction環境へDeployしてみましょう
+{: .check}
+
+
+#### Production環境へのDeploy
+Staging環境へDeploy後、以下の内容でProduction環境へDeployします。
+
+![Production環境へのDeploy_1](img/deploy_to_production_environment_1.png){:width="1940" height="800"}
+
+
+#### Production環境へのDeploy実行
+
+![Production環境へのDeploy実行_1](img/execution_of_deploy_to_production_environment_1.png){:width="1940" height="800"}
+
+##### CD実行で、Production環境へDeployを実行します。
+
+![Production環境へのDeploy実行_2](img/execution_of_deploy_to_production_environment_2.png){:width="1940" height="1000"}
+
+
+#### Production環境のCD実行
+##### Deploy先の環境を選択して実行します。
+
+![Production環境のCD実行](img/run_cd_in_production_environment.png){:width="1940" height="700"}
+
+Production環境へのCD実行が完了しました  
+CD実行結果を確認してみましょう
+{: .check}
+
+
+#### Production環境のCD結果確認
+
+![Production環境のCD結果確認_1](img/check_cd_results_in_the_production_environment_1.png){:width="1940" height="800"}
+
+##### CDの実行結果は、Exastro IT-Automation、ArgoCDより確認できます。
+
+![Production環境のCD結果確認_2](img/check_cd_results_in_the_production_environment_2.png){:width="1940" height="1000"}
+
+
+#### Manifestファイルの生成確認(Production環境)
+##### Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認します。
+
+![Production環境でのManifestファイル生成確認_1](img/confirmation_of_manifest_file_generation_in_production_environment_1.png){:width="1940" height="900"}
+
+
+#### パイプラインArgoCDの結果確認(Production環境)
+##### Manifestがkubernetesに反映されるまでの状況を確認します。
+
+![Production環境でのパイプラインArgoCDの結果確認_1](img/checking_the_results_of_pipeline_argocd_in_a_production_environment_1.png){:width="1940" height="750"}
+
+
+
+Deployされたサンプルアプリケーションを確認してみましょう
+{: .check}
+
+#### Production環境のサンプルアプリケーション確認
+##### 次のURLでデプロイしたサンプルアプリケーションを表示します。
+
+```
+http://[Kubernetes masterノードのIPアドレスまたはホスト名]:31003/front-end.html
+```
+
+![Production環境のサンプルアプリケーション確認](img/checking_sample_applications_in_the_production_environment.png
+){:width="1940" height="900"}
+
+
+1回目のCI/CDの流れはここで完了です  
+続いて実際にアプリケーションコードを修正しDeployされるまでの2回目のCI/CDの流れを実行してみましょう！
+{: .check}
+
+
+### 2回目のCI/CDの流れ
+
+#### Staging環境へのDeploy
+2回目のCI/CDの流れとして、アプリケーションコードを修正してCommit＆PushからStaging環境へのDeploy、CD結果確認までの手順を説明します。
+
+
+![Staging環境へのDeploy_2](img/deploy_to_staging_environment_2.png
+){:width="1940" height="800"}
+
+
+#### アプリケーションコードの修正
+
+アプリケーションコードを修正して、2回目のCI/CDを実行していきます。
+チュートリアルでは、画面に通貨（ユーロ）の表示追加を行います。
+
+PC環境にcloneしたアプリケーションコード用リポジトリの、以下のファイルをコードエディタで修正します。
+
+##### 修正対象①：api-app/data/currency.json
+```js
+    "USD": {
+        "symbol"    :   "$",
+        "formatter" :   "{symbol} {price:,.2f} (Tax Included)"
+    },
+    "EUR": {
+        "symbol"    :   "€",
+        "formatter" :   "{symbol} {price:,.2f}"
+    }
+}
+```
+{: .line .g}
+
+9~12行目を追加
+{: .check}
+
+
+##### 修正対象②：api-app/data/rate.json
+```js
+{
+    "USD": 110.56,
+    "EUR": 134.15
+}
+```
+{: .line .g}
+
+2行目の末尾にカンマを追加し、3行目を追加
+{: .check}
+
+
+#### アプリケーションコード Commit & Push
+修正した内容をCommit&Pushします。
+
+![アプリケーションコードをCommit&Push](img/commit_&_push_the_application_code.png
+){:width="1940" height="800"}
+
+コマンドプロンプトで、以下の様に実行します。
+```
+cd "[clone先のフォルダ]"
+cd epoch-sample-app
+git add .
+git commit -m "通貨追加(EUR)"
+git push origin main
+```
+{: .line .g}
+
+※ git push時に認証情報を求められた場合は、自身のGitHubアカウント情報を入力してください。
+
+
+#### CI結果確認
+
+![CI結果確認_2_1](img/ci_result_confirmation_2_1.png
+){:width="1940" height="800"}
+
+##### アプリケーションコードのビルド結果を確認します。
+
+![CI結果確認_2_2](img/ci_result_confirmation_2_2.png
+){:width="1940" height="1000"}
+
+
+#### パイプラインTEKTONの結果確認
+##### TEKTONのパイプラインを実際に確認し、ビルドが正常に終了したか確認します。
+
+![TEKTONの結果確認_2](img/check_tekton_results_2.png){:width="1940" height="580"}
+
+
+#### コンテナイメージのタグ名の確認
+##### レジストリサービスの画面を開き、ビルドしたコンテナイメージのTagを確認します。
+
+![コンテナイメージのタグ名の確認](img/check_the_tag_name_of_the_container_image_2.png){:width="1940" height="830"}
+
+※今後、パイプラインで生成されたimage_tagは選択できるように変更する予定です
+
+#### Manifestパラメータ設定
+#####  Manifestパラメータの設定のイメージタグを更新します。
+
+![Manifestパラメータ設定_1](img/manifest_parameter_settings_1.png){:width="1940" height="830"}
+
+![Manifestパラメータ設定_2](img/manifest_parameter_settings_2.png){:width="1940" height="1000"}
+
+
+#### Manifestパラメータ(image_tag)の修正
+##### Manifestパラメータで、staging, production環境のイメージのタグ名を修正します。
+
+![image_tagの修正](img/fix_image_tag.png){:width="1940" height="580"}
+
+###### api-app.yaml
+
+| 項目 | 入力内容(staging) |入力内容(production)| 説明 |
+| --- | --- | --- | --- |
+| \{\{  image_tag \}\} | [レジストリサービスで確認した最新のイメージのタグ名] | [レジストリサービスで確認した最新のイメージのタグ名] | コンテナイメージのタグ |
+
+
+#### Staging環境へのCD実行
+##### CD実行で、実際にStaging環境へDeployします。
+
+![Staging環境へのCD実行_1](img/run_cd_to_staging_environment_1.png){:width="1940" height="830"}
+
+![Staging環境へのCD実行_2](img/run_cd_to_staging_environment_2.png){:width="1940" height="980"}
+
+
+
+#### CD実行指定
+##### Deploy先の環境を選択してDeployを実行します。
+
+![CD実行指定_1](img/cd_execution_specification_1.png){:width="1940" height="680"}
+
+
+Staging環境へのCD実行が完了しました  
+CD実行結果を確認してみましょう
+{: .check}
+
+
+#### Staging環境のCD結果確認
+
+![Staging環境のCD結果確認_3](img/confirmation_of_cd_results_in_staging_environment_3.png){:width="1940" height="800"}
+
+![Staging環境のCD結果確認_4](img/confirmation_of_cd_results_in_staging_environment_4.png){:width="1940" height="1000"}
+
+
+
+#### Manifestファイルの生成確認(Staging環境)
+##### Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認します。
+
+![Staging環境でのManifestファイル生成確認](img/confirmation_of_manifest_file_generation_in_staging_environment.png){:width="1940" height="880"}
+
+
+#### パイプラインArgoCDの結果確認(Staging環境)
+##### Manifestがkubernetesに反映されるまでの状況を確認します。
+
+
+![Staging環境でのパイプラインArgoCDの結果確認](img/checking_the_results_of_pipeline_argocd_in_a_staging_environment.png){:width="1940" height="780"}
+
+
+
+Deployされたサンプルアプリケーションを確認してみましょう
+{: .check}
+
+
+#### Staging環境のアプリケーションの確認
+##### ブラウザで以下のURLに接続し、デプロイしたサンプルアプリケーションを表示します。
+
+```
+http://[Kubernetes masterノードのIPアドレスまたはホスト名]:31001/front-end.html
+```
+
+![Staging環境のアプリケーションの確認](img/checking_applications_in_the_staging_environment.png){:width="1940" height="780"}
+
+
+続いてProduction環境へDeployしてみましょう
+{: .check}
+
+
+#### Production環境へのDeploy
+Staging環境へDeploy後、Production環境へDeployする流れを説明します。
+
+![Production環境へのDeploy_2](img/deploy_to_production_environment_2.png){:width="1940" height="780"}
+
+
+#### Production環境へのCD実行
+##### CD実行で、実際にProduction環境へDeployを実行します。
+
+![Production環境へのCD実行_1](img/run_cd_to_production_environment_1.png
+){:width="1940" height="860"}
+
+
+![Production環境へのCD実行_2](img/run_cd_to_production_environment_2.png
+){:width="1940" height="960"}
+
+
+#### CD実行指定
+##### Deploy先の環境を選択してDeployを実行します。
+
+![CD実行指定_2](img/cd_execution_specification_2.png
+){:width="1940" height="660"}
+
+
+Production環境へのCD実行が完了しました  
+CD実行結果を確認してみましょう
+{: .check}
+
+
+#### Production環境のCD結果確認
+##### CDの実行結果は、Exastro IT-Automation、ArgoCDより確認できます。
+
+
+![Production環境のCD結果確認_3](img/check_cd_results_in_the_production_environment_3
+.png){:width="1940" height="860"}
+
+
+![Production環境のCD結果確認_4](img/check_cd_results_in_the_production_environment_4
+.png){:width="1940" height="1000"}
+
+#### Manifestファイルの生成確認(Production環境)
+##### Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認します。
+
+![Production環境でのManifestファイル生成確認_2](img/confirmation_of_manifest_file_generation_in_production_environment_2.png){:width="1940" height="900"}
+
+
+#### パイプラインArgoCDの結果確認(Production環境)
+##### Manifestがkubernetesに反映されるまでの状況を確認します。
+
+![Production環境でのパイプラインArgoCDの結果確認_2](img/checking_the_results_of_pipeline_argocd_in_a_production_environment_2.png){:width="1940" height="800"}
+
+
+Deployされたサンプルアプリケーションを確認してみましょう
+{: .check}
+
+
+#### Production環境のアプリケーションの確認
+##### ブラウザで以下のURLに接続し、デプロイしたサンプルアプリケーションを表示します。
+
+```
+http://[Kubernetes masterノードのIPアドレスまたはホスト名]:31003/front-end.html
+```
+
+![Production環境のアプリケーションの確認](img/check_the_application_in_the_production_environment.png){:width="1940" height="900"}
+
+
+以上でチュートリアルは終了になります。  
+お疲れ様でした。
+{: .check}
+
+
+## 付録
+本資料中で行った内容の補足をします。
+
+### 注意事項・制限事項
+以下、現在のExastro EPOCHのバージョンでの制限事項となります。今後のバージョンで変更される可能性があります。
+
+#### 制限事項（今後対応する予定）
+- アプリケーションコードのリポジトリは、現在１つのみ対応となっております。
+- 現在は、アプリケーションコード毎のGitアカウントには対応しておりません。
+- Gitサービス選択は次バージョン以降で対応予定です。現在は指定されたURLのGitリポジトリの動作となります。
+- ビルドブランチは次バージョン以降で対応予定です。現在はPushされた内容でビルドされます。
+- 静的解析は次バージョン以降で対応予定です。現在はSonarQubeを選択した場合に動作しません。
+- レジストリサービスは現在内部のレジストリサービスのみとなっております。
+- イメージ出力先以外の項目については次バージョン以降で対応予定です。
+- Authentication token, Base64 encoded certificateは次バージョン以降で対応予定です。
+- テンプレートで指定できる変数は、現在固定です。詳細は後述の「コラム」を参照してください。
+
+
+#### 注意事項
+- EPOCHをインストールすると、TEKTONもインストールされます。
+- 変数は”\{\{ 変数名 \}\}”で指定した内容となります。
+
+
+#### コラム：Manifestテンプレートと変数名
+Manifestテンプレートをアップロードするとファイル内の定義文字が解析され、パラメータ入力できる状態になります。
+
+
+![コラム_Manifestテンプレートと変数名](img/column_manifest_template_and_variable_names.png){:width="1740" height="900"}
+
+\{\{ 変数名 \}\} の形式で記述された文字が変数として認識され、ユーザが入力できるようになります。  
+現在、EPOCHで使用できる変数名は以下の通りとなります。
+
+
+| 変数名 | 説明 |
+| --- | --- |
+| \{\{ image \}\}  | コンテナイメージ |
+| \{\{ image_tag \}\}  | コンテナイメージのタグ |
+| \{\{ param01 \}\}  | ユーザが自由に使用できる固定の変数名01 |
+| ～ |  |
+| \{\{ param20 \}\}  | ユーザが自由に使用できる固定の変数名20（20が上限） |
+
+※ユーザ任意の変数名につきましては、今後対応する予定です
+
+
+
+
