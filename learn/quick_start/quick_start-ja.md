@@ -539,7 +539,7 @@ Pushが完了すると、パイプラインTEKTONで設定されたCIパイプ�
 | 項目 | 入力内容(staging) |入力内容(production)| 説明 |
 | --- | --- | --- | --- |
 | \{\{ param01 \}\} | 1 | 1 | レプリカ数 |
-| \{\{ image \}\} | [Dockerhubのアカウント名]/epochsample-api | [Dockerhubのアカウント名]/epochsample-api | コンテナイメージ |
+| \{\{ image \}\} | [Dockerhubのアカウント名]/epoch-sample-api | [Dockerhubのアカウント名]/epoch-sample-api | コンテナイメージ |
 | \{\{ image_tag \}\} | [レジストリサービスで確認したimageのタグ名] | [レジストリサービスで確認したimageのタグ名] | コンテナイメージのタグ |
 | \{\{ param02 \}\}  | 31002 | 31004 | ブルーグリーンデプロイ用のブルー面のポート番号 |
 | \{\{ param03 \}\}  | 32002 | 32004 | ブルーグリーンデプロイ用のグリーン面のポート番号|
