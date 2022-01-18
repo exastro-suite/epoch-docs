@@ -7,6 +7,24 @@
             "url": "/learn_ja.html"
         },
         {
+            "id": "installationProcedure",
+            "title": "導入手順",
+            "icon": "fas fa-download",
+            "documents": [
+                {
+                    "id": "install",
+                    "title": "Install",
+                    "description": "お手持ちの環境に EPOCHをすぐにインストールするためのインストールマニュアルです。RedHat系Linuxディストリビューションに対応しており、インターネットに接続できる必要があります。<br><br>インストール完了後、下記のEPOCHクイックスタートを始めれば、すぐにEPOCHの魅力的なインターフェースを体験いただくことが可能です。",
+                    "links": [
+                        {
+                            "title": "詳細を見る",
+                            "url": "/Learn_ja/installation_guide/installation_guide_ja.html"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             "id": "operatingProcedure",
             "title": "操作手順",
             "icon": "fas fa-list-ol",
@@ -18,7 +36,7 @@
                     "links": [
                         {
                             "title": "詳細を見る",
-                            "url": "/Learn_ja/quick_start_ja/quick_start_ja.html"
+                            "url": "/Learn_ja/quick_start/quick_start_ja.html"
                         }
                     ]
                 }
