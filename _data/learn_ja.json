@@ -31,7 +31,7 @@
             "documents": [
                 {
                     "id": "quickStart",
-                    "title": "Quick start",
+                    "title": "Quick Start",
                     "description": "EPOCHのインタフェースをスムーズに体感頂くために、クイックスタートをご用意しました。EPOCHでは、Kubernetesを主としたいくつかのソフトウェアと連携し、コンテナベースのCI/CD環境を提供しています。クイックスタートでは、EPOCHのインストールならびにサンプルアプリケーションを使ってCI/CDの流れを体験頂けます。",
                     "links": [
                         {
