@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: document
 lang: ja
 type: learn
 title: EPOCH Install

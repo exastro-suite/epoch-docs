@@ -1,48 +1,53 @@
+---
+root: https://exastro-suite.github.io
+suiteTitle: EPOCH
+suiteName: epoch
+suiteURL: /epoch-docs
+homeURL: /docs
+---
 <!doctype html>
 <html>
     <head>
-{% if page.type == "learn" %}
-    {% assign category = "Learn" %}
-{% elsif page.type == "document" %}
-    {% assign category = "Document" %}
-{% endif %}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="format-detection" content="telephone=no">
         <meta name="theme-color" content="#1F8C78">
         <meta http-equiv="content-language" content="{{ page.lang }}">
+        
+        {% if page.type == "learn" %}{% assign category = "Learn" %}{% elsif page.type == "document" %}{% assign category = "Document" %}{% endif %}
 
         <title>{{ page.title }} | Exastro EPOCH {{ category }}</title>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
-        <script src="https://exastro-suite.github.io/docs/asset/js/document.js"></script>
-
+        <script src="{{ layout.homeURL }}/asset/js/document.js"></script>
+        <link href="{{ layout.suiteURL }}/asset/css/document.css" rel="stylesheet">
+        
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
-        <link href="https://exastro-suite.github.io/docs/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
-        <link href="https://exastro-suite.github.io/docs/asset/css/document.css" rel="stylesheet">
+        <link href="{{ layout.homeURL }}/asset/font/fontawesome/css/all.min.css" rel="stylesheet">
+        <link href="{{ layout.homeURL }}/asset/css/document.css" rel="stylesheet">
 
-        <link rel="icon" type="image/x-icon" href="https://exastro-suite.github.io/epoch-docs/favicon.ico">
-        <link rel="shortcut icon" href="https://exastro-suite.github.io/epoch-docs/favicon.ico">
-        <link rel="apple-touch-icon" sizes="180x180" href="https://exastro-suite.github.io/epoch-docs/apple-touch-icon.png">
+        <link rel="icon" type="image/x-icon" href="{{ layout.root }}{{ layout.suiteURL }}/favicon.ico">
+        <link rel="shortcut icon" href="{{ layout.root }}{{ layout.suiteURL }}/favicon.ico">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ layout.root }}{{ layout.suiteURL }}/apple-touch-icon.png">
         
         <meta name="keywords" content="Exastro,Exastro Suite,OSS,Exastro EPOCH,EPOCH,{{ category }}">
         {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
-        <meta name="thumbnail" content="https://exastro-suite.github.io/epoch-docs/asset/img/epoch_thumbnail.jpg" />
+        <meta name="thumbnail" content="{{ layout.root }}{{ layout.suiteURL }}/asset/img/epoch_thumbnail.jpg" />
 
-        <meta property="og:url" content="https://exastro-suite.github.io{{ page.url }}">
+        <meta property="og:url" content="{{ layout.root }}{{ layout.suiteURL }}{{ page.url }}">
         <meta property="og:type" content="article">
         <meta property="og:title" content="{{ page.title }} | Exastro EPOCH {{ category }}">
         {% if page.description %}<meta property="og:description" content="{{ page.description }}">{% endif %}
         <meta property="og:site_name" content="Exastro EPOCH {{ category }}">
-        <meta property="og:image" content="https://exastro-suite.github.io/epoch-docs/asset/img/epoch_image_{{ page.type }}.jpg">
+        <meta property="og:image" content="{{ layout.root }}{{ layout.suiteURL }}/asset/img/epoch_image_{{ page.type }}.jpg">
         
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="{{ page.title }} | Exastro EPOCH {{ category }}">
-        <meta name="twitter:image" content="https://exastro-suite.github.io/epoch-docs/asset/img/epoch_thumbnail.jpg">
+        <meta name="twitter:image" content="{{ layout.root }}{{ layout.suiteURL }}/asset/img/epoch_thumbnail.jpg">
     </head>
-    <body id="epoch">
+    <body id="document" class="epoch">
         <div id="container">
             <header id="header">
                 <div class="header-overlay"></div>
@@ -54,13 +59,7 @@
                     <div class="header-name"><i class="fas fa-school"></i><span class="header-title-category">{{ category }}</span></div>
                 </div>
                 <div class="header-menu-button"><span class="header-menu-button-mark"></span></div>
-                
-                <nav id="navi"></nav>
-                {% if page.lang == "ja" %}
-                <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/{{ page.type }}_ja.html"><i class="fas fa-arrow-alt-circle-left"></i> Exastro EPOCH {{ category }}一覧に戻る</a></div>
-                {% else %}
-                <div class="header-return"><a class="header-return-link" href="https://exastro-suite.github.io/epoch-docs/{{ page.type }}.html"><i class="fas fa-arrow-alt-circle-left"></i> Return to Exastro EPOCH {{ category }} list</a></div>
-                {% endif %}
+                {% include navi_learn.html %}
             </header>
             <main id="main">
                 <article id="article">
