@@ -1,14 +1,14 @@
 ---
 layout: common
-lang: ja
+lang: en
 type: article
-title: Dcoumets
-pageName: documents
+title: Reference
+pageName: reference
 ---
 <section>
     <div class="sectionInner">
         <h2><em>Exastro EPOCH</em> Documents</h2>
         <div class="leftImage image25"><img src="../it-automation-docs/asset/img/coming_soon.png" alt="Coming soon."></div>
-        <p>Exastro EPOCH Documentsについては後日公開予定です。</p>
+        <p>The Documents for EPOCH will be released soon.</p>
     </div>
 </section>
