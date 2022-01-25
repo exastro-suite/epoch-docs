@@ -31,7 +31,7 @@ pageName: learn
     <p><a href="asset/Learn/EPOCH-quickstart_en.pdf" class="download" download="Exastro EPOCH Quick start"><i class="fas fa-file-pdf"></i>  Download manual<i class="note">(PDF)</i></a></p>
   </div>
 </section>
-
+<script src="../docs/asset/js/view_documents.js"></script>
 <script>
 $(function(){
   var url = 'https://exastro-suite.github.io/epoch-docs/asset/json/documents.json';
