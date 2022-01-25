@@ -1,6 +1,6 @@
 ---
 layout: common
-lang: en
+lang: ja
 type: article
 title: Overview
 pageName: overview
