@@ -23,7 +23,7 @@ text-shadow: 0 0 4px rgb(16,70,60,1),
 #article.overview #articleTitle .background { background-image: url("../img/header_overvier.jpg"); }
 #article.learn #articleTitle .background { background-image: url("../img/header_learn.jpg"); }
 #article.case #articleTitle .background { background-image: url("../img/header_case.jpg"); }
-#article.documents #articleTitle .background { background-image: url("../img/header_documents.jpg"); }
+#article.reference #articleTitle .background { background-image: url("../img/header_documents.jpg"); }
 #article.downloads #articleTitle .background { background-image: url("../img/header_downloads.jpg"); }
 #article.faq #articleTitle .background { background-image: url("../img/header_faq.jpg"); }
 #article.webinar #articleTitle .background { background-image: url("../img/header_webinar.jpg"); }
