@@ -1,6 +1,6 @@
 ---
 layout: document
-lang: ja
+lang: en
 type: learn
 title: EPOCH Install
 version: 0.1.3
