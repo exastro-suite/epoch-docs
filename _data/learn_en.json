@@ -4,7 +4,7 @@
             "id": "home",
             "title": "Learn home",
             "icon": "fas fa-home",
-            "url": "/learn_ja.html"
+            "url": "/learn.html"
         },
         {
             "id": "installationProcedure",
