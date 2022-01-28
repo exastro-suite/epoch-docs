@@ -5,36 +5,34 @@ type: article
 title: Learn
 pageName: learn
 ---
-<nav id="contentsMenu">
-  <ul>
-    <li><a href="#introduction" class="touch anker">Introduction manual <i class="fas fa-angle-down"></i></a></li>
-    <li><a href="#quickStart" class="touch anker">Quick start <i class="fas fa-angle-down"></i></a></li>
-  </ul>
-</nav>
-
-<section id="introduction">
-  <div class="sectionInner">
-    <h2>Introducing <em>Exastro EPOCH</em></h2>
-    <div class="leftImage image25"><img src="../it-automation-docs/asset/img/coming_soon.png" alt="Coming soon."></div>
-    <p>The Introducing for EPOCH will be released soon.</p>
-  </div>
-</section>
-
-<section id="quickStart">
-  <div class="sectionInner">
-    <h2>Getting Started with <em>Exastro EPOCH</em></h2>
-    <h3>Quick start</h3>
-    <div class="viewDocument wide" data-document="Quick_start"></div>
-    <p>This quick start document allows users to quickly familiarize themselves with the Exastro EPOCH user interface.</p>
-    <p>Epoch uses Kubernetes to link with several other softwares and provides a container CI/CD environment.</p>
-    <p>The Quick start contains the steps to installing EPOCH as well as a tutorial scenario that lets users try CI/CD.</p>
-    <p><a href="asset/Learn/EPOCH-quickstart_en.pdf" class="download" download="Exastro EPOCH Quick start"><i class="fas fa-file-pdf"></i>  Download manual<i class="note">(PDF)</i></a></p>
-  </div>
-</section>
-<script src="../docs/asset/js/view_documents.js"></script>
-<script>
-$(function(){
-  var url = 'https://exastro-suite.github.io/epoch-docs/asset/json/documents.json';
-  viewDocuments( url );
-});
-</script>
+{% include navi_learn.html %}{% if page.lang == "ja" %}{% assign list = site.data.learn_ja %}{% else %}{% assign list = site.data.learn_en %}{% endif %}
+<div id="articleContents">{% for learn in list.learn %}
+    {% if learn.id != "home" %}<section id="{{ learn.id }}">
+        <h2><i class="{{ learn.icon }}"></i> {{ learn.title }}</h2>
+        <ul class="content-list">{% for document in learn.documents %}
+            <li class="content-item" id="{{ document.id }}">
+                <div class="content-card">
+                    <div class="content-header">
+                        <h3 class="content-title">
+                            <span class="content-type">Exastro EPOCH</span><br>
+                            {{ document.title }}
+                        </h3>
+                    </div>
+                    <div class="content-body">
+                        <p class="content-paragraph">{{ document.description }}</p>
+                    </div>
+                    <div class="content-footer">
+                        <ul class="content-link-list">{% for link in document.links %}
+                            <li class="content-link-item">
+                                <a class="content-link" href="{{ layout.suiteURL }}{{ link.url }}">
+                                    {{ link.title }} <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                        {% endfor %}</ul>
+                    </div>
+                </div>
+            </li>{% endfor %}{% assign remainder = learn.documents.size | modulo: 2 %}{% if remainder != 0 %}
+            <li class="content-item content-item-padding"></li>{% endif %}
+        </ul>
+    </section>{% endif %}
+{% endfor %}</div>

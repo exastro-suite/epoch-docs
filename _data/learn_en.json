@@ -1,0 +1,46 @@
+{
+    "learn": [
+        {
+            "id": "home",
+            "title": "Learn home",
+            "icon": "fas fa-home",
+            "url": "/learn_ja.html"
+        },
+        {
+            "id": "installationProcedure",
+            "title": "Installation procedure",
+            "icon": "fas fa-download",
+            "documents": [
+                {
+                    "id": "install",
+                    "title": "Install",
+                    "description": "This installation manual enables you to easily install Exastro EPOCH in your environment. EPOCH can be installed on any operating systems that are compatible with Red Hat Enterprise Linux, and an Internet connection is required. After installation is complete, by using the Quick Start guide below you can immediately experience EPOCH powerful interface!",
+                    "links": [
+                        {
+                            "title": "View the details",
+                            "url": "/Learn_en/installation_guide/installation_guide_en.html"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "operatingProcedure",
+            "title": "Operating procedure",
+            "icon": "fas fa-list-ol",
+            "documents": [
+                {
+                    "id": "quickStart",
+                    "title": "Quick Start",
+                    "description": "This quickstart guide was created with the intent of letting the reader easily experience EPOCH's interface. EPOCH is uses Kubernetes and links with various softwares together and provides a container based CI/CD environment. This Quickstart document guides the reader through a sample scenario where they will install EPOCH and use sample applications to experience CI/CD.",
+                    "links": [
+                        {
+                            "title": "View the details",
+                            "url": "/Learn_en/quick_start/quick_start_en.html"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
