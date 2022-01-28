@@ -248,7 +248,7 @@ CI is the name of the process of automated building and testing application code
 
 CD is the name of the process of automating the tasks of releasing the code to the runtime environment.
 
-##### CI/CDのイメージ
+##### CI/CD　
 
 ![CI/CD image](img/ci_cd_image.png){:width="1480" height="404"}
 
