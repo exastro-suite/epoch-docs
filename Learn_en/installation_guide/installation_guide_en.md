@@ -1,9 +1,10 @@
 ---
 layout: document
-lang: ja
+lang: en
 type: learn
 title: EPOCH Install
 version: 0.1.3
+description: This installation manual enables you to easily install Exastro EPOCH in your environment. EPOCH can be installed on any operating systems that are compatible with Red Hat Enterprise Linux, and an Internet connection is required. After installation is complete, by using the Quick Start guide below you can immediately experience EPOCH powerful interface!
 author: Exastro Developer
 date: 2021/11/10
 lastmod: 2021/11/10

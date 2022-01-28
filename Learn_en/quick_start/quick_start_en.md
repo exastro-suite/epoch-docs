@@ -4,9 +4,7 @@ lang: en
 type: learn
 title: Quick Start
 version: 0.1.0
-description: This quickstart guide was created with the intent of letting the reader easily experience EPOCH's interface.
-EPOCH is uses Kubernetes and links with various softwares together and provides a container based CI/CD environment.
-This Quickstart document guides the reader through a sample scenario where they will install EPOCH and use sample applications to experience CI/CD.
+description: This quickstart guide was created with the intent of letting the reader easily experience EPOCH's interface. EPOCH is uses Kubernetes and links with various softwares together and provides a container based CI/CD environment. This Quickstart document guides the reader through a sample scenario where they will install EPOCH and use sample applications to experience CI/CD.
 author: Exastro developer
 date: 2022/01/25
 lastmod: 2022/01/25
