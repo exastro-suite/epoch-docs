@@ -1,17 +1,17 @@
 ---
 layout: common
-lang: ja
+lang: en
 type: article
 title: FAQ
 pageName: faq
 ---
 <section>
     <div class="sectionInner">
-        <h2><em>Exastro EPOCH</em> よくあるご質問（FAQ）</h2>
+        <h2>Frequently asked questions about <em>Exastro EPOCH</em>（FAQ）</h2>
         <div id="faqContent">
             <nav id="faqNavi">
                 <div class="faqNaviTitle">Search</div>
-                <div class="search-box"><input type="text" id="search-input"><button id="search-button" class="touch"><i class="fas fa-search"></i> 検索</button></div>
+                <div class="search-box"><input type="text" id="search-input"><button id="search-button" class="touch"><i class="fas fa-search"></i> Search</button></div>
                 <div class="faqNaviTitle">Category</div>
                 <ul>
                 </ul>
@@ -19,7 +19,7 @@ pageName: faq
             <div id="faqList">
                 <div class="loading"></div>
                 <div id="search-result" class="faqItem">
-                <h3>検索結果</h3>
+                <h3>Search result</h3>
                 <ul></ul>
                 </div>
             </div>
