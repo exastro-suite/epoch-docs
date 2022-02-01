@@ -17,12 +17,16 @@
                     "description": "お手持ちの環境に EPOCHをすぐにインストールするためのインストールマニュアルです。RedHat系Linuxディストリビューションに対応しており、インターネットに接続できる必要があります。<br><br>インストール完了後、下記のEPOCHクイックスタートを始めれば、すぐにEPOCHの魅力的なインターフェースを体験いただくことが可能です。",
                     "links": [
                         {
-                            "title": "インストール1",
+                            "title": "はじめに",
                             "url": "/Learn_ja/installation_guide/installation_guide_ja.html"
                         },
                         {
-                            "title": "インストール2",
-                            "url": "/Learn_ja/installation_guide/installation_guide_ja.html"
+                            "title": "オンプレ",
+                            "url": "#2"
+                        },
+                        {
+                            "title": "EKS",
+                            "url": "#3"
                         }
                     ]
                 }
