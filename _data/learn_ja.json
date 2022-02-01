@@ -21,12 +21,30 @@
                             "url": "/Learn_ja/installation_guide/installation_guide_ja.html"
                         },
                         {
-                            "title": "オンプレ",
+                            "title": "インストール手順",
                             "url": "#2"
-                        },
+                        }
+                    ]
+                },
+                {
+                    "id": "install2",
+                    "title": "Kubelnetes編",
+                    "description": "お手持ちの環境に EPOCHをすぐにインストールするためのインストールマニュアルです。RedHat系Linuxディストリビューションに対応しており、インターネットに接続できる必要があります。<br><br>インストール完了後、下記のEPOCHクイックスタートを始めれば、すぐにEPOCHの魅力的なインターフェースを体験いただくことが可能です。",
+                    "links": [
                         {
-                            "title": "EKS",
-                            "url": "#3"
+                            "title": "インストール",
+                            "url": "#4"
+                        }
+                    ]
+                },
+                {
+                    "id": "install3",
+                    "title": "AWS EKS編",
+                    "description": "お手持ちの環境に EPOCHをすぐにインストールするためのインストールマニュアルです。RedHat系Linuxディストリビューションに対応しており、インターネットに接続できる必要があります。<br><br>インストール完了後、下記のEPOCHクイックスタートを始めれば、すぐにEPOCHの魅力的なインターフェースを体験いただくことが可能です。",
+                    "links": [
+                        {
+                            "title": "インストール",
+                            "url": "#5"
                         }
                     ]
                 }
