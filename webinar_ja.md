@@ -32,7 +32,7 @@ pageName: webinar
             <td><a href="#Ex-C09-Lv1" class="touch anker">Ex-C09-Lv1 <i class="fas fa-check-circle"></i></a>
             Exastroで実現するDevOpsの開発効率化（EPOCH×k8s）</td>
             <td><span class="webinarComingSoon">Ex-C10-Lv1</span>
-            特設イベントシステムモデルのDevOps</td>
+            クラウドネイティブアプリ開発の進め</td>
             <td class="comingSoon" rowspan="3" colspan="2">Coming Soon</td>
           </tr>
           <tr class="webinarTableLevel2">
