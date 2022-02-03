@@ -3,56 +3,51 @@ layout: default
 lang: ja
 type: learn
 title: EPOCH Install
-version: 0.1.3
+version: 0.3.0
 author: Exastro Developer
 date: 2021/11/10
-lastmod: 2021/11/10
+lastmod: 2022/02/02
 ---
 
 ## はじめに
 ### 本資料の概要
 本書は Exastro EPOCH(以後EPOCHと表記) をインストールする手順を扱ったガイドです。<br>
 
-- インストール完了後の手順については、別紙[「導入手順編」]()をご覧ください。
 - Kubernetesの構築についての情報は本資料に含まれません。
   
-## システム構成
-
-### システム構成図
+### コンポーネントについて
 EPOCHはKubernetes上に各種リソースを展開してインストールします。EPOCHをインストールした直後の構成(概要)は、下図の通りです。
 
 ![EPOCHシステム構成図](img/overall_view_EPOCH.png){:width="1725" height="745"}
-
+ 
 
 ### インストール要件
 kubernetesにEPOCHをインストールする前に、下記の事項を満たしていることを確認してください。
 
-- v1.18以上のKubernetes環境が構築されていること。
+- v1.18 ～ v1.21のKubernetes環境が構築されていること。
 - Kubernetesで使用するServiceAccountにcluster-adminロールが付与されていること。
 - Kubernetesから外部インターネットに接続できること。
 - kubernetesが下記のポート番号を利用できること。
-  - 30080
-  - 30081
   - 30443
-  - 30801
-  - 30805
-  - 30901～30907
+  - 31182
 
 ポート番号は後述するepoch-install.yamlに定義されています。ポート番号を変更する場合は、ファイルを変更した後にインストールを実行してください。
 {: .info}
 
-### 要求スペックの参考値
+
+**参考)要求スペック**
+
 EPOCHをインストールするKubernetesクラスタの、サーバスペックの参考値です。<br>
 **Masterノード1台、Workerノード1台の場合**の値を記載しています。
 
-**Masterノード**
+- Masterノード
 
 |:--|:--|
 |CPU数|2 Core (3.0 GHz)|
 |メモリ|8GB|
 |ディスク容量|10GB|
 
-**Workerノード**
+- Workerノード
 
 |:--|:--|
 |CPU数|2 Core (3.0 GHz)|
@@ -61,6 +56,8 @@ EPOCHをインストールするKubernetesクラスタの、サーバスペッ�
 
 これらは参考値です。最終的なスペック値はEPOCHを利用して構築するシステムの要件や、展開先のKubernetesがEPOCHと別のものになるか否か、等の要素を検討して決定してください。
 {: .info}
+
+
 
 ## インストール手順
 ### インストール手順の概要
@@ -72,7 +69,6 @@ EPOCHのインストールは、Kubernetes上に各種リソースを展開し�
 |利用するマニフェストファイルのURL|概要|
 |:--|:--|
 |[https://github.com/exastro-suite/epoch/releases/latest/download/epoch-install.yaml](https://github.com/exastro-suite/epoch/releases/latest/download/epoch-install.yaml)|EPOCHのAPI群やTektonを展開します。<br>EPOCHのリポジトリから取得します。|
-|[https://github.com/exastro-suite/epoch/releases/latest/download/epoch-pv.yaml](https://github.com/exastro-suite/epoch/releases/latest/download/epoch-pv.yaml)|Tektonパイプラインが利用する永続ボリュームを展開します。EPOCHのリポジトリから取得します。|
 |[https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml](https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml)|Argo Rolloutsを展開します。<br>Argo Project公式リポジトリから取得します。|
 
 ### EPOCHのインストール手順
@@ -85,7 +81,7 @@ kubectl apply -f https://github.com/exastro-suite/epoch/releases/latest/download
 ```
 {: .line .d}
 
-##### ② 下記のコマンドですべてのPodがRunning状態になっていることを確認します(EPOCH)
+##### ② 下記のコマンドで(tekton-installer以外の)PodがRunning状態になっていることを確認します(EPOCH)
 ctrl + c で監視を終了できます。
 
 ```bash
@@ -96,16 +92,23 @@ kubectl get pod -n epoch-system --watch
 ###### 出力例
 ``` sh
 NAME                                                READY   STATUS              RESTARTS        AGE
-epoch-cicd-api-*********-*****                      1/1     Running             0               **s
+authentication-infra-setting-**********-*****       1/1     Running             0               **s
+epoch-control-argocd-api-*********-*****            1/1     Running             0               **s
+epoch-control-github-api-*********-*****            1/1     Running             0               **s
+epoch-control-inside-gitlab-api-*********-*****     1/1     Running             0               **s
+epoch-control-ita-api-*********-*****               1/1     Running             0               **s
 epoch-control-tekton-api-*********-*****            1/1     Running             0               **s
-epoch-rs-organization-api-*********-*****           1/1     Running             0               **s
+epoch-control-workspace-api-*********-*****         1/1     Running             0               **s
+epoch-rs-ci-result-api-*********-*****              1/1     Running             0               **s
+epoch-rs-logs-api-*********-*****                   1/1     Running             0               **s
 epoch-rs-workspace-api-*********-*****              1/1     Running             0               **s
-epoch-service-api-*********-*****                   1/1     Running             0               **s
+epoch-service-api2-*********-*****                  1/1     Running             0               **s
 epoch-ui-*********-*****                            1/1     Running             0               **s
-organization-db-*********-*****                     1/1     Running             0               **s
+rs-logs-db-*********-*****                          1/1     Running             0               **s
+tekton-installer-*********-*****                    0/1     Completed           0               **s
 tekton-pipeline-db-*********-*****                  1/1     Running             0               **s
-workspace-db-*********-*****                        1/1     Running             0               **s
-
+tekton-pipelinerun-db-*********-*****               1/1     Running             0               **s
+workspace-db-*********-*****                        1/1     Running             0               **s  
 ```
 
 ##### ③ 下記のコマンドですべてのPodがRunning状態になっていることを確認します(Tekton)
@@ -119,7 +122,6 @@ kubectl get pod -n tekton-pipelines --watch
 ###### 出力例
 ``` sh
 NAME                                                READY   STATUS              RESTARTS        AGE
-tekton-dashboard-*********-*****                    1/1     Running             0               **s
 tekton-pipelines-controller-*********-*****         1/1     Running             0               **s
 tekton-pipelines-webhook-*********-*****            1/1     Running             0               **s
 tekton-triggers-controller-*********-*****          1/1     Running             0               **s
@@ -138,77 +140,27 @@ kubectl delete -f https://github.com/exastro-suite/epoch/releases/latest/downloa
 ```
 {: .line .d}
 
-#### 永続ボリュームの作成
-Tektonパイプライン設定用の永続ボリュームを設定します。
 
-##### ① 下記のコマンドでマニフェストファイルを取得します。
+#### EPOCHの初期設定
 
-###### 【Linux, macOSの場合】
+##### 下記のコマンドを実行し、EPOCHの初期設定を行います。
 
-``` bash
-curl -OL https://github.com/exastro-suite/epoch/releases/latest/download/epoch-pv.yaml
+```bash
+kubectl run -i --rm set-host -n epoch-system --restart=Never --image=exastro/epoch-setting:0.3_4 --pod-running-timeout=30m -- set-host [your-host]
 ```
 {: .line .d}
 
-###### 【Windows(Powershell) の場合】
-``` bash
-Invoke-WebRequest https://github.com/exastro-suite/epoch/releases/latest/download/epoch-pv.yaml -OutFile epoch-pv.yaml
-```
-{: .line .d}
-
-##### ② 下記のコマンドでWorkerノードのホスト名を確認します。
-
-``` bash
-kubectl get node
-```
-{: .line .d}
-
-###### 出力例
-``` sh
-NAME                      STATUS   ROLES                  AGE   VERSION
-epoch-kubernetes-master   Ready    control-plane,master   **d   v1.**.*
-epoch-kubernetes-worker1  Ready    worker                 **d   v1.**.*
-```
-
-##### ③ ダウンロードしたepoch-py.yamlに、 Workerノードのホスト名を記入します。
-最終行の「# Please specify the host name of the worker node #」を確認したWorkerノードのホスト名に置き換え、保存します。
-
-![specify_workernode](img/specify_workernode.png){:width="441" height="144"}
-
-【Workerノードが複数台ある場合】<br>
-続けて2台目以降のホスト名を指定することも可能です。<br>
-2台目以降の指定は任意です。2台目移行を指定した場合、永続ボリュームが複数のWokerノードにスケジューリングされます。
+`[your-host]`には、ご自身のホストに接続するためのサーバー名またはIPアドレスを指定してください。
 {: .info}
 
-##### ④ 下記のコマンドで永続ボリュームを作成します。
-
-```bash
-kubectl apply -f epoch-pv.yaml
-```
-{: .line .d}
-
-##### ⑤ 下記のコマンドで永続ボリューム「epoch-pv」が作成されていることを確認します。
-```bash
-kubectl apply -f epoch-pv.yaml
-```
-{: .line .d}
-
-###### 出力例
-``` sh
-NAME       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS                    REASON   AGE
-epoch-pv   500Mi      RWO            Retain           Available           epoch-tekton-pipeline-storage            **s
-```
-
-【正常にリソースを作成できなかった場合】<br>
-ファイル編集のミスなどにより永続ボリュームを作成できなかった場合、
-下記コマンドで変更を削除し、原因を取り除いたうえで再度 ④ を実行してください。
+EPOCHがインストール中の場合、以下のエラーとなることがあります。その際は再度コマンドを実行してください。
 {: .warning}
 
-###### 正常にリソースを作成できなかった場合
-``` bash
-kubectl delete -f epoch-pv.yaml
+```bash
+error: timed out waiting for the condition
 ```
 {: .line .d}
+
 
 #### ArgoRolloutのインストール
 
@@ -247,10 +199,34 @@ kubectl delete -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/rel
 {: .line .d}
 
 ### 接続確認
-インストール作業終了後、ブラウザからEPOCHのワークスペース画面にアクセスしてください。
-下のような画面が表示されることを確認します。
+インストール作業終了後、次のURLをブラウザに入力してアクセスしてください。  
 
-![workspace_image](img/workspace_image.png){:width="994" height="516"}
+https://[your-host]:30443/
+
+`[your-host]`には、ご自身のホストに接続するためのサーバー名またはIPアドレスを指定してください。
+{: .info}
+
+以下のサインイン画面が表示されます。「Register」を押下し登録画面へ遷移します。
+
+![sign_in_screen](img/sign_in_screen.png){:width="994" height="550"}
+
+
+以下の情報を入力し「Register」ボタンを押下してください。
+- First name
+- Last name
+- Email
+- Username
+- Password
+- Confirm password
+
+
+![registration_screen](img/registration_screen.png){:width="994" height="750"}
+
+
+以下の画面が表示されることを確認します。
+
+![workspace_image](img/workspace_image.png){:width="994" height="550"}
+
 
 以上でEPOCHのインストール手順は終了です。
 {: .check}
