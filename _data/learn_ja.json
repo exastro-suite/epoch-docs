@@ -21,6 +21,17 @@
                             "url": "/Learn_ja/installation_guide/installation_guide_ja.html"
                         }
                     ]
+                },
+                {
+                    "id": "install_on_eks",
+                    "title": "Install on EKS",
+                    "description": "Amazon EKS環境へEPOCHをインストールするためのマニュアルです。セキュリティグループやIAMの設定、EKSクラスターの構築手順を扱っています。<br><br>手元にKubernetes環境が無い場合でも、速やかにマネージドなKubernetesクラスタを構築し、EPOCHの利用を開始することができます。",
+                    "links": [
+                        {
+                            "title": "詳細を見る",
+                            "url": "/Learn_ja/installation_guide_eks/installation_guide_eks.html"
+                        }
+                    ]
                 }
             ]
         },
