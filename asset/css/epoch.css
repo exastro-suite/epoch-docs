@@ -203,5 +203,6 @@ color: #00878A;
 
 
 #swaggerBody {
-background: url(../img/content_back.png);
+background-color: #FFF;
+background-image: url(/docs/asset/img/content_back.png);
 }
