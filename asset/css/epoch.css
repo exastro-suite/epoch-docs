@@ -203,7 +203,7 @@ color: #00878A;
 
 
 #swaggerBody {
-padding: 24px 0 32px;
+padding: 16px 0 32px;
 background-color: #FFF;
 background-image: url(/docs/asset/img/content_back.png);
 line-height: 1.5;
@@ -215,7 +215,7 @@ content: '';
 display: block;
 clear: both;
 }
-swaggerBody ul {
+#swaggerBody ul {
 margin: 1em 0;
 }
 #swaggerBody .topbar {
