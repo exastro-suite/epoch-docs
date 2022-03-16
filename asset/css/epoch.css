@@ -242,6 +242,6 @@ color: #FFF;
 #swaggerBody .arrow {
 fill: #FFEE00;
 }
-#swaggerBody .swagger-ui .opblock-tag small {
+#swaggerBody .expand-operation small {
 color: #FFF;
 }
