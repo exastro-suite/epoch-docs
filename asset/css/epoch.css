@@ -239,12 +239,16 @@ border-bottom: none;
 letter-spacing: 0.05em;
 color: #FFF;
 }
-#swaggerBody .arrow {
+#swaggerBody .opblock-tag {
+margin-bottom: 16px;
+}
+#swaggerBody .opblock-tag .arrow {
 fill: #FFEE00;
 }
-#swaggerBody .expand-operation small {
+#swaggerBody .swagger-ui .opblock-tag small {
 color: #FFF;
 }
 #swaggerBody .operation-tag-content {
 background-color: #FFF;
+margin-bottom: 32px;
 }
