@@ -206,12 +206,17 @@ color: #00878A;
 padding: 24px 0 32px;
 background-color: #FFF;
 background-image: url(/docs/asset/img/content_back.png);
+line-height: 1.5;
+font-size: 14px;
 color: #1F8C78;
 }
 #swaggerBody::after {
 content: '';
 display: block;
 clear: both;
+}
+swaggerBody ul {
+margin: 1em 0;
 }
 #swaggerBody .topbar {
 display: none;
@@ -223,9 +228,11 @@ border-bottom: 1px solid #1F8C78;
 }
 #swaggerBody .title {
 margin-bottom: 8px;
+color: #1F8C78;
 }
-#swaggerBody ul {
+#swaggerBody .description ul {
 padding-left: 2em;
+list-style: none;
 }
 #swaggerBody .swagger-ui .opblock-tag {
 padding: 8px 16px 7px;
@@ -251,4 +258,7 @@ color: #FFF;
 #swaggerBody .operation-tag-content {
 background-color: #FFF;
 margin-bottom: 32px;
+}
+#swaggerBody.renderedMarkdown p {
+margin: 0 0 8px;
 }
