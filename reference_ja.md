@@ -9,13 +9,15 @@ pageName: reference
     <div class="sectionInner">
         <h2><em>Exastro EPOCH</em> Reference</h2>
         <div id="swagger-ui"></div>
+        
+        <link href="./asset/swagger/swagger-ui.css" rel="stylesheet">
         <script src="./asset/swagger/swagger-ui-bundle.js" charset="UTF-8"></script>
         <script src="./asset/swagger/swagger-ui-standalone-preset.js" charset="UTF-8"></script>
         <script>
         window.onload = function() {
           // Begin Swagger UI call region
           const ui = SwaggerUIBundle({
-            url: "https://petstore.swagger.io/v2/swagger.json",
+            url: "https://raw.githubusercontent.com/exastro-suite/epoch/main/docs/epoch-service-api.yaml",
             dom_id: '#swagger-ui',
             deepLinking: true,
             presets: [
