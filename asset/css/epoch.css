@@ -206,3 +206,17 @@ color: #00878A;
 background-color: #FFF;
 background-image: url(/docs/asset/img/content_back.png);
 }
+#swaggerBody::after {
+content: '';
+display: block;
+clear: both;
+}
+#swaggerBody .topbar {
+display: none;
+}
+#swaggerBody .title {
+margin-bottom: 8px;
+}
+#swaggerBody ul {
+padding-left: 2em;
+}
