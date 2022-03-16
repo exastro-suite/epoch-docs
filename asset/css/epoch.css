@@ -200,3 +200,8 @@ background-color: #8FC6BC;
 .webinarVersionItem.tabOpen .webinarVersionLink {
 color: #00878A;
 }
+
+
+#swaggerBody {
+background: url(../img/content_back.png);
+}

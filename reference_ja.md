@@ -14,7 +14,10 @@ pageName: reference
         <script src="./asset/swagger/swagger-ui-bundle.js" charset="UTF-8"></script>
         <script src="./asset/swagger/swagger-ui-standalone-preset.js" charset="UTF-8"></script>
         <script>
-        window.onload = function() {
+        $(function(){
+          // ID change
+          $('#articleBody').attr('id', 'swaggerBody');
+        
           // Begin Swagger UI call region
           const ui = SwaggerUIBundle({
             url: "https://raw.githubusercontent.com/exastro-suite/epoch/main/docs/epoch-service-api.yaml",
@@ -32,7 +35,7 @@ pageName: reference
           // End Swagger UI call region
 
           window.ui = ui;
-        };
+        });
       </script>
     </div>
 </section>
