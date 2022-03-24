@@ -20,6 +20,7 @@ $(function(){
     url: "https://raw.githubusercontent.com/exastro-suite/epoch/v0.3.1/docs/epoch-service-api.yaml",
     dom_id: '#swagger-ui',
     deepLinking: true,
+    tryItOutEnabled: false,
     presets: [
       SwaggerUIBundle.presets.apis,
       SwaggerUIStandalonePreset
