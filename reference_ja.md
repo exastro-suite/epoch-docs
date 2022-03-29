@@ -5,10 +5,33 @@ type: article
 title: Reference
 pageName: reference
 ---
-<section>
-    <div class="sectionInner">
-        <h2><em>Exastro EPOCH</em> Reference</h2>
-        <div class="leftImage image25"><img src="../it-automation-docs/asset/img/coming_soon.png" alt="Coming soon."></div>
-        <p>Exastro EPOCH Referenceについては後日公開予定です。</p>
-    </div>
-</section>
+<div id="swagger-ui"></div>
+
+<link href="./asset/swagger/swagger-ui.css" rel="stylesheet">
+<script src="./asset/swagger/swagger-ui-bundle.js" charset="UTF-8"></script>
+<script src="./asset/swagger/swagger-ui-standalone-preset.js" charset="UTF-8"></script>
+<script>
+$(function(){
+  // ID change
+  $('#articleBody').attr('id', 'swaggerBody');
+
+  // Begin Swagger UI call region
+  const ui = SwaggerUIBundle({
+    url: "https://raw.githubusercontent.com/exastro-suite/epoch/v0.3.1/docs/epoch-service-api.yaml",
+    dom_id: '#swagger-ui',
+    deepLinking: true,
+    presets: [
+      SwaggerUIBundle.presets.apis,
+      SwaggerUIStandalonePreset
+    ],
+    plugins: [
+      SwaggerUIBundle.plugins.DownloadUrl
+    ],
+    layout: "StandaloneLayout",
+    supportedSubmitMethods: []
+  });
+  // End Swagger UI call region
+
+  window.ui = ui;
+});
+</script>
