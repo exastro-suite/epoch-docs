@@ -23,6 +23,17 @@
                     ]
                 },
                 {
+                    "id": "install_on_kubernetes",
+                    "title": "Install on Kubernetes",
+                    "description": "ノンマネージドなKubernetes環境へEPOCHをインストールする方へ向けたドキュメントです。<br><br>EPOCHのインストールに必要なユーザ権限、クラスタ構成ノードの要件、ネットワーク構成の要件を扱います。",
+                    "links": [
+                        {
+                            "title": "詳細を見る",
+                            "url": "/Learn_ja/install/kubernetes/cluster-requirements.html"
+                        }
+                    ]
+                },
+                {
                     "id": "install_on_eks",
                     "title": "Install on EKS",
                     "description": "Amazon EKS環境へEPOCHをインストールするためのマニュアルです。セキュリティグループやIAMの設定、EKSクラスターの構築手順を扱っています。<br><br>手元にKubernetes環境が無い場合でも、速やかにマネージドなKubernetesクラスタを構築し、EPOCHの利用を開始することができます。",
