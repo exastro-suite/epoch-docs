@@ -15,8 +15,8 @@ pageName: overview
 <section id="astrollOverview">
   <div class="sectionInner">
     <h2><em>Exastro EPOCH</em> の概要</h2>
-    <p><span class="loupe touch"><span class="exImage"><img src="../epoch-docs/asset/img/epoch_overview.png" alt="概要イメージ図"></span></span></p>
     <p>Exastro EPOCHは、高速なアプリケーション開発・デプロイ環境を提供するためのフレームワークです。コンテナベースのアプリケーション開発を支援するためのプロセス及び環境をセットで提供します。</p>
+    <p><span class="loupe touch"><span class="exImage"><img src="../epoch-docs/asset/img/epoch_overview.png" alt="概要イメージ図"></span></span></p>
     
     <h3 id="feature1" class="toggleHeading">クラウドネイティブなアプリケーションのCI/CDパイプラインを即時に提供</h3>
     <div class="toggleText">
