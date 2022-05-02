@@ -13,9 +13,9 @@ pageName: index
       </svg>
       <ol>
         <li><a href="overview_ja.html#feature1"><i class="fas fa-cog"></i>　<span class="featureText">クラウドネイティブなアプリケーションのCI/CDパイプラインを即時に提供</span></a></li>
-        <li><a href="overview_ja.html#feature2"><i class="fas fa-cog"></i>　<span class="featureText">GitOpsに対応した環境の展開</span></a></li>
-        <li><a href="overview_ja.html#feature3"><i class="fas fa-cog"></i>　<span class="featureText">カナリアリリース/ブルーグリーンデプロイに対応</span></a></li>
-        <li><a href="overview_ja.html#feature4"><i class="fas fa-cog"></i>　<span class="featureText">CI/CDのステータスを一元管理</span></a></li>
+        <li><a href="overview_ja.html#feature2"><i class="fas fa-cog"></i>　<span class="featureText">ワークロードを統一</span></a></li>
+        <li><a href="overview_ja.html#feature3"><i class="fas fa-cog"></i>　<span class="featureText">GitOpsに対応した環境の展開</span></a></li>
+        <li><a href="overview_ja.html#feature4"><i class="fas fa-cog"></i>　<span class="featureText">カナリアリリース/ブルーグリーンデプロイに対応</span></a></li>
         <li><a href="overview_ja.html#feature5"><i class="fas fa-cog"></i>　<span class="featureText">宣言的IaCの環境依存パラメータをシステム上で管理</span></a></li>
       </ol>
     </div>
