@@ -17,7 +17,7 @@ $(function(){
 
   // Begin Swagger UI call region
   const ui = SwaggerUIBundle({
-    url: "https://raw.githubusercontent.com/exastro-suite/epoch/v1.0.0/docs/epoch-service-api.yaml",
+    url: "https://raw.githubusercontent.com/exastro-suite/epoch/v1.0.1/docs/epoch-service-api.yaml",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [
