@@ -3,11 +3,11 @@ layout: document
 lang: ja
 type: learn
 title: Quick Start
-version: 0.3.0
+version: 1.0.0
 description: EPOCHのインタフェースをスムーズに体感頂くために、クイックスタートをご用意しました。EPOCHでは、Kubernetesを主としたいくつかのソフトウェアと連携し、コンテナベースのCI/CD環境を提供しています。クイックスタートでは、EPOCHのインストールならびにサンプルアプリケーションを使ってCI/CDの流れを体験頂けます。
 author: Exastro developer
 date: 2021/11/09
-lastmod: 2022/03/03
+lastmod: 2022/05/09
 ---
 
 ## はじめに
@@ -16,7 +16,7 @@ lastmod: 2022/03/03
 
 本書は、Exastro EPOCH(以降、EPOCHと表記する)の導入方法ならびに簡単な使い方をチュートリアルを用いて説明します。
 
-以降の説明および手順は、EPOCH_v0.3.0に準拠した内容であることに留意ください。
+以降の説明および手順は、EPOCH_v1.0.0に準拠した内容であることに留意ください。
 {: .warning}
 
 #### QuickStartの全体図
@@ -264,12 +264,15 @@ https://[インストール先のIPアドレスまたはホスト名]:30443/
 
 TEKTONに設定するパイプライン情報を入力します。
 
-![パイプラインTEKTON情報入力画面](img/input_tekton.png){:width="1183" height="516"}
+![パイプラインTEKTON情報入力画面](img/input_tekton.png){:width="1321" height="1099"}
 
 | 項目 | 入力・選択内容 | 説明 |
 | --- | --- | --- |
 | ビルドブランチ | main,master | ビルド対象のアプリケーションのGitHubのブランチ |
-| ビルドDockerファイルパス | ./api-app/Dockerfile | アプリケーションのDockerfileのパス |
+| ビルドDockerファイルパス | ./api_app/Dockerfile | アプリケーションのDockerfileのパス |
+| Unit test起動コンテナイメージ | python:3 | Unit testの起動に使用するイメージ |
+| Unit test起動コマンド | ./api_unit_test.sh | Unit testを起動するためのコマンド |
+| Unit testソースディレクトリ | /app | Unit testのソースのディレクトリ |
 
 #### レジストリサービス
 
@@ -287,7 +290,7 @@ TEKTONに設定するパイプライン情報を入力します。
 
 ArgoCDに設定するDeploy先の情報を入力します。
 
-![ArgoCD情報入力画面](img/input_argo_cd.png){:width="1706" height="755"}
+![ArgoCD情報入力画面](img/input_argo_cd.png){:width="1620" height="839"}
 
 #####  環境1：Staging環境
 
@@ -438,7 +441,13 @@ Pushが完了すると、パイプラインTEKTONで設定されたCIパイプ�
 #### パイプラインTEKTONの結果確認
 ##### TEKTONのパイプラインを実際に確認し、ビルドが正常に終了したか確認する
 
-![TEKTONの結果確認](img/check_tekton_results_1.png){:width="1879" height="771"}
+![TEKTONの結果確認](img/check_tekton_results_1.png){:width="1826" height="673"}
+
+静的解析・Unit testの結果は実行結果の詳細から確認できます
+{: .check}
+
+静的解析の確認はSonarQubeで行います。SonarQubeのログイン情報は後述の「[各ツールのログインに必要なユーザ情報の確認](#各ツールのログインに必要なユーザ情報の確認)」を参照ください
+{: .warning}
 
 【POINT】  
 ・CI/CDのステータスを各CI/CDツールを介さずに一括で確認可能  
@@ -526,7 +535,7 @@ Manifestパラメータ(api-app.yamlのimage_tag)に手入力が必要になる�
 ![Staging環境へのDeploy実行_1](img/execution_of_deploy_to_staging_environment_1.png){:width="1898" height="780"}
 ##### CD実行で、Staging環境へDeployを実行
 
-![Staging環境へのDeploy実行_2](img/execution_of_deploy_to_staging_environment_2.png){:width="1182" height="669"}
+![Staging環境へのDeploy実行_2](img/execution_of_deploy_to_staging_environment_2.png){:width="1281" height="697"}
 
 ##### Deploy先の環境を選択して実行する
 
@@ -542,7 +551,7 @@ CD実行結果を確認してみましょう
 
 ![Staging環境のCD結果確認_1](img/confirmation_of_cd_results_in_staging_environment_1.png){:width="1940" height="800"}
 
-##### CDの実行結果をExastro IT-Automation、ArgoCDより確認
+##### CDの実行結果を確認
 
 ![Staging環境のCD結果確認_2](img/confirmation_of_cd_results_in_staging_environment_2.png){:width="1181" height="669"}
 
@@ -555,50 +564,24 @@ CD実行結果を確認してみましょう
 -  ArgoCD
    - IaC をもとにしてデプロイ
 
-##### 各ツールのログインに必要なユーザ情報を確認
-CDの実行結果は、Exastro IT-Automation、ArgoCDより確認できます。
-###### 以下のコマンドを実行する
-
-```
-kubectl exec -it -n epoch-system deploy/workspace-db -- mysql -N -B -u root -ppassword workspace_db -e'select workspace_id, info from workspace_access\G;'
-```
-{: .line .g}
-
-以降、必要に応じて以下の情報を用い各ツールにログインします。
-
-![ログイン情報例](img/example_of_login_information.png){:width="1779" height="261"}
-
-
 #### Manifestファイルの生成確認(Staging環境)
-##### Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認
+##### IT-Automationの結果確認画面から、IaCリポジトリへのManifestファイル登録が正常に終了したか確認する
 
-###### IT-Automationにログインして状況を確認
-
-[前述のコマンド](#各ツールのユーザ情報を確認)で表示した"ITA_EPOCH_USER","ITA_EPOCH_PASSWORD"の内容で、IT-Automationにログインします。
-
-![ITAのログイン情報例](img/examples_of_ita_login_information.png){:width="1779" height="261"}
-
-![Manifestファイルの生成確認](img/confirmation_of_manifest_file_generation.png){:width="1755" height="991"}
+![Manifestファイルの生成確認](img/confirmation_of_manifest_file_generation.png){:width="1404" height="516"}
 
 
 
 #### パイプラインArgoCDの結果確認(Staging環境)
-##### Manifestがkubernetesに反映されるまでの状況を確認
+##### ArgoCDの結果確認画面から、kubernetesへのManifestの反映が正常に終了したか確認する
 
-###### ArgoCDにサインインして状況を確認
-
-[前述のコマンド](#各ツールのユーザ情報を確認)で表示した"ARGOCD_USER","ARGOCD_PASSWORD"の内容で、ArgoCDにサインインします。
-
-![ArgoCDのサインイン情報例](img/example_of_argocd_sign_in_information.png){:width="1779" height="261"}
-
-![パイプラインArgoCDの結果確認](img/checking_the_results_of_pipeline_argocd.png){:width="1797" height="960"}
+![パイプラインArgoCDの結果確認](img/checking_the_results_of_pipeline_argocd.png){:width="1556" height="678"}
 
 
 
-設定値に誤りがある場合、以下のようなアイコンが表示されます。
+設定値に誤りがある等によりデプロイが失敗した場合、以下のようなアイコンが表示されます。
 {: .warning}
 
-![ArgoCD失敗パターン](img/argocd_failure_pattern.png){:width="1940" height="1100"}
+![ArgoCD失敗パターン](img/argocd_failure_pattern.png){:width="1399" height="762"}
 
 
 Deployされたサンプルアプリケーションを確認してみましょう
@@ -647,35 +630,23 @@ CD実行結果を確認してみましょう
 
 ![Production環境のCD結果確認_1](img/check_cd_results_in_the_production_environment_1.png){:width="1940" height="800"}
 
-##### CDの実行結果をExastro IT-Automation、ArgoCDより確認
+##### CDの実行結果を確認
 
 ![Production環境のCD結果確認_2](img/check_cd_results_in_the_production_environment_2.png){:width="1940" height="1000"}
 
 
 #### Manifestファイルの生成確認(Production環境)
 
-##### Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認
+##### IT-Automationの結果確認画面から、IaCリポジトリへのManifestファイル登録が正常に終了したか確認する
 
-###### IT-Automationにログインして状況を確認
-
-[前述のコマンド](#各ツールのユーザ情報を確認)で表示した"ITA_EPOCH_USER","ITA_EPOCH_PASSWORD"の内容で、IT-Automationにログインします。
-
-![ITAのログイン情報例](img/examples_of_ita_login_information.png){:width="1779" height="261"}
-
-![Production環境でのManifestファイル生成確認_1](img/confirmation_of_manifest_file_generation_in_production_environment_1.png){:width="1755" height="980"}
+![Production環境でのManifestファイル生成確認_1](img/confirmation_of_manifest_file_generation_in_production_environment_1.png){:width="1404" height="516"}
 
 
 #### パイプラインArgoCDの結果確認(Production環境)
 
-##### Manifestがkubernetesに反映されるまでの状況を確認
+##### ArgoCDの結果確認画面から、kubernetesへのManifestの反映が正常に終了したか確認する
 
-###### ArgoCDにサインインして状況を確認
-
-[前述のコマンド](#各ツールのユーザ情報を確認)で表示した"ARGOCD_USER","ARGOCD_PASSWORD"の内容で、ArgoCDにサインインします。
-
-![ArgoCDのサインイン情報例](img/example_of_argocd_sign_in_information.png){:width="1779" height="261"}
-
-![Production環境でのパイプラインArgoCDの結果確認_1](img/checking_the_results_of_pipeline_argocd_in_a_production_environment_1.png){:width="1788" height="953"}
+![Production環境でのパイプラインArgoCDの結果確認_1](img/checking_the_results_of_pipeline_argocd_in_a_production_environment_1.png){:width="1556" height="678"}
 
 
 
@@ -776,7 +747,7 @@ git push origin master
 #### パイプラインTEKTONの結果確認
 ##### TEKTONのパイプラインを実際に確認し、ビルドが正常に終了したか確認する
 
-![TEKTONの結果確認_2](img/check_tekton_results_2.png){:width="1880" height="771"}
+![TEKTONの結果確認_2](img/check_tekton_results_2.png){:width="1826" height="673"}
 
 
 #### コンテナイメージのタグ名の確認
@@ -820,7 +791,7 @@ Manifestパラメータ(api-app.yamlのimage_tag)に手入力が必要になる�
 
 ##### Deploy先の環境を選択してDeployを実行
 
-![CD実行指定_1](img/cd_execution_specification_1.png){:width="1540" height="671"}
+![CD実行指定_1](img/cd_execution_specification_1.png){:width="1281" height="778"}
 
 
 Staging環境へのCD実行が完了しました  
@@ -838,28 +809,16 @@ CD実行結果を確認してみましょう
 
 #### Manifestファイルの生成確認(Staging環境)
 
-##### Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認
+##### IT-Automationの結果確認画面から、IaCリポジトリへのManifestファイル登録が正常に終了したか確認する
 
-###### IT-Automationにログインして状況を確認
-
-[前述のコマンド](#各ツールのユーザ情報を確認)で表示した"ITA_EPOCH_USER","ITA_EPOCH_PASSWORD"の内容で、IT-Automationにログインします。
-
-![ITAのログイン情報例](img/examples_of_ita_login_information.png){:width="1779" height="261"}
-
-![Staging環境でのManifestファイル生成確認](img/confirmation_of_manifest_file_generation_in_staging_environment.png){:width="1755" height="980"}
+![Staging環境でのManifestファイル生成確認](img/confirmation_of_manifest_file_generation_in_staging_environment.png){:width="1404" height="516"}
 
 
 #### パイプラインArgoCDの結果確認(Staging環境)
 
-##### Manifestがkubernetesに反映されるまでの状況を確認
+##### ArgoCDの結果確認画面から、kubernetesへのManifestの反映が正常に終了したか確認する
 
-###### ArgoCDにサインインして状況を確認
-
-[前述のコマンド](#各ツールのユーザ情報を確認)で表示した"ARGOCD_USER","ARGOCD_PASSWORD"の内容で、ArgoCDにサインインします。
-
-![ArgoCDのサインイン情報例](img/example_of_argocd_sign_in_information.png){:width="1779" height="261"}
-
-![Staging環境でのパイプラインArgoCDの結果確認](img/checking_the_results_of_pipeline_argocd_in_a_staging_environment.png){:width="1788" height="950"}
+![Staging環境でのパイプラインArgoCDの結果確認](img/checking_the_results_of_pipeline_argocd_in_a_staging_environment.png){:width="1556" height="678"}
 
 Deployされたサンプルアプリケーションを確認してみましょう
 {: .check}
@@ -898,7 +857,7 @@ Staging環境へDeploy後、Production環境へDeployする流れを説明しま
 ##### Deploy先の環境を選択してDeployを実行
 
 ![CD実行指定_2](img/cd_execution_specification_2.png
-){:width="1540" height="633"}
+){:width="1281" height="779"}
 
 
 Production環境へのCD実行が完了しました  
@@ -907,7 +866,7 @@ CD実行結果を確認してみましょう
 
 
 #### Production環境のCD結果確認
-##### CDの実行結果をExastro IT-Automation、ArgoCDより確認
+##### CDの実行結果を確認
 
 
 ![Production環境のCD結果確認_1](img/check_cd_results_in_the_production_environment_1.png){:width="1940" height="860"}
@@ -917,28 +876,16 @@ CD実行結果を確認してみましょう
 
 #### Manifestファイルの生成確認(Production環境)
 
-##### Exastro IT-Automationから、IaCリポジトリへManifestファイルを登録するまでの状況を確認
+##### IT-Automationの結果確認画面から、IaCリポジトリへのManifestファイル登録が正常に終了したか確認する
 
-###### IT-Automationにログインして状況を確認
-
-[前述のコマンド](#各ツールのユーザ情報を確認)で表示した"ITA_EPOCH_USER","ITA_EPOCH_PASSWORD"の内容で、IT-Automationにログインします。
-
-![ITAのログイン情報例](img/examples_of_ita_login_information.png){:width="1779" height="261"}
-
-![Production環境でのManifestファイル生成確認_2](img/confirmation_of_manifest_file_generation_in_production_environment_2.png){:width="1755" height="977"}
+![Production環境でのManifestファイル生成確認_2](img/confirmation_of_manifest_file_generation_in_production_environment_2.png){:width="1404" height="516"}
 
 
 #### パイプラインArgoCDの結果確認(Production環境)
 
-##### Manifestがkubernetesに反映されるまでの状況を確認
+##### ArgoCDの結果確認画面から、kubernetesへのManifestの反映が正常に終了したか確認する
 
-###### ArgoCDにサインインして状況を確認
-
-[前述のコマンド](#各ツールのユーザ情報を確認)で表示した"ARGOCD_USER","ARGOCD_PASSWORD"の内容で、ArgoCDにサインインします。
-
-![ArgoCDのサインイン情報例](img/example_of_argocd_sign_in_information.png){:width="1779" height="261"}
-
-![Production環境でのパイプラインArgoCDの結果確認_2](img/checking_the_results_of_pipeline_argocd_in_a_production_environment_2.png){:width="1785" height="950"}
+![Production環境でのパイプラインArgoCDの結果確認_2](img/checking_the_results_of_pipeline_argocd_in_a_production_environment_2.png){:width="1556" height="678"}
 
 
 Deployされたサンプルアプリケーションを確認してみましょう
@@ -967,18 +914,15 @@ http://[Kubernetes masterノードのIPアドレスまたはホスト名]:31003/
 以下、現在のExastro EPOCHのバージョンでの制限事項となります。今後のバージョンで変更される可能性があります。
 
 #### 制限事項（今後対応する予定）
-- アプリケーションコードのリポジトリは、現在１つのみ対応となっております。
 - 現在は、アプリケーションコード毎のGitアカウントには対応しておりません。
-- Gitサービス選択は次バージョン以降で対応予定です。現在は指定されたURLのGitリポジトリの動作となります。
-- ビルドブランチは次バージョン以降で対応予定です。現在はPushされた内容でビルドされます。
-- レジストリサービスは現在内部のレジストリサービスのみとなっております。
+- レジストリサービスはDockerHubのみとなっております。
 - イメージ出力先以外の項目については次バージョン以降で対応予定です。
-- Authentication token, Base64 encoded certificateは次バージョン以降で対応予定です。
 - テンプレートで指定できる変数は、現在固定です。詳細は後述の「コラム」を参照してください。
 
 
 #### 注意事項
 - EPOCHをインストールすると、TEKTONもインストールされます。
+- EPOCHをインストールすると、Gitlabもインストールされます。
 - 変数は”\{\{ 変数名 \}\}”で指定した内容となります。
 
 
@@ -1001,6 +945,20 @@ Manifestテンプレートをアップロードするとファイル内の定義
 | \{\{ param20 \}\}  | ユーザが自由に使用できる固定の変数名20（20が上限） |
 
 ※ユーザ任意の変数名につきましては、今後対応する予定です
+
+
+#### 各ツールのログインに必要なユーザ情報の確認
+静的解析の結果はSonerQubeより確認できます。またデプロイ時のジョブはExastro IT-Automationにて設定することができます。
+##### 以下のコマンドを実行する
+
+```
+kubectl exec -it deployment/epoch-setting-tools -n epoch-system -- bash /scripts/get-workspace-tools-account.sh [wowkspace_id]
+```
+{: .line .g}
+
+必要に応じて以下のログイン情報を用い各ツールにログインしてください。
+
+![ログイン情報例](img/example_of_login_information.png){:width="1779" height="261"}
 
 
 

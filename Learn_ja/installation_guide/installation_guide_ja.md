@@ -3,10 +3,10 @@ layout: document
 lang: ja
 type: learn
 title: EPOCH Install
-version: 0.3.0
+version: 1.0.0
 author: Exastro Developer
 date: 2021/11/10
-lastmod: 2022/02/02
+lastmod: 2022/05/09
 ---
 
 ## はじめに
@@ -27,9 +27,26 @@ kubernetesにEPOCHをインストールする前に、下記の事項を満た�
 - v1.18 ～ v1.21のKubernetes環境が構築されていること。
 - Kubernetesで使用するServiceAccountにcluster-adminロールが付与されていること。
 - Kubernetesから外部インターネットに接続できること。
+- WorkerノードのLinuxの設定について、次の条件(SonarQubeのホスト要件)を満たしていること。
+
+    | kernelパラメータ | 条件 |
+    | :- | :- |
+    | vm.max_map_count | 524288 以上 |
+    | fs.file-max | 131072 以上 |
+
+
+    | ユーザーリソース | 条件 |
+    | :- | :- |
+    | 同時にオープンできるファイル数 | 131072 以上 |
+    | 実行可能なユーザープロセスの最大数 | 8192 以上 |
+
+    SonarQubeのホスト要件については以下のサイトで確認できます。<br/>
+    [https://hub.docker.com/_/sonarqube](https://hub.docker.com/%5F/sonarqube)
+
 - kubernetesが下記のポート番号を利用できること。
   - 30443
   - 31182
+  - 31183
 
 ポート番号は後述するepoch-install.yamlに定義されています。ポート番号を変更する場合は、ファイルを変更した後にインストールを実行してください。
 {: .info}
@@ -52,7 +69,7 @@ EPOCHをインストールするKubernetesクラスタの、サーバスペッ�
 |:--|:--|
 |CPU数|2 Core (3.0 GHz)|
 |メモリ|8GB|
-|ディスク容量|32GB|
+|ディスク容量|40GB|
 
 これらは参考値です。最終的なスペック値はEPOCHを利用して構築するシステムの要件や、展開先のKubernetesがEPOCHと別のものになるか否か、等の要素を検討して決定してください。
 {: .info}
@@ -146,12 +163,23 @@ kubectl delete -f https://github.com/exastro-suite/epoch/releases/latest/downloa
 ##### 下記のコマンドを実行し、EPOCHの初期設定を行います。
 
 ```bash
-kubectl run -i --rm set-host -n epoch-system --restart=Never --image=exastro/epoch-setting:0.3_4 --pod-running-timeout=30m -- set-host [your-host]
+kubectl run -i --rm set-host -n epoch-system --restart=Never --image=exastro/epoch-setting:0.3_5 --pod-running-timeout=30m -- set-host [your-host]
 ```
 {: .line .d}
 
 `[your-host]`には、ご自身のホストに接続するためのサーバー名またはIPアドレスを指定してください。
 {: .info}
+
+###### 出力例（初期設定が正常に完了した場合）
+```bash
+[INFO] Call set-host command
+[INFO] START : set-host.sh
+[INFO] **** set-host.sh completed successfully ****
+  ...
+[INFO] Call set-host-gitlab command
+job.batch/set-host-gitlab created
+****  completed successfully ****
+```
 
 EPOCHがインストール中の場合、以下のエラーとなることがあります。その際は再度コマンドを実行してください。
 {: .warning}
@@ -206,25 +234,28 @@ https://[your-host]:30443/
 `[your-host]`には、ご自身のホストに接続するためのサーバー名またはIPアドレスを指定してください。
 {: .info}
 
-以下のサインイン画面が表示されます。「Register」を押下し登録画面へ遷移します。
+以下のサインイン画面が表示されます。
 
-![sign_in_screen](img/sign_in_screen.png){:width="994" height="550"}
-
-
-以下の情報を入力し「Register」ボタンを押下してください。
-- First name
-- Last name
-- Email
-- Username
-- Password
-- Confirm password
+![sign_in_screen](img/sign_in_screen.png){:width="880" height="540"}
 
 
-![registration_screen](img/registration_screen.png){:width="994" height="750"}
+ユーザ名に```epoch-admin```、パスワードに```password```を指定して「ログイン」ボタンを押下してください。
 
+パスワードの変更画面が表示されます。
+
+![update_password](img/update_password.png){:width="880" height="560"}
+
+新しいパスワードを指定して「送信」ボタンを押下してください。
+
+アカウント情報の更新画面が表示されます。
+![update_profile](img/update_profile.png){:width="880" height="620"}
+
+以下の情報を入力し「送信」ボタンを押下してください。
+  - Eメール
+  - 名
+  - 姓
 
 以下の画面が表示されることを確認します。
-
 ![workspace_image](img/workspace_image.png){:width="994" height="550"}
 
 
