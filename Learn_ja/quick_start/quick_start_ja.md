@@ -687,6 +687,11 @@ PC環境にcloneしたアプリケーションコード用リポジトリの、�
 
 ##### 修正対象①：api-app/data/currency.json
 ```js
+{
+    "YEN": {
+        "symbol"    :   "\\",
+        "formatter" :   "{price:,d} 円(税込)"
+    },
     "USD": {
         "symbol"    :   "$",
         "formatter" :   "{symbol} {price:,.2f} (Tax Included)"
