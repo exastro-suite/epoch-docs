@@ -61,6 +61,17 @@
                             "url": "/Learn_ja/quick_start/quick_start_ja.html"
                         }
                     ]
+                },
+                {
+                    "id": "quickStartGitLab",
+                    "title": "Quick Start GitLab",
+                    "description": "EPOCHのインタフェースをスムーズに体感頂くために、クイックスタートをご用意しました。EPOCHでは、Kubernetesを主としたいくつかのソフトウェアと連携し、コンテナベースのCI/CD環境を提供しています。クイックスタートでは、EPOCHのインストールならびにサンプルアプリケーションを使ってCI/CDの流れを体験頂けます。",
+                    "links": [
+                        {
+                            "title": "詳細を見る",
+                            "url": "/Learn_ja/quick_start_gitlab/quick_start_ja.html"
+                        }
+                    ]
                 }
             ]
         }
