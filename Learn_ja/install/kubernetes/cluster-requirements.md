@@ -78,7 +78,7 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 
 ##### `kubectl`とKubernetesクラスタのバージョンを確認する
 Kubernetesクラスタと、ここでインストールした`kubectl`は**マイナーバージョンの差が1以内である必要があります。**
-たとえばKubernetesクラスタがv1.20である場合、`kubectl`は1.19,1.20,1,21のいずれかでなければなりません。
+たとえばKubernetesクラスタがv1.24である場合、`kubectl`は1.23,1.24,1,25のいずれかでなければなりません。
 
 ※2023年5月現在、EPOCHが対応しているKubernetesクラスターバージョンは1.21 ～ 1.24です。
 {: .info}
