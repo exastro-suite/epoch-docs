@@ -39,7 +39,7 @@ EPOCHのインストールやその後の管理作業に利用されます。
 それ以外の場合においては、[こちら](https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/install-kubectl.html)を参考に、`kubectl`をインストールしてください。
 
 作成する予定のKubernetesクラスタと、ここでインストールする`kubectl`はマイナーバージョンの差が1以内である必要があります。
-例えばKubernetesクラスタにv1.20を採用する場合、`kubectl`は1.19,1.20,1,21のいずれかである必要があります。
+例えばKubernetesクラスタにv1.24を採用する場合、`kubectl`は1.23,1.24,1,25のいずれかである必要があります。
 ※2023年5月現在、EPOCHが動作確認が取れているKubernetesクラスターバージョンは1.21 ～ 1.24です。
 {: .info}
 
@@ -136,10 +136,10 @@ eksctl create cluster \
 --nodegroup-name my-epoch \
 --region ap-northeast-1 \
 --zones ap-northeast-1a,ap-northeast-1c,ap-northeast-1d \
---node-type c5.2xlarge \
+--node-type c5.4xlarge \
 --node-volume-size 32 \
 --managed \
---nodes 2 \
+--nodes 1 \
 --version 1.24
 ```
 
