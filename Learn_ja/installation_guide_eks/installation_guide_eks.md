@@ -3,10 +3,10 @@ layout: document
 lang: ja
 type: learn
 title: Amazon EKSへのインストール
-version: 0.3.0
+version: 1.2.0
 author: Exastro Developer
 date: 2022/02/24
-lastmod: 2022/02/24
+lastmod: 2023/05/24
 ---
 
 ## はじめに
@@ -35,18 +35,18 @@ lastmod: 2022/02/24
 Kubernetesクラスターを操作するためのコマンドラインツールです。
 EPOCHのインストールやその後の管理作業に利用されます。
 
-下記はLinux環境に`kubectl v1.21`をインストールする場合のコマンドです。
+下記はLinux環境に`kubectl v1.24`をインストールする場合のコマンドです。
 それ以外の場合においては、[こちら](https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/install-kubectl.html)を参考に、`kubectl`をインストールしてください。
 
 作成する予定のKubernetesクラスタと、ここでインストールする`kubectl`はマイナーバージョンの差が1以内である必要があります。
 例えばKubernetesクラスタにv1.20を採用する場合、`kubectl`は1.19,1.20,1,21のいずれかである必要があります。
-※2022年2月現在、EPOCHが対応しているKubernetesクラスターバージョンは1.18 ～ 1.21です。
+※2023年5月現在、EPOCHが動作確認が取れているKubernetesクラスターバージョンは1.21 ～ 1.24です。
 {: .info}
 
-**コマンド(Linuxに`kubectl v1.21`をインストールする場合)**
+**コマンド(Linuxに`kubectl v1.24`をインストールする場合)**
 ```bash
 # バイナリファイルのダウンロード
-curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.21.2/2021-07-05/bin/linux/amd64/kubectl
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.24.11/2023-03-17/bin/linux/amd64/kubectl
 
 # バイナリへの実行アクセス許可
 chmod +x ./kubectl
@@ -102,7 +102,7 @@ aws configure
 AWS CLIと共通の認証情報を利用し、EKSに対してクラスタの作成を含む様々な操作を実行するためのコマンドラインツールです。
 
 ##### インストールコマンド
-下記はLinux環境に最新の`eksctl`をインストールする場合のコマンドです。
+下記はLinux(amd64)環境に最新の`eksctl`をインストールする場合のコマンドです。
 それ以外の環境においては、[こちら](https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/eksctl.html)を参考に、手持ちの環境に`eksctl`をインストールしてください。
 
 **コマンド**
@@ -136,10 +136,11 @@ eksctl create cluster \
 --nodegroup-name my-epoch \
 --region ap-northeast-1 \
 --zones ap-northeast-1a,ap-northeast-1c,ap-northeast-1d \
---node-type c5.xlarge \
+--node-type c5.2xlarge \
 --node-volume-size 32 \
 --managed \
---nodes 2
+--nodes 2 \
+--version 1.24
 ```
 
 EKSクラスタのリソース名等を変更する場合、下記オプションの解説を参照して該当箇所を適宜変更してください。
@@ -176,8 +177,8 @@ kubectl get nodes
 
 ```bash
 NAME                                                STATUS   ROLES    AGE   VERSION
-ip-xxx-xxx-xxx-xxx.ap-northeast-1.compute.internal   Ready    <none>   15m   v1.21.5-eks-xxxxxxx
-ip-xxx-xxx-xxx-xxx.ap-northeast-1.compute.internal   Ready    <none>   15m   v1.21.5-eks-xxxxxxx
+ip-xxx-xxx-xxx-xxx.ap-northeast-1.compute.internal   Ready    <none>   15m   v1.24.11-eks-xxxxxxx
+ip-xxx-xxx-xxx-xxx.ap-northeast-1.compute.internal   Ready    <none>   15m   v1.24.11-eks-xxxxxxx
 ```
 
 以上の手順でEKSクラスタの作成が完了しました。
@@ -228,8 +229,7 @@ EPOCHのユーザ認証機能が正常に動作するためには、
 **コマンド**
 ```bash
 # パブリックIPアドレスの確認
-EKS_NODE_EXTERNAL_IP_LIST=`kubectl get nodes -o=jsonpath='{range .items[*].status.addresses[?(@.type=="ExternalIP"
-)]}{.address}{" "}{end}'`
+EKS_NODE_EXTERNAL_IP_LIST=`kubectl get nodes -o=jsonpath='{range .items[*].status.addresses[?(@.type=="ExternalIP")]}{.address}{" "}{end}'`
 
 # 値を表示する
 echo $EKS_NODE_EXTERNAL_IP_LIST
