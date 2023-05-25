@@ -3,10 +3,10 @@ layout: document
 lang: ja
 type: learn
 title: EPOCH Install
-version: 1.0.0
+version: 1.2.0
 author: Exastro Developer
 date: 2021/11/10
-lastmod: 2022/05/09
+lastmod: 2023/05/24
 ---
 
 ## はじめに
@@ -24,7 +24,7 @@ EPOCHはKubernetes上に各種リソースを展開してインストールし�
 ### インストール要件
 kubernetesにEPOCHをインストールする前に、下記の事項を満たしていることを確認してください。
 
-- v1.18 ～ v1.21のKubernetes環境が構築されていること。
+- v1.21 ～ v1.24のKubernetes環境が構築されていること。
 - Kubernetesで使用するServiceAccountにcluster-adminロールが付与されていること。
 - Kubernetesから外部インターネットに接続できること。
 - WorkerノードのLinuxの設定について、次の条件(SonarQubeのホスト要件)を満たしていること。
@@ -60,15 +60,15 @@ EPOCHをインストールするKubernetesクラスタの、サーバスペッ�
 - Masterノード
 
 |:--|:--|
-|CPU数|2 Core (3.0 GHz)|
+|CPU数|4 Core (3.0 GHz)|
 |メモリ|8GB|
 |ディスク容量|10GB|
 
 - Workerノード
 
 |:--|:--|
-|CPU数|2 Core (3.0 GHz)|
-|メモリ|8GB|
+|CPU数|16 Core (3.0 GHz)|
+|メモリ|32GB|
 |ディスク容量|40GB|
 
 これらは参考値です。最終的なスペック値はEPOCHを利用して構築するシステムの要件や、展開先のKubernetesがEPOCHと別のものになるか否か、等の要素を検討して決定してください。

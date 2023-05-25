@@ -3,10 +3,10 @@ layout: document
 lang: ja
 type: learn
 title: クラスタ要件
-version: 0.3.1
+version: 1.2.0
 author: Exastro Developer
 date: 2022/03/18
-lastmod: 2022/03/18
+lastmod: 2023/05/24
 ---
 
 ## はじめに
@@ -56,17 +56,17 @@ kubectl version --client --short
 
 **出力例(インストール済みの場合)**
 ```
-Client Version: v1.21.1
+Client Version: v1.24.11
 ```
 
 ##### インストールを実行する
-下記はLinux環境に`kubectl v1.21`をインストールする場合のコマンドです。
+下記はLinux環境に`kubectl v1.24`をインストールする場合のコマンドです。
 Linux環境以外の場合においては、[Kubernetes公式のインストール手順](https://kubernetes.io/ja/docs/tasks/tools/install-kubectl/)を参考に、`kubectl`をインストールしてください。
 
-**コマンド(Linuxに`kubectl v1.21`をインストールする場合)**
+**コマンド(Linuxに`kubectl v1.24`をインストールする場合)**
 ```bash
 # バイナリファイルのダウンロード
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.21.0/bin/linux/amd64/kubectl
+curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.24.0/bin/linux/amd64/kubectl
 
 # バイナリへの実行アクセス許可
 chmod +x ./kubectl
@@ -78,9 +78,9 @@ sudo mv ./kubectl /usr/local/bin/kubectl
 
 ##### `kubectl`とKubernetesクラスタのバージョンを確認する
 Kubernetesクラスタと、ここでインストールした`kubectl`は**マイナーバージョンの差が1以内である必要があります。**
-たとえばKubernetesクラスタがv1.20である場合、`kubectl`は1.19,1.20,1,21のいずれかでなければなりません。
+たとえばKubernetesクラスタがv1.24である場合、`kubectl`は1.23,1.24,1,25のいずれかでなければなりません。
 
-※2022年3月現在、EPOCHが対応しているKubernetesクラスターバージョンは1.18 ～ 1.21です。
+※2023年5月現在、EPOCHが対応しているKubernetesクラスターバージョンは1.21 ～ 1.24です。
 {: .info}
 
 **コマンド**
@@ -128,7 +128,7 @@ Kubernetesクラスタに要求されるサーバリソースについては、
 [インストール手順](https://exastro-suite.github.io/epoch-docs/Learn_ja/installation_guide/installation_guide_ja.html#%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E8%A6%81%E4%BB%B6)より、「要求スペック」項を参照してください。
 
 #### CPUアーキテクチャ
-2022年3月現在、EPOCHを構成するコンテナイメージが対応しているCPUアーキテクチャは`amd64`のみであり、マルチCPUアーキテクチャには未対応です。
+2023年5月現在、EPOCHを構成するコンテナイメージが対応しているCPUアーキテクチャは`amd64`のみであり、マルチCPUアーキテクチャには未対応です。
 したがって、**Kubernetes構成ノードのCPUアーキテクチャは`amd64`である必要があります。**
 
 下記のコマンドを実行すると、ノード毎のCPUアーキテクチャが表示されます。表示が全て`amd64`であることを確認してください。
