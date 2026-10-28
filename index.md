@@ -5,6 +5,13 @@ type: website
 title: Index
 pageName: index
 ---
+<div class="importantNotice importantNotice-Info">
+  <a class="importantNotice-Link touch" href="https://ita.exastro.org/">
+    <span class="importantNotice-Label"><i class="fas fa-info-circle"></i> News</span>
+    <span class="importantNotice-Text">Click here for the new version of Exastro</span>
+    <i class="importantNotice-Arrow fas fa-arrow-circle-right"></i>
+  </a>
+</div>
 <section id="features">
   <div class="sectionInner">
     <h2>5 Features of <em>Exastro EPOCH</em></h2>
